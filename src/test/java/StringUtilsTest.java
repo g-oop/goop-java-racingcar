@@ -12,8 +12,9 @@ import java.util.stream.Stream;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class StringUtilsTest {
 
-    @ParameterizedTest(name = "splitByComma: 배열로 변환 {0} -> {1}")
+    @ParameterizedTest(name = "( \"{0}\" ) -> {1}")
     @MethodSource("splitByCommaTestSource")
+    @DisplayName("1) splitByComma: 배열로 변환")
     void splitByCommaTest(String test, String[] expect) {
         String[] result = StringUtils.splitByComma(test);
         Stream.of(expect).forEach(Assertions.assertThat(result)::contains);
@@ -28,7 +29,7 @@ public class StringUtilsTest {
     }
 
     @Test
-    @DisplayName("removeBracket: 괄호 제거")
+    @DisplayName("2) removeBracket: 괄호 제거")
     void removeBracketTest() {
         String test = "(1,2)";
         String expect = "1,2";
@@ -37,9 +38,9 @@ public class StringUtilsTest {
         Assertions.assertThat(actual).isEqualTo(expect);
     }
 
-    @ParameterizedTest
+    @ParameterizedTest(name = "( \"abc\", {0} ) -> {1}")
     @CsvSource(value = {"0,a", "1,b", "2,c"})
-    @DisplayName("charAt: 대상 문자열")
+    @DisplayName("3) charAt: \"abc\" 에서 대상 문자")
     void charAtTest(int test, char expect) {
         String testStr = "abc";
         char actual = StringUtils.charAt(testStr, test);
@@ -47,8 +48,8 @@ public class StringUtilsTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = {"3"})
-    @DisplayName("charAt: 에러 메세지 테스트")
+    @CsvSource(value = {"3", "4"})
+    @DisplayName("3) charAt: 에러 메세지 테스트")
     void charAtTest_ExceptionWhenOOB(int test) {
         String testStr = "abc";
         Assertions
