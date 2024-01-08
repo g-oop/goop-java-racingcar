@@ -15,4 +15,8 @@ public class StringClass {
     public String substring() {
         return value.substring(1, 4);
     }
+
+    public char charAt(int index) {
+        return value.charAt(index);
+    }
 }

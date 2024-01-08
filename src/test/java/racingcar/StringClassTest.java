@@ -1,6 +1,7 @@
 package racingcar;
 
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class StringClassTest {
@@ -50,5 +51,39 @@ public class StringClassTest {
 
         // then
         Assertions.assertThat(result).contains("1,2");
+    }
+
+    @DisplayName("StringIndexOutOfBoundsException 테스트 1")
+    @Test
+    void firstOfRequirement3() {
+
+        // given
+        String inputString = "abc";
+
+        // when
+        StringClass stringClass = new StringClass(inputString);
+
+        // then
+        Assertions.assertThatThrownBy(() -> {
+            stringClass.charAt(5);
+        }).isInstanceOf(StringIndexOutOfBoundsException.class)
+            .hasMessageContaining("String index out of range: 5");
+    }
+
+    @DisplayName("StringIndexOutOfBoundsException 테스트 2")
+    @Test
+    void secondOfRequirement3() {
+
+        // given
+        String inputString = "abc";
+
+        // when
+        StringClass stringClass = new StringClass(inputString);
+
+        // then
+        Assertions.assertThatExceptionOfType(StringIndexOutOfBoundsException.class)
+            .isThrownBy(() -> {
+                stringClass.charAt(5);
+            }).withMessageMatching("String index out of range: \\d+");
     }
 }
