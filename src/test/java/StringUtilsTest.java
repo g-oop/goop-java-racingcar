@@ -48,11 +48,13 @@ public class StringUtilsTest {
     @ParameterizedTest
     @CsvSource(value = {"3", "4"})
     @DisplayName("3) charAt: 에러 메세지 테스트")
-    void charAtTest_ExceptionWhenOOB(int test) {
+    void charAtTest_ExceptionWhenOOB(int testIdx) {
         String testStr = "abc";
+        String errorMessageExcept = String.format("Index: %d, Size: %d", testStr.length(), testIdx);
+        System.out.println(">>> errorMessageExcept: " + errorMessageExcept);
         Assertions
-                .assertThatThrownBy(() -> StringUtils.charAt(testStr, test))
+                .assertThatThrownBy(() -> StringUtils.charAt(testStr, testIdx))
                 .isInstanceOf(IndexOutOfBoundsException.class)
-                .hasMessageContaining(String.format("Index: %d, Size: %d", testStr.length(), test));
+                .hasMessageContaining(errorMessageExcept);
     }
 }
