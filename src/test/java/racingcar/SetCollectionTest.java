@@ -7,6 +7,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class SetCollectionTest {
@@ -60,5 +61,18 @@ public class SetCollectionTest {
 
         // then
         Assertions.assertThat(setCollection.contains(inputInt)).isTrue();
+    }
+
+    @CsvSource(value = {"1:true", "2:true", "3:true", "4:false", "5:false"}, delimiter = ':')
+    @ParameterizedTest
+    void firstOfRequirement3(String inputInt, String inputBoolean) {
+
+        // given
+
+        // when
+        SetCollection setCollection = new SetCollection(numbers);
+
+        // then
+        Assertions.assertThat(setCollection.contains(Integer.parseInt(inputInt))).isEqualTo(Boolean.parseBoolean(inputBoolean));
     }
 }
