@@ -13,12 +13,13 @@ public class StringClassTest {
 
         // when
         StringClass stringClass = new StringClass(inputString);
+        String[] result = stringClass.split();
 
         // then
-        Assertions.assertThat(stringClass.result).contains("1");
-        Assertions.assertThat(stringClass.result).contains("2");
+        Assertions.assertThat(result).contains("1");
+        Assertions.assertThat(result).contains("2");
 
-        Assertions.assertThat(stringClass.result).containsExactly("1", "2");
+        Assertions.assertThat(result).containsExactly("1", "2");
     }
 
     @Test
@@ -29,10 +30,25 @@ public class StringClassTest {
 
         // when
         StringClass stringClass = new StringClass(inputString);
+        String[] result = stringClass.split();
 
         // then
-        Assertions.assertThat(stringClass.result).contains("1");
+        Assertions.assertThat(result).contains("1");
 
-        Assertions.assertThat(stringClass.result).containsExactly("1");
+        Assertions.assertThat(result).containsExactly("1");
+    }
+
+    @Test
+    void firstOfRequirement2() {
+
+        // given
+        String inputString = "(1,2)";
+
+        // when
+        StringClass stringClass = new StringClass(inputString);
+        String result = stringClass.substring();
+
+        // then
+        Assertions.assertThat(result).contains("1,2");
     }
 }
