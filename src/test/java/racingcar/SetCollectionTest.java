@@ -6,6 +6,8 @@ import java.util.Set;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class SetCollectionTest {
 
@@ -31,5 +33,32 @@ public class SetCollectionTest {
 
         // then
         Assertions.assertThat(result).isEqualTo(3);
+    }
+
+    @Test
+    void firstOfRequirement2() {
+
+        // given
+
+        // when
+        SetCollection setCollection = new SetCollection(numbers);
+
+        // then
+        Assertions.assertThat(setCollection.contains(1)).isTrue();
+        Assertions.assertThat(setCollection.contains(2)).isTrue();
+        Assertions.assertThat(setCollection.contains(3)).isTrue();
+    }
+
+    @ValueSource(ints = {1, 2, 3})
+    @ParameterizedTest
+    void secondOfRequirement2(int inputInt) {
+
+        // given
+
+        // when
+        SetCollection setCollection = new SetCollection(numbers);
+
+        // then
+        Assertions.assertThat(setCollection.contains(inputInt)).isTrue();
     }
 }

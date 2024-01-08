@@ -13,4 +13,8 @@ public class SetCollection {
     public int size() {
         return numbers.size();
     }
+
+    public boolean contains(Integer inputInteger) {
+        return numbers.contains(inputInteger);
+    }
 }
