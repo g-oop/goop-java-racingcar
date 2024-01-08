@@ -2,7 +2,7 @@ package racingcar;
 
 public class StringClass {
 
-    String value;
+    private String value;
 
     public StringClass(String inputString) {
         this.value = inputString;
