@@ -21,14 +21,14 @@ class InputStringParserTest {
 
     private static Stream<Arguments> basicSource() {
         return Stream.of(
-            Arguments.of(new BasicSource("1,2", new String[] {"1", "2"})),
-            Arguments.of(new BasicSource("1", new String[] {"1"})),
-            Arguments.of(new BasicSource("(1,2)", new String[] {"1", "2"})),
-            Arguments.of(new BasicSource("(1)", new String[] {"1"}))
+            Arguments.of(new BasicSource("1,2", "1", "2")),
+            Arguments.of(new BasicSource("1", "1")),
+            Arguments.of(new BasicSource("(1,2)", "1", "2")),
+            Arguments.of(new BasicSource("(1)", "1"))
         );
     }
 
-    record BasicSource(String input, String[] expected) { }
+    record BasicSource(String input, String... expected) { }
 
 
     @DisplayName("1단계 > String 클래스 > 요구사항 3")
