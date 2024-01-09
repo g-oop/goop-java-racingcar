@@ -4,6 +4,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class StringAddCalculatorTest {
 
@@ -23,5 +24,14 @@ class StringAddCalculatorTest {
 
         StringAddCalculator calculator = new StringAddCalculator(inputString);
         Assertions.assertThat(calculator.add()).isEqualTo(result);
+    }
+
+    @DisplayName("숫자 이외의 값 또는 음수일 경우 Exception 발생")
+    @ValueSource(strings = {"a", "-1", "//|\\n1|s|3",  "//;\\n1;-2;3"})
+    @ParameterizedTest
+    void throwInvalidValue(String inputString) {
+
+        StringAddCalculator calculator = new StringAddCalculator(inputString);
+        Assertions.assertThatThrownBy(calculator::add).isInstanceOf(RuntimeException.class);
     }
 }

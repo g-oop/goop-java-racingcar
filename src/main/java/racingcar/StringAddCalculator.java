@@ -25,8 +25,20 @@ public class StringAddCalculator {
     }
 
     public int add() {
-        return inputString == null ? 0 : Arrays.stream(inputString.split(delimiter == null ? "[,:]" : delimiter))
-            .mapToInt(Integer::parseInt)
-            .sum();
+
+        if (inputString == null) return 0;
+
+        int sum = 0;
+        for (String s : inputString.split(delimiter == null ? "[,:]" : delimiter)) {
+            try {
+                int i = Integer.parseInt(s);
+                if (i < 0) throw new RuntimeException();
+                sum += i;
+            } catch (NumberFormatException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        return sum;
     }
 }
