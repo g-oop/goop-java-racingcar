@@ -15,4 +15,13 @@ class StringAddCalculatorTest {
         StringAddCalculator calculator = new StringAddCalculator(inputString);
         Assertions.assertThat(calculator.add()).isEqualTo(result);
     }
+
+    @DisplayName("커스텀 구분자를 사용할 수 있도록 구현")
+    @CsvSource(value = {"|0", "1,2|3", "1,2,3|6", "1,2:3|6", "//;\\n1;2;3|6"}, delimiter = '|')
+    @ParameterizedTest
+    void applyCustomerSplit(String inputString, int result) {
+
+        StringAddCalculator calculator = new StringAddCalculator(inputString);
+        Assertions.assertThat(calculator.add()).isEqualTo(result);
+    }
 }
