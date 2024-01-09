@@ -8,7 +8,7 @@ public class StringUtils {
     }
 
     public static String removeBracket(String t){
-        if (charAt(t, 0) != '(' && charAt(t, t.length()-1) != ')') {
+        if (charAt(t, 0) == '(' && charAt(t, t.length()-1) == ')') {
             return t.substring(1, t.length()-1);
         }
         return t;

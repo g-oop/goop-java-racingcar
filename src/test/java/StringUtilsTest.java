@@ -36,6 +36,16 @@ public class StringUtilsTest {
         Assertions.assertThat(actual).isEqualTo(expect);
     }
 
+    @Test
+    @DisplayName("2) removeBracket: 괄호 제거 안함")
+    void removeBracketTest_() {
+        String test = "1,2";
+        String expect = "1,2";
+        String actual = StringUtils.removeBracket(test);
+        System.out.println(">>>" + actual);
+        Assertions.assertThat(actual).isEqualTo(expect);
+    }
+
     @ParameterizedTest(name = "( \"abc\", {0} ) -> {1}")
     @CsvSource(value = {"0,a", "1,b", "2,c"})
     @DisplayName("3) charAt: \"abc\" 에서 대상 문자")
