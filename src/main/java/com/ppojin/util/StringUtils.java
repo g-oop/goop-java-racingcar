@@ -27,4 +27,8 @@ public class StringUtils {
         }
         return t.charAt(i);
     }
+
+    public static boolean isEmpty(String num) {
+        return num == null || num.isEmpty();
+    }
 }
