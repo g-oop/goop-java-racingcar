@@ -1,8 +1,8 @@
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 public class StringUtils {
+
+    private StringUtils() {
+    }
+
     public static String[] splitByComma(String t){
         return t.split(",");
     }
