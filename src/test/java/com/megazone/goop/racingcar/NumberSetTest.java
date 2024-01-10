@@ -32,7 +32,7 @@ class NumberSetTest {
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 3})
     void isContainsTest(int param) {
-        assertThat(numbers.contains(param)).isTrue();
+        assertThat(numbers).contains(param);
     }
 
     @DisplayName("check whether it contains multiple values at once.")
