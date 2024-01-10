@@ -1,4 +1,3 @@
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -7,6 +6,8 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.HashSet;
 import java.util.Set;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class SetTest {
 
@@ -24,20 +25,20 @@ public class SetTest {
     @Test
     @DisplayName("1) Set#size 검증")
     void size() {
-        Assertions.assertThat(numbers.size()).isEqualTo(3);
+        assertThat(numbers).hasSize(3);
     }
 
     @ParameterizedTest
     @CsvSource(value={"1", "2", "3"})
     @DisplayName("2) Set#contains 검증")
     void contains(int test) {
-        Assertions.assertThat(numbers.contains(test)).isTrue();
+        assertThat(numbers).contains(test);
     }
 
     @ParameterizedTest
     @CsvSource(value={"1,true", "2,true", "3,true", "4,false", "5,false"})
     @DisplayName("3) Set#contains 검증")
     void contains_tf(int test, boolean expect) {
-        Assertions.assertThat(numbers.contains(test)).isEqualTo(expect);
+        assertThat(numbers.contains(test)).isEqualTo(expect);
     }
 }
