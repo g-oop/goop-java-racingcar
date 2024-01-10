@@ -1,6 +1,5 @@
 package com.ppojin.util;
 
-import com.ppojin.util.StringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -17,7 +16,7 @@ public class StringUtilsTest {
     @MethodSource("splitByCommaTestSource")
     @DisplayName("1) splitByComma: 배열로 변환")
     void splitByCommaTest(String test, String[] expect) {
-        String[] result = StringUtils.splitByComma(test);
+        String[] result = StringUtils.splitByDelimiter(test, ",");
         Stream.of(expect).forEach(Assertions.assertThat(result)::contains);
         Assertions.assertThat(result).containsExactly(expect);
     }

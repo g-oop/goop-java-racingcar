@@ -5,8 +5,8 @@ public class StringUtils {
     private StringUtils() {
     }
 
-    public static String[] splitByComma(String t){
-        return t.split(",");
+    public static String[] splitByDelimiter(String t, String delimiter){
+        return t.split(delimiter);
     }
 
     public static String removeBracket(String t){
