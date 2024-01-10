@@ -1,3 +1,5 @@
+package com.ppojin.util;
+
 public class StringUtils {
 
     private StringUtils() {
