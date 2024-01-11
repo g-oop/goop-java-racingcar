@@ -5,7 +5,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class StringAddCalculator {
-    private static final String DELIMITER = ",|:";
+    private static final String DEFAULT_DELIMITER = ",|:";
     private static final String CUSTOM_DELIMITER_CONVENTION = "^//(.)\n(.*)$";
     private static final int CUSTOM_DELIMITER_CONVENTION_END_INDEX = 4;
 
@@ -19,7 +19,7 @@ public class StringAddCalculator {
 
         final String delimiter = getDelimiter(text);
 
-        if (!DELIMITER.equals(delimiter)) {
+        if (isCustomDelimiter(delimiter)) {
             text = text.substring(CUSTOM_DELIMITER_CONVENTION_END_INDEX);
         }
 
@@ -31,12 +31,16 @@ public class StringAddCalculator {
                 .sum();
     }
 
+    private static boolean isCustomDelimiter(String delimiter) {
+        return !delimiter.equals(DEFAULT_DELIMITER);
+    }
+
     private static String getDelimiter(String text) {
         Matcher m = Pattern.compile(CUSTOM_DELIMITER_CONVENTION).matcher(text);
         if(m.find()){
-            return DELIMITER + "|" + m.group(1);
+            return DEFAULT_DELIMITER + "|" + m.group(1);
         }
-        return DELIMITER;
+        return DEFAULT_DELIMITER;
     }
 
     private static int parseIntExceptNegative(String s) {
