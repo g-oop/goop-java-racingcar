@@ -35,7 +35,7 @@ public class StringTest {
 
     @ParameterizedTest
     @DisplayName("charAt 결과 테스트")
-    @CsvSource(value = {"0:a","1:b","2:c"},delimiter = ':')
+    @CsvSource(value = {"0,a","1,b","2,c"})
     public void charAt(int index, char expected) {
         //given
         String text = "abc";
@@ -60,6 +60,4 @@ public class StringTest {
         }).isInstanceOf(StringIndexOutOfBoundsException.class)
             .hasMessage("index: %d, Size: %d", index, text.length());
     }
-
-
 }

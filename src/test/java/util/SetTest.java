@@ -27,37 +27,24 @@ public class SetTest {
     @Test
     @DisplayName("size 결과 테스트")
     public void size() {
-        //given
-        //when
-        int result = numbers.size();
-
-        //then
-        assertThat(result).isEqualTo(3);
+        assertThat(numbers).hasSize(3);
     }
 
-    @ParameterizedTest()
+    @ParameterizedTest
     @ValueSource(ints = {1,2,3})
     @DisplayName("contains 결과 테스트")
-    public void contains(int index) {
-        //given
-        //when
-        boolean result = numbers.contains(index);
-
-        //then
-        assertThat(result).isTrue();
-
+    public void contains(int value) {
+        assertThat(numbers).contains(value);
     }
 
     @ParameterizedTest()
     @CsvSource(value = {"1:true","2:true","3:true","4:false","5:false"}, delimiter = ':')
     @DisplayName("contains 결과 테스트")
     public void contains(int index, boolean expected) {
-        //given
-        //when
         boolean result = numbers.contains(index);
 
-        //then
         assertThat(result).isEqualTo(expected);
 
     }
 }
+영
