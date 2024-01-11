@@ -5,7 +5,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class StringAddCalculator {
-    private static final String delimiter = ",|:";
+    private static final String DELIMITER = ",|:";
+    private static final String CUSTOM_DELIMITER_CONVENTION = "^//(.)\n(.*)$";
+    private static final int CUSTOM_DELIMITER_CONVENTION_END_INDEX = 4;
 
     private StringAddCalculator() {
     }
@@ -15,29 +17,33 @@ public class StringAddCalculator {
             return 0;
         }
 
-        String postDelimiter = getDelimiter(text);
+        final String delimiter = getDelimiter(text);
 
-        text = delimiter.equals(postDelimiter) ? text : text.substring(4);
+        if (!DELIMITER.equals(delimiter)) {
+            text = text.substring(CUSTOM_DELIMITER_CONVENTION_END_INDEX);
+        }
 
-        String[] strings = StringUtils.splitByDelimiter(text, postDelimiter);
+        final String[] nums = StringUtils.splitByDelimiter(text, delimiter);
 
-        return Arrays.stream(strings)
-                .map(s -> {
-                    int n = Integer.parseInt(s);
-                    if (n < 0) {
-                        throw new RuntimeException("요소에 음수는 입력할 수 없습니다.");
-                    }
-                    return n;
-                })
+        return Arrays.stream(nums)
+                .map(StringAddCalculator::parseIntExceptNegative)
                 .mapToInt(i -> i)
                 .sum();
     }
 
     private static String getDelimiter(String text) {
-        Matcher m = Pattern.compile("^//(.)\n(.*)$").matcher(text);
+        Matcher m = Pattern.compile(CUSTOM_DELIMITER_CONVENTION).matcher(text);
         if(m.find()){
-            return delimiter + "|" + m.group(1);
+            return DELIMITER + "|" + m.group(1);
         }
-        return delimiter;
+        return DELIMITER;
+    }
+
+    private static int parseIntExceptNegative(String s) {
+        int n = Integer.parseInt(s);
+        if (n < 0) {
+            throw new IllegalArgumentException("요소에 음수는 입력할 수 없습니다.");
+        }
+        return n;
     }
 }
