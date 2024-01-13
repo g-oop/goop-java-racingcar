@@ -5,41 +5,63 @@ import java.util.regex.Pattern;
 public class StringAddCalculator {
 
     private static final String DEFAULT_DELIMITER = "[,:]";
+    private static final Pattern CUSTOM_DELIMITER_PATTERN = Pattern.compile("//(.)\n(.*)");
+    private static final int CUSTOM_DELIMITER = 1;
+    private static final int SPLIT_TARGET = 2;
+
+    private StringAddCalculator() {}
 
     public static int splitAndSum(String text) {
-        if (text == null) {
+        if (isEmpty(text)) {
             return 0;
         }
 
-        if (text.isEmpty()) {
-            return 0;
-        }
-
-        if (text.length() == 1) {
+        if (hasSingle(text)) {
             return parseInt(text);
         }
 
         return sum(split(text));
     }
 
-    private static int parseInt(String text) {
-        try {
-            return Integer.parseUnsignedInt(text);
-        }catch (Exception e) {
-            throw new RuntimeException();
+    private static boolean isEmpty(String text) {
+        if (text == null) {
+            return true;
         }
+        if (text.isEmpty()) {
+            return true;
+        }
+        if (text.isBlank()) {
+            return true;
+        }
+        return false;
     }
 
-    private static String[] split(String text) {
-        Matcher m = Pattern.compile("//(.)\n(.*)").matcher(text);
-        if (m.find()) {
-            String customDelimiter = m.group(1);
-            return m.group(2).split(customDelimiter);
+    private static boolean hasSingle(String text) {
+        if (text.length() == 1) {
+            return true;
         }
-        return text.split(DEFAULT_DELIMITER);
+        return false;
     }
 
     private static int sum(String[] numbers) {
         return Arrays.stream(numbers).mapToInt(StringAddCalculator::parseInt).sum();
     }
+
+    private static int parseInt(String text) {
+        try {
+            return Integer.parseUnsignedInt(text);
+        }catch (NumberFormatException e) {
+            throw new IllegalArgumentException(e.getMessage());
+        }
+    }
+
+    private static String[] split(String text) {
+        Matcher match = CUSTOM_DELIMITER_PATTERN.matcher(text);
+
+        if (match.find()) {
+            return match.group(SPLIT_TARGET).split(match.group(CUSTOM_DELIMITER));
+        }
+        return text.split(DEFAULT_DELIMITER);
+    }
+
 }

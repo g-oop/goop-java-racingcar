@@ -1,15 +1,16 @@
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class StringAddCalculatorTest {
-    @Test
-    public void splitAndSum_null_또는_빈문자() {
-        int result = StringAddCalculator.splitAndSum(null);
-        assertThat(result).isEqualTo(0);
-
-        result = StringAddCalculator.splitAndSum("");
+    @NullAndEmptySource
+    @ParameterizedTest
+    public void splitAndSum_null_또는_빈문자(String input) {
+        int result = StringAddCalculator.splitAndSum(input);
         assertThat(result).isEqualTo(0);
     }
 
@@ -19,16 +20,11 @@ public class StringAddCalculatorTest {
         assertThat(result).isEqualTo(1);
     }
 
-    @Test
-    public void splitAndSum_쉼표구분자() throws Exception {
-        int result = StringAddCalculator.splitAndSum("1,2");
-        assertThat(result).isEqualTo(3);
-    }
-
-    @Test
-    public void splitAndSum_쉼표_또는_콜론_구분자() throws Exception {
-        int result = StringAddCalculator.splitAndSum("1,2:3");
-        assertThat(result).isEqualTo(6);
+    @CsvSource(value = {"1,2=3","1,2:3=6"}, delimiter = '=')
+    @ParameterizedTest
+    public void splitAndSum_쉼표_또는_콜론_구분자(String text, int expected) throws Exception {
+        int result = StringAddCalculator.splitAndSum(text);
+        assertThat(result).isEqualTo(expected);
     }
 
     @Test
@@ -40,6 +36,7 @@ public class StringAddCalculatorTest {
     @Test
     public void splitAndSum_negative() throws Exception {
         assertThatThrownBy(() -> StringAddCalculator.splitAndSum("-1,2,3"))
-            .isInstanceOf(RuntimeException.class);
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessage("Illegal leading minus sign on unsigned string -1.");
     }
 }
