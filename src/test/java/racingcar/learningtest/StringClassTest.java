@@ -40,7 +40,7 @@ public class StringClassTest {
 
     @Test
     @DisplayName("요구사항 2 > substring 테스트")
-    void substringTest() {
+    void substringEnclosedText() {
         // given
         String enclosedString = "(1,2)";
 
@@ -56,7 +56,7 @@ public class StringClassTest {
 
     @Test
     @DisplayName("요구사항 3 > whenExceptionThrown_thenSuccess")
-    void getCharIndexTest() {
+    void throwsExceptionWhenIndexOutOfRange() {
         // given
         String input = "abc";
 
