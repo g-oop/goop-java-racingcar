@@ -39,15 +39,15 @@ public class StringAddCalculator {
     private static int getDelimiterSum(Matcher matcher) {
         String customDelimiter = matcher.group(1);
         String[] tokens = matcher.group(2).split(customDelimiter);
-        return getSum(tokens);
+        return validateNegativeAndGetSum(tokens);
     }
 
     private static int splitBySeparator(String text) {
         String[] tokens = text.split(SEPARATOR);
-        return getSum(tokens);
+        return validateNegativeAndGetSum(tokens);
     }
 
-    private static int getSum(String[] tokens) {
+    private static int validateNegativeAndGetSum(String[] tokens) {
         return Arrays.stream(tokens)
             .mapToInt(Integer::parseInt)
             .map(StringAddCalculator::validateNegative)
