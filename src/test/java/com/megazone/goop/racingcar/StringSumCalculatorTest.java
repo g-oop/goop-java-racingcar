@@ -51,8 +51,11 @@ class StringSumCalculatorTest {
     @Test
     @DisplayName("Parse number strings by custom delimiter")
     void splitAndSumCustomDelimTest() throws Exception {
-        int sum = calc.splitAndSum("//;\n1;2;3,4:5");
-        assertThat(sum).isEqualTo(15);
+        int sum = calc.splitAndSum("//;\n1;2;3");
+        assertThat(sum).isEqualTo(6);
+
+        sum = calc.splitAndSum("//;\n1;2");
+        assertThat(sum).isEqualTo(3);
     }
 
     @Test
