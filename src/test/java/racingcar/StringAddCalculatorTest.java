@@ -15,20 +15,14 @@ class StringAddCalculatorTest {
     @CsvSource(value = {"|0", "1,2|3", "1,2,3|6", "1,2:3|6"}, delimiter = '|')
     @ParameterizedTest
     void executeSplitAndSum(String inputString, int result) {
-
-        StringAddCalculator calculator = new StringAddCalculator();
-        Map<String, String> resultMap = calculator.parse(inputString);
-        Assertions.assertThat(calculator.splitAndSum(resultMap.get("delimiter"), resultMap.get("inputString"))).isEqualTo(result);
+        Assertions.assertThat(StringAddCalculator.splitAndSum(inputString)).isEqualTo(result);
     }
 
     @DisplayName("커스텀 구분자를 사용할 수 있도록 구현")
     @CsvSource(value = {"//s;s\\n1s;s2s;s3|6"}, delimiter = '|')
     @ParameterizedTest
     void applyCustomerSplit(String inputString, int result) {
-
-        StringAddCalculator calculator = new StringAddCalculator();
-        Map<String, String> resultMap = calculator.parse(inputString);
-        Assertions.assertThat(calculator.splitAndSum(resultMap.get("delimiter"), resultMap.get("inputString")))
+        Assertions.assertThat(StringAddCalculator.splitAndSum(inputString))
             .isEqualTo(result);
     }
 
@@ -36,10 +30,7 @@ class StringAddCalculatorTest {
     @ValueSource(strings = {"a", "-1", "//|\\n1|s|3",  "//;\\n1;-2;3"})
     @ParameterizedTest
     void throwExceptions(String inputString) {
-
-        StringAddCalculator calculator = new StringAddCalculator();
-        Map<String, String> resultMap = calculator.parse(inputString);
-        Assertions.assertThatThrownBy(() -> calculator.splitAndSum(resultMap.get("delimiter"), resultMap.get("inputString")))
+        Assertions.assertThatThrownBy(() -> StringAddCalculator.splitAndSum(inputString))
             .isInstanceOf(RuntimeException.class);
     }
 
@@ -47,10 +38,10 @@ class StringAddCalculatorTest {
     @Test
     void throwExceptionWhenInvalid() {
 
-        StringAddCalculator calculator = new StringAddCalculator();
-        Map<String, String> resultMap = calculator.parse("test");
+        String inputString = "test";
+
         Assertions.assertThatExceptionOfType(RuntimeException.class)
-            .isThrownBy(() -> calculator.splitAndSum(resultMap.get("delimiter"), resultMap.get("inputString")))
+            .isThrownBy(() -> StringAddCalculator.splitAndSum(inputString))
             .withMessageMatching("숫자가 아닌 값이 입력되었습니다.");
     }
 
@@ -58,10 +49,10 @@ class StringAddCalculatorTest {
     @Test
     void throwExceptionWhenNegative() {
 
-        StringAddCalculator calculator = new StringAddCalculator();
-        Map<String, String> resultMap = calculator.parse("-1");
+        String inputString = "-1";
+
         Assertions.assertThatExceptionOfType(RuntimeException.class)
-            .isThrownBy(() -> calculator.splitAndSum(resultMap.get("delimiter"), resultMap.get("inputString")))
+            .isThrownBy(() -> StringAddCalculator.splitAndSum(inputString))
             .withMessageMatching("음수는 입력될 수 없습니다.");
     }
 }
