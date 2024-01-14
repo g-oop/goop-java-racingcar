@@ -27,7 +27,7 @@ public class StringSumCalculator {
 
         for (String number: numbers) {
             if (!number.isEmpty()) {
-                int add = Integer.parseInt(number);의
+                int add = Integer.parseInt(number);
 
                 if (add < 0) {
                     throw new NotAllowedNumberException("Negative numbers are not allowed.");
