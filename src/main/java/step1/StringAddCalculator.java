@@ -42,8 +42,8 @@ public class StringAddCalculator {
         return number;
     }
 
-    private static void validateNegative(int i) {
-        if (Integer.signum(i) == -1) {
+    private static void validateNegative(int number) {
+        if (Integer.signum(number) == -1) {
             throw new RuntimeException();
         }
     }
