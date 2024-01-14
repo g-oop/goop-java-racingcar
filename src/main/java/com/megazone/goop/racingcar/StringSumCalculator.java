@@ -1,5 +1,6 @@
 package com.megazone.goop.racingcar;
 
+import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -23,18 +24,14 @@ public class StringSumCalculator {
     }
 
     public int sum(String[] numbers) throws NumberFormatException, NotAllowedNumberException {
-        int sum = 0;
-
-        for (String number: numbers) {
-            if (!number.isEmpty()) {
-                int add = Integer.parseInt(number);
-
-                if (add < 0) {
+        return Arrays.stream(numbers)
+            .filter(n -> !n.isEmpty())
+            .mapToInt(Integer::parseInt)
+            .map(n -> {
+                if (n < 0) {
                     throw new NotAllowedNumberException("Negative numbers are not allowed.");
                 }
-                sum += add;
-            }
-        }
-        return sum;
+                return n;
+            }).sum();
     }
 }
