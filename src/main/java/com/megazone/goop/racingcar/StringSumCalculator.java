@@ -10,7 +10,7 @@ public class StringSumCalculator {
 
     private static final String DEFAULT_DELIMITERS = "[,|:]";
 
-    public String[] split(String text) {
+    private String[] split(String text) {
         if (text == null) {
             return new String[] {};
         }
@@ -23,8 +23,8 @@ public class StringSumCalculator {
         return text.split(DEFAULT_DELIMITERS);
     }
 
-    public int sum(String[] numbers) throws NumberFormatException, NotAllowedNumberException {
-        return Arrays.stream(numbers)
+    public int splitAndSum(String text) throws NumberFormatException, NotAllowedNumberException{
+        return Arrays.stream(split(text))
             .filter(n -> !n.isEmpty())
             .mapToInt(Integer::parseInt)
             .map(n -> {
