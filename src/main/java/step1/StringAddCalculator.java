@@ -7,58 +7,45 @@ import java.util.regex.Pattern;
 public class StringAddCalculator {
 
     private static final String SEPARATOR = ",|:";
-    private static final String DELIMITER_SEPARATOR = "//(.)\n(.*)";
+    private static final String CUSTOM_SEPARATOR = "//(.)\n(.*)";
+    private static final Pattern PATTERN = Pattern.compile(CUSTOM_SEPARATOR);
 
     public static int splitAndSum(String text) {
         if (text == null || text.isEmpty()) {
             return 0;
         }
-        if (isInteger(text)) {
-            return stringToInt(text);
-        }
-        Matcher matcher = Pattern.compile(DELIMITER_SEPARATOR).matcher(text);
+        Matcher matcher = PATTERN.matcher(text);
         if (matcher.find()) {
-            return getDelimiterSum(matcher);
+            return getSum(splitByCustomSeparator(matcher));
         }
-        return splitBySeparator(text);
+        return getSum(splitBySeparator(text));
     }
 
-    private static boolean isInteger(String text) {
-        try {
-            Integer.parseInt(text);
-        } catch(NumberFormatException e) {
-            return false;
-        }
-        return true;
-    }
-
-    private static int stringToInt(String text) {
-        return Integer.parseInt(text);
-    }
-
-    private static int getDelimiterSum(Matcher matcher) {
+    private static String[] splitByCustomSeparator(Matcher matcher) {
         String customDelimiter = matcher.group(1);
-        String[] tokens = matcher.group(2).split(customDelimiter);
-        return validateNegativeAndGetSum(tokens);
+        return matcher.group(2).split(customDelimiter);
     }
 
-    private static int splitBySeparator(String text) {
-        String[] tokens = text.split(SEPARATOR);
-        return validateNegativeAndGetSum(tokens);
+    private static String[] splitBySeparator(String text) {
+        return text.split(SEPARATOR);
     }
 
-    private static int validateNegativeAndGetSum(String[] tokens) {
+    private static int getSum(String[] tokens) {
         return Arrays.stream(tokens)
-            .mapToInt(Integer::parseInt)
-            .map(StringAddCalculator::validateNegative)
+            .mapToInt(StringAddCalculator::toInt)
             .sum();
     }
 
-    private static int validateNegative(int i) {
+    private static int toInt(String text) {
+        int number = Integer.parseInt(text);
+        validateNegative(number);
+        return number;
+    }
+
+    private static void validateNegative(int i) {
         if (Integer.signum(i) == -1) {
             throw new RuntimeException();
         }
-        return i;
     }
 
 }
