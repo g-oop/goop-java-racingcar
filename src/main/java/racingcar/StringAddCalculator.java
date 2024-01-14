@@ -15,18 +15,20 @@ public class StringAddCalculator {
     }
 
     private static Matcher getMatcher(String inputString) {
-        return Pattern.compile("\\/\\/(.+)\\\\n(.+)").matcher(inputString);
+
+        Matcher matcher = null;
+
+        if (inputString != null) matcher = Pattern.compile("\\/\\/(.+)\\\\n(.+)").matcher(inputString);
+
+        return matcher;
     }
 
     private static String getDelimiter(String inputString) {
 
         String delimiter = "[,:]";
 
-        if (inputString != null && !inputString.isEmpty()) {
-
-            Matcher matcher = getMatcher(inputString);
-            if (matcher.find()) delimiter = matcher.group(1);
-        }
+        Matcher matcher = getMatcher(inputString);
+        if (matcher != null && matcher.find()) delimiter = matcher.group(1);
 
         return delimiter;
     }
@@ -35,9 +37,8 @@ public class StringAddCalculator {
 
         String[] result = new String[0];
 
-        if (inputString != null && !inputString.isEmpty()) {
-
-            Matcher matcher = getMatcher(inputString);
+        Matcher matcher = getMatcher(inputString);
+        if (matcher != null) {
             if (matcher.find()) {
                 result = matcher.group(2).split(delimiter);
             } else {
