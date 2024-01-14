@@ -6,20 +6,9 @@ import java.util.regex.Pattern;
 
 public class StringSumCalculator {
 
-    private static final String DEFAULT_DELIMITERS = "[,|:]";
+    private static final String DEFAULT_DELIMITERS_REGEX = "[,|:]";
 
-    private String[] split(String text) {
-        if (text == null) {
-            return new String[] {};
-        }
-
-        Matcher m = Pattern.compile("//(.)\n(.*)").matcher(text);
-        if (m.find()) {
-            return m.group(2).split(DEFAULT_DELIMITERS.replace("]", "|" + m.group(1) + "]"));
-        }
-
-        return text.split(DEFAULT_DELIMITERS);
-    }
+    private static final Pattern  CUSTOM_DELIMITERS_REGEX_PATTERN = Pattern.compile("^//(.)\n(.*)$");
 
     public int splitAndSum(String text) throws Exception{
         return Arrays.stream(split(text))
@@ -32,4 +21,26 @@ public class StringSumCalculator {
                 return n;
             }).sum();
     }
+
+    private String[] split(String text) {
+        if (text == null) {
+            return new String[] {};
+        }
+
+        String delimiters = DEFAULT_DELIMITERS_REGEX;
+        String realText = text;
+
+        Matcher m = CUSTOM_DELIMITERS_REGEX_PATTERN.matcher(text);
+        if (m.find()) {
+            delimiters = addCustomDelimiter(m.group(1));
+            realText = m.group(2);
+        }
+
+        return realText.split(delimiters);
+    }
+
+    private static String addCustomDelimiter(String customDelimiter) {
+        return DEFAULT_DELIMITERS_REGEX.replace("]", "|" + customDelimiter + "]");
+    }
+
 }
