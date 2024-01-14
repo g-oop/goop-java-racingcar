@@ -1,6 +1,9 @@
 package com.megazone.goop.racingcar;
 
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -14,13 +17,11 @@ class StringSumCalculatorTest {
         calc = new StringSumCalculator();
     }
 
-    @Test
+    @ParameterizedTest
+    @NullAndEmptySource
     @DisplayName("Null or empty string sum")
-    void splitAndSumNullTest() throws Exception {
-        int sumOfNull = calc.splitAndSum(null);
-        assertThat(sumOfNull).isZero();
-
-        int sumOfEmpty = calc.splitAndSum("");
+    void splitAndSumNullTest(String text) throws Exception {
+        int sumOfEmpty = calc.splitAndSum(text);
         assertThat(sumOfEmpty).isZero();
     }
 
@@ -31,14 +32,12 @@ class StringSumCalculatorTest {
         assertThat(sum).isEqualTo(1);
     }
 
-    @Test
+    @ParameterizedTest
+    @CsvSource(value = {"1,2=3", "1,,,,2,4=7"}, delimiter = '=')
     @DisplayName("Parse numbers string by default delimiter")
-    void splitAndSumCommaTest() throws Exception {
-        int sum = calc.splitAndSum("1,2");
-        assertThat(sum).isEqualTo(3);
-
-        sum = calc.splitAndSum("1,,,,2");
-        assertThat(sum).isEqualTo(3);
+    void splitAndSumCommaTest(String text, int result) throws Exception {
+        int sum = calc.splitAndSum(text);
+        assertThat(sum).isEqualTo(result);
     }
 
     @Test
@@ -53,9 +52,6 @@ class StringSumCalculatorTest {
     void splitAndSumCustomDelimTest() throws Exception {
         int sum = calc.splitAndSum("//;\n1;2;3");
         assertThat(sum).isEqualTo(6);
-
-        sum = calc.splitAndSum("//;\n1;2");
-        assertThat(sum).isEqualTo(3);
     }
 
     @Test
