@@ -4,8 +4,6 @@ import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.megazone.goop.racingcar.exception.NotAllowedNumberException;
-
 public class StringSumCalculator {
 
     private static final String DEFAULT_DELIMITERS = "[,|:]";
@@ -23,13 +21,13 @@ public class StringSumCalculator {
         return text.split(DEFAULT_DELIMITERS);
     }
 
-    public int splitAndSum(String text) throws NumberFormatException, NotAllowedNumberException{
+    public int splitAndSum(String text) throws Exception{
         return Arrays.stream(split(text))
             .filter(n -> !n.isEmpty())
             .mapToInt(Integer::parseInt)
             .map(n -> {
                 if (n < 0) {
-                    throw new NotAllowedNumberException("Negative numbers are not allowed.");
+                    throw new RuntimeException("Negative numbers are not allowed.");
                 }
                 return n;
             }).sum();
