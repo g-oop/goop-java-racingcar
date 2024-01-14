@@ -8,6 +8,9 @@ public class StringAddCalculator {
     private static final Pattern CUSTOM_DELIMITER_PATTERN = Pattern.compile("//(.)\n(.*)");
     private static final int CUSTOM_DELIMITER = 1;
     private static final int SPLIT_TARGET = 2;
+    private static final int ASCII_ZERO = 48;
+    private static final int ASCII_NINE = 57;
+
 
     private StringAddCalculator() {}
 
@@ -17,41 +20,45 @@ public class StringAddCalculator {
         }
 
         if (hasSingle(text)) {
-            return parseInt(text);
+            return parseUnsignedInt(text);
         }
 
         return sum(split(text));
     }
 
     private static boolean isEmpty(String text) {
-        if (text == null) {
-            return true;
-        }
-        if (text.isEmpty()) {
-            return true;
-        }
-        if (text.isBlank()) {
-            return true;
-        }
-        return false;
+        return text == null||text.isBlank();
     }
 
     private static boolean hasSingle(String text) {
-        if (text.length() == 1) {
-            return true;
-        }
-        return false;
+        return text.length() == 1;
     }
 
     private static int sum(String[] numbers) {
-        return Arrays.stream(numbers).mapToInt(StringAddCalculator::parseInt).sum();
+        return Arrays.stream(numbers).mapToInt(StringAddCalculator::parseUnsignedInt).sum();
     }
 
-    private static int parseInt(String text) {
-        try {
-            return Integer.parseUnsignedInt(text);
-        }catch (NumberFormatException e) {
-            throw new IllegalArgumentException(e.getMessage());
+    private static int parseUnsignedInt(String text) {
+        validationUnsignedInt(text);
+        return Integer.parseUnsignedInt(text);
+    }
+
+    private static void validationUnsignedInt(String text) {
+        validationMinusInt(text);
+        validationInt(text);
+    }
+
+    private static void validationMinusInt(String text) {
+        if (text.charAt(0) == '-') {
+            throw new IllegalArgumentException(String.format("Illegal leading minus sign " +
+                "on unsigned string %s.", text));
+        }
+    }
+
+    private static void validationInt (String text) {
+        char firstChar =  text.charAt(0);
+        if(firstChar < ASCII_ZERO || firstChar > ASCII_NINE) {
+            throw new IllegalArgumentException(String.format("Cannot parse not int value %s.", text));
         }
     }
 
