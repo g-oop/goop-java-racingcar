@@ -10,7 +10,7 @@ public class StringSumCalculator {
 
     private static final Pattern  CUSTOM_DELIMITERS_REGEX_PATTERN = Pattern.compile("^//(.)\n(.*)$");
 
-    public int splitAndSum(String text) throws Exception{
+    public int splitAndSum(String text) {
         return Arrays.stream(split(text))
             .filter(n -> !n.isEmpty())
             .mapToInt(Integer::parseInt)
