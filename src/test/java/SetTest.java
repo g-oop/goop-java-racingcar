@@ -27,8 +27,7 @@ public class SetTest {
     @Test
     @DisplayName("Set Collection에 대한 학습 테스트 : 요구사항 1")
     public void test1(){
-        int size = numbers.size();
-        assertThat(size).isEqualTo(3);
+        assertThat(numbers).hasSize(3);
     }
 
     @DisplayName("Set Collection에 대한 학습 테스트 : 요구사항 2")
