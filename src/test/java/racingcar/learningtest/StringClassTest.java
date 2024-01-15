@@ -46,7 +46,7 @@ public class StringClassTest {
 
     @Test
     @DisplayName("요구사항 3 > whenExceptionThrown_thenSuccess")
-    void throwsExceptionWhenIndexOutOfRange2() {
+    void throwsExceptionWhenIndexOutOfRange() {
         String input = "abc";
         int validIndex = 1;
         int invalidIndex = input.length() + 1;
