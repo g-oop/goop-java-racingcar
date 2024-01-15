@@ -5,7 +5,11 @@ import java.util.regex.Pattern;
 
 public class StringAddCalculator {
 
+    private static final Pattern PATTERN = Pattern.compile("\\/\\/(.+)\\\\n(.+)");
+
     public static int splitAndSum(String inputString) {
+
+        if (inputString == null || inputString.isEmpty()) return 0;
 
         String delimiter = getDelimiter(inputString);
 
@@ -15,12 +19,7 @@ public class StringAddCalculator {
     }
 
     private static Matcher getMatcher(String inputString) {
-
-        Matcher matcher = null;
-
-        if (inputString != null) matcher = Pattern.compile("\\/\\/(.+)\\\\n(.+)").matcher(inputString);
-
-        return matcher;
+        return PATTERN.matcher(inputString);
     }
 
     private static String getDelimiter(String inputString) {
@@ -28,25 +27,19 @@ public class StringAddCalculator {
         String delimiter = "[,:]";
 
         Matcher matcher = getMatcher(inputString);
-        if (matcher != null && matcher.find()) delimiter = matcher.group(1);
+        if (matcher.find()) delimiter = matcher.group(1);
 
         return delimiter;
     }
 
     private static String[] splitString(String delimiter, String inputString) {
 
-        String[] result = new String[0];
-
         Matcher matcher = getMatcher(inputString);
-        if (matcher != null) {
-            if (matcher.find()) {
-                result = matcher.group(2).split(delimiter);
-            } else {
-                result = inputString.split(delimiter);
-            }
+        if (matcher.find()) {
+            inputString = matcher.group(2);
         }
 
-        return result;
+        return inputString.split(delimiter);
     }
 
     private static int parseInt(String s) {
@@ -65,8 +58,6 @@ public class StringAddCalculator {
     }
 
     private static int sumStrings(String[] inputStrings) {
-
-        if (inputStrings.length == 0) return 0;
 
         int sum = 0;
         for (String s : inputStrings) {
