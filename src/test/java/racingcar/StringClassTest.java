@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 public class StringClassTest {
 
+    @DisplayName("split 테스트 1")
     @Test
     void firstOfRequirement1() {
 
@@ -23,6 +24,7 @@ public class StringClassTest {
         Assertions.assertThat(result).containsExactly("1", "2");
     }
 
+    @DisplayName("split 테스트 2")
     @Test
     void secondOfRequirement1() {
 
@@ -39,6 +41,7 @@ public class StringClassTest {
         Assertions.assertThat(result).containsExactly("1");
     }
 
+    @DisplayName("substring 테스트")
     @Test
     void firstOfRequirement2() {
 
@@ -58,12 +61,12 @@ public class StringClassTest {
     void firstOfRequirement3() {
 
         // given
-        String inputString = "abc";
 
         // when
-        StringClass stringClass = new StringClass(inputString);
+        StringClass stringClass = new StringClass("abc");
 
         // then
+        Assertions.assertThat(stringClass.charAt(2)).isEqualTo('c');
         Assertions.assertThatThrownBy(() -> {
             stringClass.charAt(5);
         }).isInstanceOf(StringIndexOutOfBoundsException.class)

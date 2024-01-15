@@ -65,7 +65,7 @@ public class SetCollectionTest {
 
     @CsvSource(value = {"1:true", "2:true", "3:true", "4:false", "5:false"}, delimiter = ':')
     @ParameterizedTest
-    void firstOfRequirement3(String inputInt, String inputBoolean) {
+    void firstOfRequirement3(int inputInt, boolean inputBoolean) {
 
         // given
 
@@ -73,6 +73,6 @@ public class SetCollectionTest {
         SetCollection setCollection = new SetCollection(numbers);
 
         // then
-        Assertions.assertThat(setCollection.contains(Integer.parseInt(inputInt))).isEqualTo(Boolean.parseBoolean(inputBoolean));
+        Assertions.assertThat(setCollection.contains(inputInt)).isEqualTo(inputBoolean);
     }
 }
