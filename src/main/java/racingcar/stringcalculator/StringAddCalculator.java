@@ -7,16 +7,14 @@ import java.util.regex.Pattern;
 public class StringAddCalculator {
     private static final String DEFAULT_DELIMITER = ",|:";
     private static final String CUSTOM_DELIMITER_PATTERN = "//(.)\n(.*)";
+    private static final Pattern pattern = Pattern.compile(CUSTOM_DELIMITER_PATTERN);
 
     public static int splitAndSum(String text) {
         if (isBlank(text)){
             return 0;
         }
 
-        String[] tokens = tokenize(text);
-        validate(tokens);
-
-        return sum(tokens);
+        return sum(tokenize(text));
     }
 
     private static boolean isBlank(String text) {
@@ -27,47 +25,38 @@ public class StringAddCalculator {
     }
 
     private static String[] tokenize(String text){
-        if (text.matches(CUSTOM_DELIMITER_PATTERN)){
-            Matcher m = Pattern.compile(CUSTOM_DELIMITER_PATTERN).matcher(text);
+        String delimiter = DEFAULT_DELIMITER;
+
+        if (pattern.matcher(text).matches()){
+            Matcher m = pattern.matcher(text);
             if (m.find()) {
-                String customDelimiter = m.group(1);
-                String numericText = m.group(2);
-                return numericText.split(customDelimiter);
+                delimiter = m.group(1);
+                text = m.group(2);
             }
         }
-        return text.split(DEFAULT_DELIMITER);
+        return text.split(delimiter);
     }
 
-    private static void validate(String[] tokens){
-        for (String token : tokens) {
-            int number = parseIfNumeric(token);
+
+
+    private static int parsePositiveNumber(String token){
+        try {
+            int number = Integer.parseInt(token);
             if (number < 0) {
                 throw new RuntimeException("Only positive numbers are allowed");
             }
-        }
-    }
-
-    private static int parseIfNumeric(String token){
-        try {
-            return Integer.parseInt(token);
+            return number;
         } catch (NumberFormatException e) {
             throw new RuntimeException("Only Numbers are allowed");
         }
     }
 
     private static int sum(String[] tokens){
-        return Arrays.stream(convertToNumbers(tokens)).sum();
+        return Arrays.stream(tokens)
+            .mapToInt(StringAddCalculator::parsePositiveNumber)
+            .sum();
     }
 
-    private static int[] convertToNumbers(String[] tokens) {
-        int[] numbers = new int[tokens.length];
-
-        for (int i = 0; i < tokens.length; i++) {
-            numbers[i] = parseIfNumeric(tokens[i]);
-        }
-
-        return numbers;
-    }
 
 
 
