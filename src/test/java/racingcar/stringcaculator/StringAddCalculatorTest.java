@@ -1,6 +1,8 @@
 package racingcar.stringcaculator;
 
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 import racingcar.stringcalculator.StringAddCalculator;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -8,12 +10,10 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class StringAddCalculatorTest {
 
-    @Test
-    void calculateBlank() {
-        int result = StringAddCalculator.splitAndSum(null);
-        assertThat(result).isZero();
-
-        result =  StringAddCalculator.splitAndSum("");
+    @ParameterizedTest
+    @NullAndEmptySource
+    void calculateBlank(String input) {
+        int result = StringAddCalculator.splitAndSum(input);
         assertThat(result).isZero();
     }
 
