@@ -7,10 +7,6 @@ import java.util.regex.Pattern;
 
 public class StringCalculator {
 
-    private static final String[] DEFAULT_DELIMITERS = {",", ":"};
-    private static final String CUSTOM_DELIMITER_START = "//";
-    private static final Pattern CUSTOM_DELIMITER_PATTERN = Pattern.compile("//(.+)\\\\n(.+)");
-
     private StringCalculator() { }
 
     public static int add(String numbersString) {
@@ -23,11 +19,9 @@ public class StringCalculator {
             return oneNumber;
         }
 
-        StringAndDelimiters stringAndDelimiters = seperateRealNumbersStringAndDelimiters(numbersString);
-        return splitAndSum(stringAndDelimiters.numbersString(), stringAndDelimiters.delimiters());
+        StringWithDelimiters stringWithDelimiters = DelimiterParser.parse(numbersString);
+        return splitAndSum(stringWithDelimiters.numbersString(), stringWithDelimiters.delimiters());
     }
-
-    private record StringAndDelimiters(String numbersString, String[] delimiters) { }
 
     private static Integer parseIntIfJustOneNumber(String numbersString) {
         try {
@@ -43,17 +37,6 @@ public class StringCalculator {
         if (number < 0) {
             throw new RuntimeException("음수는 처리할 수 없습니다.");
         }
-    }
-
-    private static StringAndDelimiters seperateRealNumbersStringAndDelimiters(String numbersString) {
-        boolean startsWithCustomDelimiter = numbersString.startsWith(CUSTOM_DELIMITER_START);
-        if (startsWithCustomDelimiter) { //약간의 성능 향상
-            Matcher matcher = CUSTOM_DELIMITER_PATTERN.matcher(numbersString);
-            if (matcher.find() && matcher.groupCount() == 2) {
-                return new StringAndDelimiters(matcher.group(2), new String[] {matcher.group(1)});
-            }
-        }
-        return new StringAndDelimiters(numbersString, DEFAULT_DELIMITERS);
     }
 
     private static int splitAndSum(String numbersString, String[] delimiters) {
@@ -104,5 +87,37 @@ public class StringCalculator {
         if (delimiters.length <= delimiterIndex) {
             throw new RuntimeException("숫자로 변환할 수 없습니다.");
         }
+    }
+
+
+    private static class DelimiterParser {
+
+        private DelimiterParser() { }
+
+        private static final String[] DEFAULT_DELIMITERS = {",", ":"};
+        private static final String PATTERN_START = "//";
+        private static final Pattern PATTERN = Pattern.compile("//(.+)\\\\n(.+)");
+        private static final int STRING_GROUP_INDEX = 2;
+        private static final int DELIMITER_GROUP_INDEX = 1;
+
+        private static StringWithDelimiters parse(String numbersString) {
+            boolean startsWithCustomDelimiter = numbersString.startsWith(PATTERN_START);
+            if (startsWithCustomDelimiter) { //약간의 성능 향상
+                Matcher matcher = PATTERN.matcher(numbersString);
+                if (isStringMatchingPattern(matcher)) {
+                    String realNumbersString = matcher.group(STRING_GROUP_INDEX);
+                    String[] delimiters = new String[] {matcher.group(DELIMITER_GROUP_INDEX)};
+                    return new StringWithDelimiters(realNumbersString, delimiters);
+                }
+            }
+            return new StringWithDelimiters(numbersString, DEFAULT_DELIMITERS);
+        }
+
+        private static boolean isStringMatchingPattern(Matcher matcher) {
+            return matcher.find() && matcher.groupCount() == 2;
+        }
+    }
+
+    private record StringWithDelimiters(String numbersString, String[] delimiters) {
     }
 }
