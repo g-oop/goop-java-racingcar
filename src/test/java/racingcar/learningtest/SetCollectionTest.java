@@ -26,12 +26,9 @@ public class SetCollectionTest {
     @Test
     @DisplayName("요구사항 1 > Set 사이즈 확인")
     void getSizeOfSet() {
-        // given by setUp()
 
-        // when
         int size = numbers.size();
 
-        // then
         int expected = 3;
         assertEquals(expected, size, "Set does not take duplicate elements");
     }
@@ -39,15 +36,15 @@ public class SetCollectionTest {
     @DisplayName("요구사항 2 > Set 요소 확인")
     @ParameterizedTest
     @ValueSource(ints = {1,2,3})
-    void returnTrueWhenSetContains(int parameterizedNumbers) {
-        assertThat(numbers.contains(parameterizedNumbers)).isTrue();
+    void returnTrueWhenSetContains(int parameterizedNumber) {
+        assertThat(numbers).contains(parameterizedNumber);
     }
 
     @DisplayName("요구사항 3 > Set 요소 확인")
     @ParameterizedTest
     @CsvSource(value = {"1 : true", "2: true", "3: true", "4: false", "5: false"}, delimiter = ':')
-    void containsTestCases(int parameterizedNumbers, boolean expected) {
-        assertThat(numbers.contains(parameterizedNumbers)).isEqualTo(expected);
+    void containsTestCases(int parameterizedNumber, boolean expected) {
+        assertThat(numbers.contains(parameterizedNumber)).isEqualTo(expected);
     }
 }
 
