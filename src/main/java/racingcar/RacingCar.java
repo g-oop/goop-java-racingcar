@@ -1,5 +1,7 @@
 package racingcar;
 
+import java.util.Arrays;
+
 public class RacingCar {
 
     private int[] cars;
@@ -8,9 +10,9 @@ public class RacingCar {
         this.cars = new int[cars];
     }
 
-    public void run() {
+    public void run(int tries) {
         for (int i = 0; i < this.cars.length; i++) {
-            this.cars[i] += 1;
+            this.cars[i] += tries;
         }
     }
 
@@ -18,7 +20,7 @@ public class RacingCar {
 
     }
 
-    public int[] getResult() {
-        return this.cars;
+    public int getResult() {
+        return Arrays.stream(this.cars).sum();
     }
 }
