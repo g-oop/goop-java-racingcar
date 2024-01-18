@@ -4,6 +4,8 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.Arrays;
 
@@ -17,16 +19,24 @@ class RacingCarTest {
 
         RacingCar racingCar = new RacingCar(n);
 
-        racingCar.run();
-        int[] firstTry = racingCar.getResult();
-        Assertions.assertThat(Arrays.stream(firstTry).sum()).isEqualTo(n);
+        racingCar.run(1);
+        Assertions.assertThat(racingCar.getResult()).isEqualTo(n);
 
         racingCar.stop();
-        int[] secondTry = racingCar.getResult();
-        Assertions.assertThat(Arrays.stream(secondTry).sum()).isEqualTo(n);
+        Assertions.assertThat(racingCar.getResult()).isEqualTo(n);
 
-        racingCar.run();
-        int[] thirdTry = racingCar.getResult();
-        Assertions.assertThat(Arrays.stream(thirdTry).sum()).isEqualTo(n * 2);
+        racingCar.run(1);
+        Assertions.assertThat(racingCar.getResult()).isEqualTo(n * 2);
+    }
+
+    @DisplayName("사용자는 몇 대의 자동차로 몇 번의 이동을 할 것인지를 입력할 수 있어야 한다.")
+    @CsvSource(value = {"5|3|15", "3|5|15", "2|1|2"}, delimiter = '|')
+    @ParameterizedTest
+    void input(int n, int t, int result) {
+
+        RacingCar racingCar = new RacingCar(n);
+
+        racingCar.run(t);
+        Assertions.assertThat(racingCar.getResult()).isEqualTo(result);
     }
 }
