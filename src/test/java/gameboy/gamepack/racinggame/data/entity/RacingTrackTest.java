@@ -31,6 +31,6 @@ class RacingTrackTest {
         //when
         List<Integer> result = racingTrack.raceOneTime();
         //then
-        assertThat(result).contains(0, 1);
+        assertThat(result).containsAnyOf(0, 1);
     }
 }

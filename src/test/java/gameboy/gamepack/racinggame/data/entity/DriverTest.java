@@ -1,13 +1,14 @@
 package gameboy.gamepack.racinggame.data.entity;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class DriverTest {
 
     @Test
+    @DisplayName("drive 정상 테스트")
     void drive() {
         //given
         Driver driver = new Driver();

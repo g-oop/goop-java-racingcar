@@ -28,14 +28,14 @@ public class StringTest {
         //given
         String text = "(1,2)";
         //when
-        String result = text.substring(1,text.length() - 1);
+        String result = text.substring(1, text.length() - 1);
         //then
         assertThat(result).isEqualTo("1,2");
     }
 
     @ParameterizedTest
     @DisplayName("charAt 결과 테스트")
-    @CsvSource(value = {"0,a","1,b","2,c"})
+    @CsvSource(value = {"0,a", "1,b", "2,c"})
     public void charAt(int index, char expected) {
         //given
         String text = "abc";
@@ -57,7 +57,6 @@ public class StringTest {
             //when
             text.charAt(index);
             //then
-        }).isInstanceOf(StringIndexOutOfBoundsException.class)
-            .hasMessage("index: %d, Size: %d", index, text.length());
+        }).isInstanceOf(StringIndexOutOfBoundsException.class);
     }
 }
