@@ -16,21 +16,17 @@ public class RacingGamePack implements GamePack {
         initializeRacingTrack();
 
         int raceCount = InputConsole.askUserInput(askHowManyRace());
-        for(int i = 0; i < raceCount; i ++) {
-            takeRaceView(racingTrack.startRace());
-        }
+
+        racingTrack.startRace(raceCount);
     }
 
     private void initializeRacingTrack() {
-        int engageCount = InputConsole.askUserInput(askHowManyCarsEngage());
-        racingTrack = RacingTrack.of(engageCount);
+        int driverCount = InputConsole.askUserInput(askHowManyRacerEngage());
+        racingTrack = RacingTrack.of(driverCount);
     }
 
-    private void takeRaceView(ResultView raceView) {
-        OutputConsole.displayOutput(raceView);
-    }
 
-    private InputView askHowManyCarsEngage() {
+    private InputView askHowManyRacerEngage() {
         return new InputView("자동차 대수는 몇 대 인가요?");
     }
 
