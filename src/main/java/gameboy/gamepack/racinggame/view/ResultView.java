@@ -11,12 +11,14 @@ public class ResultView implements TextView {
     }
 
     private String getRaceResult(List<Integer> carsPosition) {
-        return carsPosition.stream().map(this::wheelMark).toString();
+        StringBuilder stringBuilder = new StringBuilder();
+        carsPosition.stream().forEach(position -> stringBuilder.append(createWheelMark(position)));
+        return stringBuilder.toString();
     }
 
-    public String wheelMark(int carPosition) {
+    private String createWheelMark(int carPosition) {
         String wheelMark = "";
-        for(int i = 0; i < carPosition; i ++) {
+        for (int i = 0; i < carPosition; i++) {
             wheelMark += "-";
         }
         return wheelMark + "\n";

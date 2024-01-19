@@ -3,9 +3,7 @@ package gameboy.gamepack.racinggame;
 import gameboy.gamepack.GamePack;
 import gameboy.gamepack.racinggame.data.entity.RacingTrack;
 import gameboy.gamepack.racinggame.view.InputView;
-import gameboy.gamepack.racinggame.view.ResultView;
 import gameboy.gamepalyer.console.InputConsole;
-import gameboy.gamepalyer.console.OutputConsole;
 
 public class RacingGamePack implements GamePack {
 
@@ -22,7 +20,7 @@ public class RacingGamePack implements GamePack {
 
     private void initializeRacingTrack() {
         int driverCount = InputConsole.askUserInput(askHowManyRacerEngage());
-        racingTrack = RacingTrack.of(driverCount);
+        racingTrack = new RacingTrack(driverCount);
     }
 
 

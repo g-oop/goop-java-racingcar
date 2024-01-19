@@ -10,7 +10,7 @@ public class RacingTrack {
 
     private List<Driver> drivers = new ArrayList<>();
 
-    private RacingTrack(int driverCount) {
+    public RacingTrack(int driverCount) {
         engageDriver(driverCount);
     }
 
@@ -22,15 +22,15 @@ public class RacingTrack {
 
     public void startRace(int raceCount) {
         for (int i = 0; i < raceCount; i++) {
-            OutputConsole.displayOutput(raceOneTime());
+            OutputConsole.displayOutput(getResult(raceOneTime()));
         }
     }
 
-    private ResultView raceOneTime() {
-        return new ResultView(drivers.stream().map(Driver::drive).toList());
+    public List<Integer> raceOneTime() {
+        return drivers.stream().map(Driver::drive).toList();
     }
 
-    public static RacingTrack of(int driverCount) {
-        return new RacingTrack(driverCount);
+    public ResultView getResult(List<Integer> racerPosition) {
+        return new ResultView(racerPosition);
     }
 }

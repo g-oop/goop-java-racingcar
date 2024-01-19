@@ -9,10 +9,8 @@ public class Driver {
     private final int MOVE_MIN = 4;
     private Car car;
 
-    public Driver() {}
-
-    public Driver(Car car) {
-        this.car = car;
+    public Driver() {
+        this.car = new Car();
     }
 
     public int drive() {
@@ -21,7 +19,8 @@ public class Driver {
         }
         return car.getPosition();
     }
-    public boolean isPushAccelerator() {
+
+    private boolean isPushAccelerator() {
         return random.nextInt(MOVE_RANGE) >= MOVE_MIN;
     }
 }
