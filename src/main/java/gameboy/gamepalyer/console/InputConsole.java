@@ -11,6 +11,17 @@ public class InputConsole {
         return userAnswer();
     }
 
+    //public static int(TextView ask) {
+    //    display(ask);
+    //    return userAnswer();
+    //}
+    //
+    //public static int askUserInput(TextView ask) {
+    //    display(ask);
+    //    return userAnswer();
+    //}
+
+
     private static void display(TextView ask) {
         System.out.println(ask.display());
     }
@@ -19,6 +30,4 @@ public class InputConsole {
         Scanner scanner = new Scanner(System.in);
         return scanner.nextInt();
     }
-
-
 }

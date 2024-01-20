@@ -1,3 +1,5 @@
+package calculator;
+
 import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -12,7 +14,7 @@ public class StringAddCalculator {
     private static final int ASCII_NINE = 57;
 
 
-    private StringAddCalculator() {}
+    private StringAddCalculator() { }
 
     public static int splitAndSum(String text) {
         if (isEmpty(text)) {
@@ -27,7 +29,7 @@ public class StringAddCalculator {
     }
 
     private static boolean isEmpty(String text) {
-        return text == null||text.isBlank();
+        return text == null || text.isBlank();
     }
 
     private static boolean hasSingle(String text) {
@@ -55,9 +57,9 @@ public class StringAddCalculator {
         }
     }
 
-    private static void validationInt (String text) {
-        char firstChar =  text.charAt(0);
-        if(firstChar < ASCII_ZERO || firstChar > ASCII_NINE) {
+    private static void validationInt(String text) {
+        char firstChar = text.charAt(0);
+        if (firstChar < ASCII_ZERO || firstChar > ASCII_NINE) {
             throw new IllegalArgumentException(String.format("Cannot parse not int value %s.", text));
         }
     }

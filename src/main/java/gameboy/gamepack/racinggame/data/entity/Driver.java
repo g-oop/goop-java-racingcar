@@ -5,19 +5,22 @@ import java.util.Random;
 public class Driver {
 
     private final Random random = new Random();
-    private final int MOVE_RANGE = 10;
-    private final int MOVE_MIN = 4;
+    private static final int MOVE_RANGE = 10;
+    private static final int MOVE_MIN = 4;
     private Car car;
 
     public Driver() {
         this.car = new Car();
     }
 
-    public int drive() {
+    public void drive() {
         if (isPushAccelerator()) {
             car.run();
         }
-        return car.getPosition();
+    }
+
+    public Car getCar() {
+        return car;
     }
 
     private boolean isPushAccelerator() {
