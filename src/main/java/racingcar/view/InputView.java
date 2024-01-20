@@ -8,7 +8,7 @@ public class InputView {
     private static final String INVALID_INPUT_MESSAGE = "숫자를 입력해주세요.";
 
 
-    private int getNumberInput(String message) {
+    public int getNumberInput(String message) {
         while (true) {
             try {
                 System.out.println(message);

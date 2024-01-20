@@ -4,7 +4,13 @@ import java.util.Random;
 
 public class RandomNumberGenerator {
     private Random random = new Random();
+    private static final int DEFAULT_BOUND = 10;
     private int bound;
+
+
+    public RandomNumberGenerator() {
+        this.bound = DEFAULT_BOUND;
+    }
 
     public RandomNumberGenerator(int bound) {
         this.bound = bound;
