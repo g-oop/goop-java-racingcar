@@ -1,5 +1,6 @@
 package gameboy.gamepack.racinggame.data.entity;
 
+import gameboy.gamepack.racinggame.data.vo.Position;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -13,9 +14,22 @@ class DriverTest {
         //given
         Driver driver = new Driver();
         //when
-        int result = driver.drive();
+        driver.drive();
         //then
-        assertThat(result).isBetween(0, 1);
+        validCarPosition(driver.getCar());
+    }
 
+    void validCarPosition(Car car) {
+        if (isRun(car)) {
+            assertThat(car.getPosition()).isEqualTo(1);
+        }
+        if (!isRun(car)) {
+            assertThat(car.getPosition()).isEqualTo(0);
+        }
+    }
+
+    boolean isRun(Car car) {
+        Position runPosition = new Position(1);
+        return car.getPosition() == runPosition.getPosition();
     }
 }
