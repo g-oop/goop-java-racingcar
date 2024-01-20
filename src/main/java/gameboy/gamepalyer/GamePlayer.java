@@ -1,6 +1,5 @@
 package gameboy.gamepalyer;
 
-import gameboy.gamepack.*;
 import gameboy.gamepack.racinggame.RacingGamePack;
 
 public class GamePlayer {

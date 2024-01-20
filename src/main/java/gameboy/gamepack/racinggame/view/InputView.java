@@ -1,6 +1,6 @@
 package gameboy.gamepack.racinggame.view;
 
-public class InputView implements TextView {
+public class InputView {
 
     private String inputGuide;
 
@@ -8,7 +8,6 @@ public class InputView implements TextView {
         this.inputGuide = inputGuide;
     }
 
-    @Override
     public String display() {
         return inputGuide;
     }

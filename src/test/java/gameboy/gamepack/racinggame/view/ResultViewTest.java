@@ -16,7 +16,7 @@ class ResultViewTest {
     @DisplayName("결과 출력 테스트")
     void display_정상결과() {
         //given
-        List<Car> carsPosition = List.of(
+        List<Car> cars = List.of(
             new Car(new Position(1)),
             new Car(new Position(2)),
             new Car(new Position(3)),
@@ -28,9 +28,8 @@ class ResultViewTest {
             ---
             ----
             """;
-        ResultView resultView = new ResultView(carsPosition);
         //when
-        String result = resultView.display();
+        String result = ResultView.getRaceResult(cars);
         //then
         assertThat(result).isEqualTo(expected);
     }
@@ -39,7 +38,7 @@ class ResultViewTest {
     @DisplayName("display 결과 테스트")
     void display_0_음수_무시() {
         //given
-        List<Car> carsPosition = List.of(
+        List<Car> cars = List.of(
             new Car(new Position(-1)),
             new Car(new Position(0)),
             new Car(new Position(4)),
@@ -51,9 +50,8 @@ class ResultViewTest {
             ----
             -----
             """;
-        ResultView resultView = new ResultView(carsPosition);
         //when
-        String result = resultView.display();
+        String result = ResultView.getRaceResult(cars);
         //then
         assertThat(result).isEqualTo(expected);
     }

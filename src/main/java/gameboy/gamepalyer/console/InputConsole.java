@@ -2,28 +2,15 @@ package gameboy.gamepalyer.console;
 
 import java.util.Scanner;
 
-import gameboy.gamepack.racinggame.view.TextView;
-
 public class InputConsole {
 
-    public static int askUserInput(TextView ask) {
+    public static int inputNumber(String ask) {
         display(ask);
         return userAnswer();
     }
 
-    //public static int(TextView ask) {
-    //    display(ask);
-    //    return userAnswer();
-    //}
-    //
-    //public static int askUserInput(TextView ask) {
-    //    display(ask);
-    //    return userAnswer();
-    //}
-
-
-    private static void display(TextView ask) {
-        System.out.println(ask.display());
+    private static void display(String ask) {
+        System.out.println(ask);
     }
 
     private static int userAnswer() {
