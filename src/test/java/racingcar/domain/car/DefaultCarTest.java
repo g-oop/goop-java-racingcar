@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public class CarTest {
+public class DefaultCarTest {
     private static final int BOUND = 10;
     private Car car;
     private RandomNumberGenerator numberGenerator;
