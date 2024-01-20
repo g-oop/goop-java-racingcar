@@ -3,9 +3,9 @@ package racingcar.racing;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racingcar.entry.Car;
-import racingcar.mock.Always4OrMoreRandom;
-
-import java.util.Random;
+import racingcar.entry.MovePolicy;
+import racingcar.mock.AlwaysMovePolicy;
+import racingcar.ui.RacingUi;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -16,11 +16,10 @@ class RacingGameTest {
     void create() {
         int entryCount = 3;
         int moveCount = 5;
-        Random random = new Random();
-        RacingUi racingUi = new TestGameUi(entryCount, moveCount);
+        RacingUi racingUi = new TestRacingUi(entryCount, moveCount);
         RacingPreference preference = racingUi.inputPreference();
 
-        RacingGame racingGame = new RacingGame(preference, racingUi, random);
+        RacingGame racingGame = new RacingGame(preference);
 
         int result = racingGame.getRacingEntryCount();
         assertThat(result).isEqualTo(entryCount);
@@ -31,12 +30,13 @@ class RacingGameTest {
     void start() {
         int entryCount = 3;
         int moveCount = 5;
-        Random random = new Always4OrMoreRandom();
-        RacingUi racingUi = new TestGameUi(entryCount, moveCount);
+        MovePolicy movePolicy = new AlwaysMovePolicy();
+        RacingUi racingUi = new TestRacingUi(entryCount, moveCount);
         RacingPreference preference = racingUi.inputPreference();
 
-        RacingGame racingGame = new RacingGame(preference, racingUi, random);
-        racingGame.start();
+        RacingGame racingGame = new RacingGame(preference, movePolicy);
+        RacingResult result = racingGame.race();
+        racingUi.showResult(result);
 
         RacingEntries racingEntries = racingGame.getRacingEntries();
         for (Car car: racingEntries.getEntries()) {
@@ -45,12 +45,12 @@ class RacingGameTest {
     }
 
 
-    static class TestGameUi implements RacingUi {
+    static class TestRacingUi implements RacingUi {
 
         private final int carCount;
         private final int moveCount;
 
-        public TestGameUi(int carCount, int moveCount) {
+        public TestRacingUi(int carCount, int moveCount) {
             this.carCount = carCount;
             this.moveCount = moveCount;
         }
@@ -61,9 +61,9 @@ class RacingGameTest {
         }
 
         @Override
-        public void showStatus(RacingGame racingGame) {
+        public void showResult(RacingResult result) {
             //noop
-            //new RacingConsoleUi().showStatus(racingGame);
+            //new ConsoleRacingUi().showResult(result);
         }
     }
 

@@ -1,29 +1,42 @@
 package racingcar.entry;
 
-import java.util.Random;
-
 public class Car {
 
-    private final Random random;
+    private final CarPosition position;
+    private MovePolicy movePolicy;
 
-    private int position = 0;
+    public Car() {
+        this.position = new CarPosition();
+    }
 
-    public Car(Random random) {
-        this.random = random;
+    public Car(MovePolicy movePolicy) {
+        this.position = new CarPosition();
+        this.movePolicy = movePolicy;
+    }
+
+    public Car(Car car) {
+        this.movePolicy = car.movePolicy;
+        this.position = new CarPosition(car.position.current());
+    }
+
+    public void setMovePolicy(MovePolicy movePolicy) {
+        this.movePolicy = movePolicy;
     }
 
     public void move() {
         if (canMove()) {
-            position++;
+            position.increase();
         }
     }
 
     public int currentPosition() {
-        return position;
+        return position.current();
     }
 
     private boolean canMove() {
-        int randomValue = random.nextInt(10);
-        return randomValue >= 4;
+        if (this.movePolicy == null) {
+            return false;
+        }
+        return movePolicy.canMove();
     }
 }

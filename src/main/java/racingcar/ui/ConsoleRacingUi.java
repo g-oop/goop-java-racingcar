@@ -5,10 +5,10 @@ import racingcar.racing.*;
 
 import java.util.Scanner;
 
-public class RacingConsoleUi implements RacingUi {
+public class ConsoleRacingUi implements RacingUi {
 
-    public static final String CAR_START_UNIT = "|";
-    public static final String CAR_POSITION_UNIT = "-";
+    private static final String CAR_START_UNIT = "|";
+    private static final String CAR_POSITION_UNIT = "-";
 
     private static final Scanner SCANNER = new Scanner(System.in);
 
@@ -25,17 +25,14 @@ public class RacingConsoleUi implements RacingUi {
     }
 
     @Override
-    public void showStatus(RacingGame racingGame) {
-        RacingEntries racingEntries = racingGame.getRacingEntries();
-        for (Car car: racingEntries.getEntries()) {
-            int position = car.currentPosition();
-            print(CAR_START_UNIT);
-            for (int i = 0; i < position; i++) {
-                print(CAR_POSITION_UNIT);
+    public void showResult(RacingResult result) {
+        for (RacingEntries entries: result.getRacingEntriesList()) {
+            for (Car car: entries.getEntries()) {
+                int position = car.currentPosition();
+                println(CAR_START_UNIT + CAR_POSITION_UNIT.repeat(position));
             }
             println();
         }
-        println();
     }
 
     private static void print(String s) {
@@ -44,5 +41,9 @@ public class RacingConsoleUi implements RacingUi {
 
     private static void println() {
         print(System.lineSeparator());
+    }
+
+    private static void println(String s) {
+        print(s + System.lineSeparator());
     }
 }

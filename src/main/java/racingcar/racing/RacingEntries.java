@@ -1,17 +1,29 @@
 package racingcar.racing;
 
 import racingcar.entry.Car;
+import racingcar.entry.MovePolicy;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class RacingEntries {
 
     private final List<Car> cars = new ArrayList<>();
 
-    public RacingEntries(int entryCount, Random random) {
+    public RacingEntries(int entryCount) {
         for (int i = 0; i < entryCount; i++) {
-            cars.add(new Car(random));
+            cars.add(new Car());
         }
+    }
+
+    public RacingEntries(int entryCount, MovePolicy movePolicy) {
+        for (int i = 0; i < entryCount; i++) {
+            cars.add(new Car(movePolicy));
+        }
+    }
+
+    public RacingEntries(RacingEntries racingEntries) {
+        this.cars.addAll(racingEntries.getEntries());
     }
 
     public void move() {
@@ -25,6 +37,10 @@ public class RacingEntries {
     }
 
     public List<Car> getEntries() {
-        return Collections.unmodifiableList(cars);
+        ArrayList<Car> copyCars = new ArrayList<>();
+        for (Car car: cars) {
+            copyCars.add(new Car(car));
+        }
+        return copyCars;
     }
 }
