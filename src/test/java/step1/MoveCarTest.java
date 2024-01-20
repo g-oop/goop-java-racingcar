@@ -29,12 +29,12 @@ public class MoveCarTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = {"0=5", "1=5", "2=5"}, delimiter = '=')
+    @CsvSource(value = {"1,5"}, delimiter = ',')
     @DisplayName("자동차 게임 - 3. 4 이상일 때만 전진하는지 확인")
-    public void carMoveTest(int carNum, int greaterThan) throws Exception {
+    public void carMoveTest(int initialLoc, int greaterThan) throws Exception {
         Car car = new Car();
         car.moveForward();
         int carLoc = car.getLoc();
-        assertTrue(carLoc == 1 || carLoc >= 5);
+        assertTrue(carLoc == initialLoc || carLoc >= greaterThan);
     }
 }

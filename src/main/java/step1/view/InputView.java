@@ -9,14 +9,14 @@ public class InputView {
     private static final Scanner scanner = new Scanner(System.in);
 
     public static int getCarCount() {
-        return getUserInput(QUESTION);
+        return inputToNum(QUESTION);
     }
 
     public static int getTryCount() {
-        return getUserInput(QUESTION2);
+        return inputToNum(QUESTION2);
     }
 
-    private static int getUserInput(String question) {
+    private static int inputToNum(String question) {
         while (true) {
                 System.out.println(question);
                 String input = scanner.nextLine();
