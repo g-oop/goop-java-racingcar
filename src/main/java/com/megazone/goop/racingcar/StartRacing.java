@@ -3,6 +3,7 @@ package com.megazone.goop.racingcar;
 import com.megazone.goop.racingcar.logic.Race;
 import com.megazone.goop.racingcar.logic.RandomGenerator;
 import com.megazone.goop.racingcar.ui.InputView;
+import com.megazone.goop.racingcar.ui.ResultView;
 
 public class StartRacing {
 
@@ -10,7 +11,7 @@ public class StartRacing {
         InputView iv = new InputView();
         iv.setRules();
 
-        Race race = new Race(new RandomGenerator(), iv.getCarCount());
+        Race race = new Race(new ResultView(), new RandomGenerator(), iv.getCarCount());
         race.startRace(iv.getRoundCount());
     }
 }
