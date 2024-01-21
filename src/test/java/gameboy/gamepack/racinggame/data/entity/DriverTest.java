@@ -1,35 +1,30 @@
 package gameboy.gamepack.racinggame.data.entity;
 
-import gameboy.gamepack.racinggame.data.vo.Position;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import java.util.Random;
+
+import org.junit.jupiter.api.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 class DriverTest {
 
-    @Test
+    private final int DRIVE_SEED = 1;
+    private final int STOP_SEED = 4;
+
+    @ParameterizedTest
     @DisplayName("drive 정상 테스트")
-    void drive() {
+    @CsvSource({
+        DRIVE_SEED + "," + 1,
+        STOP_SEED + "," + 0
+    })
+    void drive(int seed, int expected) {
         //given
-        Driver driver = new Driver();
+        Driver driver = new Driver(new Random(seed));
         //when
         driver.drive();
         //then
-        validCarPosition(driver.getCar());
-    }
-
-    void validCarPosition(Car car) {
-        if (isRun(car)) {
-            assertThat(car.getPosition()).isEqualTo(1);
-        }
-        if (!isRun(car)) {
-            assertThat(car.getPosition()).isEqualTo(0);
-        }
-    }
-
-    boolean isRun(Car car) {
-        Position runPosition = new Position(1);
-        return car.getPosition() == runPosition.getPosition();
+        assertThat(driver.getPosition()).isEqualTo(expected);
     }
 }

@@ -1,6 +1,5 @@
 package gameboy.gamepack.racinggame.data.entity;
 
-import gameboy.gamepack.racinggame.data.vo.Position;
 import org.junit.jupiter.api.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -18,6 +17,4 @@ class CarTest {
         //then
         assertThat(car.getPosition()).isEqualTo(1);
     }
-
-
 }
