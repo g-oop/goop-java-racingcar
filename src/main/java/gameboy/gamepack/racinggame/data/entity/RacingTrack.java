@@ -3,6 +3,8 @@ package gameboy.gamepack.racinggame.data.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import gameboy.gamepack.racinggame.data.dto.RaceResultDto;
+
 public class RacingTrack {
 
     private List<Driver> drivers = new ArrayList<>();
@@ -35,13 +37,13 @@ public class RacingTrack {
         }
     }
 
-    public List<Integer> startRace() {
+    public RaceResultDto startRace() {
         drivers.stream().forEach(Driver::drive);
-        return getDriversPosition();
+        return RaceResultDto.of(getCarsPosition());
     }
 
-    private List<Integer> getDriversPosition() {
-        return drivers.stream().map(Driver::getPosition).toList();
+    private List<Integer> getCarsPosition() {
+        return drivers.stream().map(Driver::getCarPosition).toList();
     }
 
 }

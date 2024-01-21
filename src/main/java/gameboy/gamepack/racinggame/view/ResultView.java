@@ -1,19 +1,11 @@
 package gameboy.gamepack.racinggame.view;
 
-import java.util.List;
-import java.util.stream.Collectors;
+import gameboy.gamepack.racinggame.data.dto.RaceResultDto;
 
 public class ResultView {
 
-    public static void display(List<Integer> carsPosition) {
-        System.out.println(getRaceResult(carsPosition));
+    public static void display(RaceResultDto result) {
+        System.out.println(result.getRaceResult());
     }
 
-    public static String getRaceResult(List<Integer> carsPosition) {
-        return carsPosition.stream().map(ResultView::createWheelMark).collect(Collectors.joining("\n","", "\n"));
-    }
-
-    private static String createWheelMark(int carPosition) {
-        return "-".repeat(carPosition);
-    }
 }

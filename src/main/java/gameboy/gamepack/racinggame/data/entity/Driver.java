@@ -25,7 +25,7 @@ public class Driver {
         }
     }
 
-    public int getPosition() {
+    public int getCarPosition() {
         return car.getPosition();
     }
 
