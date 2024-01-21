@@ -1,12 +1,17 @@
 package gameboy.gamepack.racinggame.view;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class InputView {
 
     public static int inputNumber(String ask) {
-        display(ask);
-        return userIntInput();
+        try {
+            display(ask);
+            return userIntInput();
+        }catch (InputMismatchException e) {
+            return inputNumber("숫자만 입력해주세요.");
+        }
     }
 
     private static void display(String ask) {
