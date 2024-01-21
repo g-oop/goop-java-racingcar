@@ -7,7 +7,14 @@ public class Position {
     public Position() { }
 
     public Position(int position) {
+        validationPosition(position);
         this.position = position;
+    }
+
+    private void validationPosition(Integer position) {
+        if (position.intValue() <= 0) {
+            throw new IllegalArgumentException("0이하의 포지션 생성: " + position);
+        }
     }
 
     public void add() {

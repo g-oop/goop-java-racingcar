@@ -8,7 +8,25 @@ public class RacingTrack {
     private List<Driver> drivers = new ArrayList<>();
 
     public RacingTrack(int driverCount) {
+        validationDriverCount(driverCount);
         engageDriver(driverCount);
+    }
+
+    private void validationDriverCount(Integer driverCount) {
+        if (driverCount.intValue() <= 0) {
+            throw new IllegalArgumentException("race 참가자가 0명 이하일 수 없습니다: " + driverCount);
+        }
+    }
+
+    public RacingTrack(Driver... drivers) {
+        validationDriverCount(drivers);
+        this.drivers = List.of(drivers);
+    }
+
+    private void validationDriverCount(Driver... drivers) {
+        if (drivers.length == 0) {
+            throw new IllegalArgumentException("race 참가자가 0명 이하일 수 없습니다: " + drivers.length);
+        }
     }
 
     private void engageDriver(int driverCount) {
@@ -17,17 +35,13 @@ public class RacingTrack {
         }
     }
 
-    public List<Car> startRace() {
-        raceOneTime();
-        return getResult();
-    }
-
-    public void raceOneTime() {
+    public List<Integer> startRace() {
         drivers.stream().forEach(Driver::drive);
+        return getDriversPosition();
     }
 
-    public List<Car> getResult() {
-        return drivers.stream().map(Driver::getCar).toList();
+    private List<Integer> getDriversPosition() {
+        return drivers.stream().map(Driver::getPosition).toList();
     }
 
 }

@@ -1,14 +1,20 @@
 package gameboy.gamepack.racinggame.view;
 
+import java.util.Scanner;
+
 public class InputView {
 
-    private String inputGuide;
-
-    public InputView(String inputGuide) {
-        this.inputGuide = inputGuide;
+    public static int inputNumber(String ask) {
+        display(ask);
+        return userIntInput();
     }
 
-    public String display() {
-        return inputGuide;
+    private static void display(String ask) {
+        System.out.println(ask);
+    }
+
+    private static int userIntInput() {
+        Scanner scanner = new Scanner(System.in);
+        return scanner.nextInt();
     }
 }

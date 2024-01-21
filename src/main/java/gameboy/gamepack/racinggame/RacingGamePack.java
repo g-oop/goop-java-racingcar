@@ -3,11 +3,9 @@ package gameboy.gamepack.racinggame;
 import java.util.List;
 
 import gameboy.gamepack.GamePack;
-import gameboy.gamepack.racinggame.data.entity.Car;
 import gameboy.gamepack.racinggame.data.entity.RacingTrack;
+import gameboy.gamepack.racinggame.view.InputView;
 import gameboy.gamepack.racinggame.view.ResultView;
-import gameboy.gamepalyer.console.InputConsole;
-import gameboy.gamepalyer.console.OutputConsole;
 
 public class RacingGamePack implements GamePack {
 
@@ -17,15 +15,15 @@ public class RacingGamePack implements GamePack {
     public void play() {
         initializeRacingTrack();
 
-        int raceCount = InputConsole.inputNumber("시도할 회수는 몇 회 인가요?");
+        int raceCount = InputView.inputNumber("시도할 회수는 몇 회 인가요?");
         for (int i = 0; i < raceCount; i++) {
-            List<Car> raceResult = racingTrack.startRace();
-            OutputConsole.displayOutput(ResultView.getRaceResult(raceResult));
+            List<Integer> raceResult = racingTrack.startRace();
+            ResultView.display(raceResult);
         }
     }
 
     private void initializeRacingTrack() {
-        int driverCount = InputConsole.inputNumber("자동차 대수는 몇 대 인가요?");
+        int driverCount = InputView.inputNumber("자동차 대수는 몇 대 인가요?");
         racingTrack = new RacingTrack(driverCount);
     }
 }
