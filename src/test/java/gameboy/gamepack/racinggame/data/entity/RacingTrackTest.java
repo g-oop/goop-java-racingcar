@@ -2,6 +2,7 @@ package gameboy.gamepack.racinggame.data.entity;
 
 import java.util.List;
 
+import gameboy.gamepack.racinggame.data.dto.RaceResultDto;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -14,25 +15,13 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 class RacingTrackTest {
 
     @ParameterizedTest
-    @DisplayName("레이싱 경주 결과값 길이 테스트")
-    @ValueSource(ints = {1, 2})
-    void raceOneTime_결과_길이(int driverCount) {
-        //given
-        RacingTrack racingTrack = new RacingTrack(driverCount);
-        //when
-        List<Integer> result = racingTrack.startRace();
-        //then
-        assertThat(result).size().isEqualTo(driverCount);
-    }
-
-    @ParameterizedTest
     @DisplayName("레이싱 경주 결과값 유효 테스트")
     @CsvSource(value = {
         "4:0:1:0",
         "10:3:1:0",
         "0:4:0:1",
         "3:10:0:1"
-        }
+    }
         , delimiter = ':'
     )
     void raceOneTime_유효값(int randomInt1, int randomInt2, int expected1, int expected2) {
@@ -41,10 +30,11 @@ class RacingTrackTest {
             new Driver(new TestRandom(randomInt1)),
             new Driver(new TestRandom(randomInt2))
         );
+
         //when
-        List<Integer> result = racingTrack.startRace();
+        RaceResultDto result = racingTrack.startRace();
         //then
-        assertThat(result).containsExactly(expected1, expected2);
+        assertThat(result).isEqualTo(RaceResultDto.of(List.of(expected1, expected2)));
     }
 
     @ParameterizedTest

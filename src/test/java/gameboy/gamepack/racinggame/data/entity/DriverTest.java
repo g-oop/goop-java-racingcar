@@ -17,7 +17,7 @@ class DriverTest {
         //when
         driver.drive();
         //then
-        assertThat(driver.getPosition()).isEqualTo(1);
+        assertThat(driver.getCarPosition()).isEqualTo(1);
     }
 
     @ParameterizedTest
@@ -29,8 +29,6 @@ class DriverTest {
         //when
         driver.drive();
         //then
-        assertThat(driver.getPosition()).isEqualTo(0);
+        assertThat(driver.getCarPosition()).isEqualTo(0);
     }
-
-
 }
