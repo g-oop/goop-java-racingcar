@@ -7,7 +7,6 @@ public class InputView {
     private final Scanner scanner = new Scanner(System.in);
     private static final String INVALID_INPUT_MESSAGE = "숫자를 입력해주세요.";
 
-
     public int getNumberInput(String message) {
         while (true) {
             try {

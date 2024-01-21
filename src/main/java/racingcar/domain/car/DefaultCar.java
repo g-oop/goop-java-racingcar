@@ -1,10 +1,8 @@
 package racingcar.domain.car;
 
-import racingcar.domain.RandomNumberGenerator;
-
 public class DefaultCar implements Car{
     private static final int MOVE_THRESHOLD = 4;
-    private static final String DEFAULT_NAME = "CAR ";
+    private static final String DEFAULT_NAME = "CAR";
 
     private final RandomNumberGenerator numberGenerator;
     private final String name;
