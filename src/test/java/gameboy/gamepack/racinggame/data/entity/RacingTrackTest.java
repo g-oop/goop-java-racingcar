@@ -1,14 +1,11 @@
 package gameboy.gamepack.racinggame.data.entity;
 
 import java.util.List;
-import java.util.Random;
 
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static gameboy.gamepack.racinggame.data.entity.RandomSeed.DRIVE_SEED;
-import static gameboy.gamepack.racinggame.data.entity.RandomSeed.STOP_SEED;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -32,8 +29,8 @@ class RacingTrackTest {
     void raceOneTime_유효값() {
         //given
         RacingTrack racingTrack = new RacingTrack(
-            new Driver(new Random(DRIVE_SEED.value())),
-            new Driver(new Random(STOP_SEED.value()))
+            new Driver(new TestRandom(5)),
+            new Driver(new TestRandom(1))
         );
         //when
         List<Integer> result = racingTrack.startRace();
