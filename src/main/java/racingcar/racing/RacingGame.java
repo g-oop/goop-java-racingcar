@@ -23,19 +23,12 @@ public class RacingGame {
         this.racingEntries = new RacingEntries(this.preference.carCount(), movePolicy);
     }
 
-    public RacingEntries getRacingEntries() {
-        return racingEntries;
-    }
-
-    public int getRacingEntryCount() {
-        return racingEntries.getEntryCount();
-    }
-
     public RacingResult race() {
         RacingResult result = new RacingResult();
+        RacingEntries currentEntries = racingEntries;
         for (int i = 0; i < preference.moveCount(); i++) {
-            racingEntries.move();
-            result.recordSnapshot(new RacingEntries(racingEntries));
+            currentEntries = currentEntries.move();
+            result.recordSnapshot(currentEntries);
         }
         return result;
     }

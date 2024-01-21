@@ -3,40 +3,27 @@ package racingcar.entry;
 public class Car {
 
     private final CarPosition position;
-    private MovePolicy movePolicy;
 
     public Car() {
         this.position = new CarPosition();
     }
 
-    public Car(MovePolicy movePolicy) {
-        this.position = new CarPosition();
-        this.movePolicy = movePolicy;
+    public Car(int position) {
+        this.position = new CarPosition(position);
     }
 
-    public Car(Car car) {
-        this.movePolicy = car.movePolicy;
-        this.position = new CarPosition(car.position.current());
-    }
-
-    public void setMovePolicy(MovePolicy movePolicy) {
-        this.movePolicy = movePolicy;
-    }
-
-    public void move() {
-        if (canMove()) {
-            position.increase();
+    public Car move(MovePolicy movePolicy) {
+        if (canMove(movePolicy)) {
+            return new Car(position.increase());
         }
+        return this;
     }
 
     public int currentPosition() {
         return position.current();
     }
 
-    private boolean canMove() {
-        if (this.movePolicy == null) {
-            return false;
-        }
+    private boolean canMove(MovePolicy movePolicy) {
         return movePolicy.canMove();
     }
 }

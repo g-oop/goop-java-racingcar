@@ -2,7 +2,7 @@ package racingcar.entry;
 
 public class CarPosition {
 
-    private int position;
+    private final int position;
 
     public CarPosition() {
         this.position = 0;
@@ -12,8 +12,8 @@ public class CarPosition {
         this.position = position;
     }
 
-    public void increase() {
-        position++;
+    public int increase() {
+        return position + 1;
     }
 
     public int current() {

@@ -2,8 +2,7 @@ package racingcar.racing;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racingcar.entry.Car;
-import racingcar.entry.MovePolicy;
+import racingcar.entry.*;
 import racingcar.mock.AlwaysMovePolicy;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -14,7 +13,8 @@ class RacingEntriesTest {
     @DisplayName("지정한 수만큼 경주 참가자가 생성된다.")
     void create() {
         int entryCount = 5;
-        RacingEntries racingEntries = new RacingEntries(entryCount);
+        MovePolicy movePolicy = new RandomMovePolicy();
+        RacingEntries racingEntries = new RacingEntries(entryCount, movePolicy);
         int result = racingEntries.getEntryCount();
         assertThat(result).isEqualTo(entryCount);
     }
@@ -26,9 +26,9 @@ class RacingEntriesTest {
 
         MovePolicy movePolicy = new AlwaysMovePolicy();
         RacingEntries racingEntries = new RacingEntries(entryCount, movePolicy);
-        racingEntries.move();
+        RacingEntries newEntries = racingEntries.move();
 
-        for (Car car: racingEntries.getEntries()) {
+        for (Car car: newEntries.getEntries()) {
             assertThat(car.currentPosition()).isEqualTo(1);
         }
     }
