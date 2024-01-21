@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -24,18 +25,26 @@ class RacingTrackTest {
         assertThat(result).size().isEqualTo(driverCount);
     }
 
-    @Test
+    @ParameterizedTest
     @DisplayName("레이싱 경주 결과값 유효 테스트")
-    void raceOneTime_유효값() {
+    @CsvSource(value = {
+        "4:0:1:0",
+        "10:3:1:0",
+        "0:4:0:1",
+        "3:10:0:1"
+        }
+        , delimiter = ':'
+    )
+    void raceOneTime_유효값(int randomInt1, int randomInt2, int expected1, int expected2) {
         //given
         RacingTrack racingTrack = new RacingTrack(
-            new Driver(new TestRandom(5)),
-            new Driver(new TestRandom(1))
+            new Driver(new TestRandom(randomInt1)),
+            new Driver(new TestRandom(randomInt2))
         );
         //when
         List<Integer> result = racingTrack.startRace();
         //then
-        assertThat(result).containsExactly(1, 0);
+        assertThat(result).containsExactly(expected1, expected2);
     }
 
     @ParameterizedTest
@@ -50,7 +59,7 @@ class RacingTrackTest {
     @Test
     @DisplayName("레이싱 경주 운전자 미참가 오류 테스트")
     void raceOneTime_driver_0명_테스트() {
-        assertThatThrownBy(() -> new RacingTrack())
+        assertThatThrownBy(RacingTrack::new)
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessage("race 참가자가 0명 이하일 수 없습니다: 0");
     }

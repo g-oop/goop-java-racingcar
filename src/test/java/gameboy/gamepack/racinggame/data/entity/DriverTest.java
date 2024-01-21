@@ -10,7 +10,7 @@ class DriverTest {
 
     @ParameterizedTest
     @DisplayName("drive 주행 테스트")
-    @ValueSource(ints = {4, 5, 6, 7, 8, 9})
+    @ValueSource(ints = {4, 10})
     void drive_주행(int randomInt) {
         //given
         Driver driver = new Driver(new TestRandom(randomInt));
@@ -22,7 +22,7 @@ class DriverTest {
 
     @ParameterizedTest
     @DisplayName("drive 정지 테스트")
-    @ValueSource(ints = {1, 2, 3})
+    @ValueSource(ints = {0, 3})
     void drive_정지(int randomInt) {
         //given
         Driver driver = new Driver(new TestRandom(randomInt));
