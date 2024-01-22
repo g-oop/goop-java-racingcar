@@ -12,8 +12,8 @@ public class Position {
     }
 
     private void validationPosition(int position) {
-        if (position <= 0) {
-            throw new IllegalArgumentException("0이하의 포지션 생성: " + position);
+        if (position < 0) {
+            throw new IllegalArgumentException("0미만의 포지션 생성: " + position);
         }
     }
 

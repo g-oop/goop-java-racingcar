@@ -6,6 +6,7 @@ import gameboy.gamepack.racinggame.data.vo.CarStatus;
 import gameboy.gamepack.racinggame.data.vo.RaceLog;
 
 public class Referee {
+
     private RaceRecorder recorder;
 
     public Referee() {
@@ -19,6 +20,7 @@ public class Referee {
     public List<RaceLog> playback() {
         return recorder.playback();
     }
+
     public Set<String> getWinners() {
         RaceLog raceLog = recorder.playbackLastLog();
         Integer winnerPosition = 0;

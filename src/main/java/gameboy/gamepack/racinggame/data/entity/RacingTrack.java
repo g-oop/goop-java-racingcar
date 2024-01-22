@@ -10,6 +10,15 @@ public class RacingTrack {
 
     private List<Driver> drivers;
     private Referee referee;
+    public RacingTrack(List<Driver> drivers, Referee referee) {
+        validationDriverCount(drivers);
+        this.drivers = drivers;
+        this.referee = referee;
+    }
+
+    public RacingTrack(List<Driver> drivers) {
+        this(drivers, new Referee());
+    }
 
     public RacingTrack(int driverCount) {
         this(engageDriver(driverCount));
@@ -21,12 +30,6 @@ public class RacingTrack {
             drivers.add(new Driver());
         }
         return drivers;
-    }
-
-    public RacingTrack(List<Driver> drivers) {
-        validationDriverCount(drivers);
-        this.drivers = drivers;
-        this.referee = new Referee();
     }
 
     public RacingTrack(Driver... drivers) {
@@ -42,13 +45,13 @@ public class RacingTrack {
     public RaceResultDto startRace(int raceCount) {
         for (int i = 0; i < raceCount; i++) {
             drivers.forEach(Driver::drive);
-            referee.record(getCarsStatus());
+            referee.record(getCarsStatuses());
         }
-        return new RaceResultDto(referee.playback(), referee.getWinners());
+        return RaceResultDto.of(referee.playback(), referee.getWinners());
     }
 
-    private List<CarStatus> getCarsStatus() {
-        return drivers.stream().map(Driver::monitorCarStatus).toList();
+    private List<CarStatus> getCarsStatuses() {
+        return drivers.stream().map(Driver::getCarStatus).toList();
     }
 
 }

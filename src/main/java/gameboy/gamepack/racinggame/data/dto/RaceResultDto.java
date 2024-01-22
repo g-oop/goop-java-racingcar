@@ -10,7 +10,7 @@ public class RaceResultDto {
     private List<RaceLog> raceLogs;
     private Set<String> winners;
 
-    public RaceResultDto(List<RaceLog> raceLogs, Set<String> winners) {
+    private RaceResultDto(List<RaceLog> raceLogs, Set<String> winners) {
         this.raceLogs = raceLogs;
         this.winners = winners;
     }
@@ -21,6 +21,10 @@ public class RaceResultDto {
 
     public Set<String> getWinners() {
         return winners;
+    }
+
+    public static RaceResultDto of(List<RaceLog> raceLogs, Set<String> winners) {
+        return new RaceResultDto(raceLogs, winners);
     }
 
     @Override

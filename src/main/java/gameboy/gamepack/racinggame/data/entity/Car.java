@@ -4,8 +4,7 @@ import gameboy.gamepack.racinggame.data.vo.*;
 
 public class Car {
 
-    private Name name;
-    private Position position;
+    private CarStatus status;
 
     public Car() {
         this(new Name(), new Position());
@@ -16,19 +15,22 @@ public class Car {
     }
 
     public Car(Name name, Position position) {
-        this.name = name;
-        this.position = position;
+        this.status = new CarStatus(name, position);
     }
 
     public void run() {
-        position.add();
+        status.positionAdd();
     }
 
     public int getPosition() {
-        return position.getPosition();
+        return status.getPosition();
     }
 
     public String getName() {
-        return name.getName();
+        return status.getName();
+    }
+
+    public CarStatus getStatus() {
+        return status;
     }
 }

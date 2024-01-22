@@ -39,8 +39,8 @@ public class Driver {
         return car.getPosition();
     }
 
-    public CarStatus monitorCarStatus() {
-        return new CarStatus(car.getName(), car.getPosition());
+    public CarStatus getCarStatus() {
+        return car.getStatus();
     }
 
     private boolean isPushAccelerator() {

@@ -19,7 +19,7 @@ public class ResultView {
         return raceLogs.stream().map(this::createResult).collect(Collectors.joining());
     }
 
-    public String createResult(RaceLog raceLog) {
+    private String createResult(RaceLog raceLog) {
         return raceLog.getStatuses().stream()
             .map(this::createWheelMark)
             .collect(Collectors.joining("\n","", "\n"));
@@ -29,7 +29,7 @@ public class ResultView {
         return status.getName() + ": " + "-".repeat(status.getPosition());
     }
 
-    public String getRaceResult(Set<String> winners) {
+    private String getRaceResult(Set<String> winners) {
         return winners.stream().collect(Collectors.joining(", ")) + "가 최종 우승했습니다.";
     }
 
