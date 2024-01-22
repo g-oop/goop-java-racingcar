@@ -11,8 +11,8 @@ public class Position {
         this.position = position;
     }
 
-    private void validationPosition(Integer position) {
-        if (position.intValue() <= 0) {
+    private void validationPosition(int position) {
+        if (position <= 0) {
             throw new IllegalArgumentException("0이하의 포지션 생성: " + position);
         }
     }

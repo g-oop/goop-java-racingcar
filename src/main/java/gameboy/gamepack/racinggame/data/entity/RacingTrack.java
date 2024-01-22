@@ -7,38 +7,37 @@ import gameboy.gamepack.racinggame.data.dto.RaceResultDto;
 
 public class RacingTrack {
 
-    private List<Driver> drivers = new ArrayList<>();
+    private List<Driver> drivers;
 
     public RacingTrack(int driverCount) {
-        validationDriverCount(driverCount);
-        engageDriver(driverCount);
+        this(engageDriver(driverCount));
     }
 
-    private void validationDriverCount(Integer driverCount) {
-        if (driverCount.intValue() <= 0) {
-            throw new IllegalArgumentException("race 참가자가 0명 이하일 수 없습니다: " + driverCount);
+    private static List<Driver> engageDriver(int driverCount) {
+        List<Driver> drivers = new ArrayList<>();
+        for (int i = 0; i < driverCount; i++) {
+            drivers.add(new Driver());
         }
+        return drivers;
+    }
+
+    public RacingTrack(List<Driver> drivers) {
+        validationDriverCount(drivers);
+        this.drivers = drivers;
     }
 
     public RacingTrack(Driver... drivers) {
-        validationDriverCount(drivers);
-        this.drivers = List.of(drivers);
+        this(List.of(drivers));
     }
 
-    private void validationDriverCount(Driver... drivers) {
-        if (drivers.length == 0) {
-            throw new IllegalArgumentException("race 참가자가 0명 이하일 수 없습니다: " + drivers.length);
-        }
-    }
-
-    private void engageDriver(int driverCount) {
-        for (int i = 0; i < driverCount; i++) {
-            drivers.add(new Driver());
+    private void validationDriverCount(List<Driver> drivers) {
+        if (drivers.size() == 0) {
+            throw new IllegalArgumentException("race 참가자가 0명 이하일 수 없습니다");
         }
     }
 
     public RaceResultDto startRace() {
-        drivers.stream().forEach(Driver::drive);
+        drivers.forEach(Driver::drive);
         return RaceResultDto.of(getCarsPosition());
     }
 

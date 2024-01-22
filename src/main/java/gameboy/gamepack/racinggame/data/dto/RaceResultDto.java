@@ -15,7 +15,9 @@ public class RaceResultDto {
     }
 
     public String getRaceResult() {
-        return carsPosition.stream().map(this::createWheelMark).collect(Collectors.joining("\n","", "\n"));
+        return carsPosition.stream()
+            .map(this::createWheelMark)
+            .collect(Collectors.joining("\n","", "\n"));
     }
 
     private String createWheelMark(int carPosition) {
