@@ -1,15 +1,22 @@
 package gameboy.gamepack.racinggame.data.entity;
 
-import gameboy.gamepack.racinggame.data.vo.Position;
+import gameboy.gamepack.racinggame.data.vo.*;
 
 public class Car {
+
+    private Name name;
     private Position position;
 
     public Car() {
-        this.position = new Position();
+        this(new Name(), new Position());
     }
 
-    public Car(Position position) {
+    public Car(String name) {
+        this(new Name(name), new Position());
+    }
+
+    public Car(Name name, Position position) {
+        this.name = name;
         this.position = position;
     }
 
@@ -19,5 +26,9 @@ public class Car {
 
     public int getPosition() {
         return position.getPosition();
+    }
+
+    public String getName() {
+        return name.getName();
     }
 }

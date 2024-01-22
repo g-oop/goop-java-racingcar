@@ -1,32 +1,31 @@
 package gameboy.gamepack.racinggame.data.dto;
 
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Set;
+
+import gameboy.gamepack.racinggame.data.vo.RaceLog;
 
 public class RaceResultDto {
-    List<Integer> carsPosition;
 
-    private RaceResultDto(List<Integer> carsPosition) {
-        this.carsPosition = carsPosition;
+    private List<RaceLog> raceLogs;
+    private Set<String> winners;
+
+    public RaceResultDto(List<RaceLog> raceLogs, Set<String> winners) {
+        this.raceLogs = raceLogs;
+        this.winners = winners;
     }
 
-    public static RaceResultDto of(List<Integer> carsPosition) {
-        return new RaceResultDto(carsPosition);
+    public List<RaceLog> getRaceLogs() {
+        return raceLogs;
     }
 
-    public String getRaceResult() {
-        return carsPosition.stream()
-            .map(this::createWheelMark)
-            .collect(Collectors.joining("\n","", "\n"));
-    }
-
-    private String createWheelMark(int carPosition) {
-        return "-".repeat(carPosition);
+    public Set<String> getWinners() {
+        return winners;
     }
 
     @Override
     public int hashCode() {
-        return this.getClass().hashCode() + carsPosition.hashCode();
+        return this.getClass().hashCode() + raceLogs.hashCode();
     }
 
     @Override

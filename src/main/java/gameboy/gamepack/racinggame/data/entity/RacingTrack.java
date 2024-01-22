@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import gameboy.gamepack.racinggame.data.dto.RaceResultDto;
+import gameboy.gamepack.racinggame.data.vo.CarStatus;
 
 public class RacingTrack {
 
     private List<Driver> drivers;
+    private Referee referee;
 
     public RacingTrack(int driverCount) {
         this(engageDriver(driverCount));
@@ -24,6 +26,7 @@ public class RacingTrack {
     public RacingTrack(List<Driver> drivers) {
         validationDriverCount(drivers);
         this.drivers = drivers;
+        this.referee = new Referee();
     }
 
     public RacingTrack(Driver... drivers) {
@@ -36,13 +39,16 @@ public class RacingTrack {
         }
     }
 
-    public RaceResultDto startRace() {
-        drivers.forEach(Driver::drive);
-        return RaceResultDto.of(getCarsPosition());
+    public RaceResultDto startRace(int raceCount) {
+        for (int i = 0; i < raceCount; i++) {
+            drivers.forEach(Driver::drive);
+            referee.record(getCarsStatus());
+        }
+        return new RaceResultDto(referee.playback(), referee.getWinners());
     }
 
-    private List<Integer> getCarsPosition() {
-        return drivers.stream().map(Driver::getCarPosition).toList();
+    private List<CarStatus> getCarsStatus() {
+        return drivers.stream().map(Driver::monitorCarStatus).toList();
     }
 
 }
