@@ -24,7 +24,7 @@ class RacingTrackTest {
     }
         , delimiter = ':'
     )
-    void raceOneTime_유효값(int randomInt1, int randomInt2, int expected1, int expected2) {
+    void startRace_유효값(int randomInt1, int randomInt2, int expected1, int expected2) {
         //given
         RacingTrack racingTrack = new RacingTrack(
             new Driver(new TestRandom(randomInt1)),
@@ -40,17 +40,17 @@ class RacingTrackTest {
     @ParameterizedTest
     @DisplayName("레이싱 경주 0명 이하 참가 오류 테스트")
     @ValueSource(ints = {0, -1})
-    void raceOneTime_0이하_테스트(int driverCount) {
+    void initRacingTrack_0이하_테스트(int driverCount) {
         assertThatThrownBy(() -> new RacingTrack(driverCount))
             .isInstanceOf(IllegalArgumentException.class)
-            .hasMessage("race 참가자가 0명 이하일 수 없습니다: " + driverCount);
+            .hasMessage("race 참가자가 0명 이하일 수 없습니다" );
     }
 
     @Test
     @DisplayName("레이싱 경주 운전자 미참가 오류 테스트")
-    void raceOneTime_driver_0명_테스트() {
+    void initRacingTrack_driver_0명_테스트() {
         assertThatThrownBy(RacingTrack::new)
             .isInstanceOf(IllegalArgumentException.class)
-            .hasMessage("race 참가자가 0명 이하일 수 없습니다: 0");
+            .hasMessage("race 참가자가 0명 이하일 수 없습니다");
     }
 }
