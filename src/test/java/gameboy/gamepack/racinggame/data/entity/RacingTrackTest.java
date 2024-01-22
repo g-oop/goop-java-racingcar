@@ -3,9 +3,9 @@ package gameboy.gamepack.racinggame.data.entity;
 import java.util.List;
 
 import gameboy.gamepack.racinggame.data.dto.RaceResultDto;
+import gameboy.gamepack.racinggame.data.vo.*;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -14,27 +14,20 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 @DisplayName("도메인 - RacingTrack 테스트")
 class RacingTrackTest {
 
-    @ParameterizedTest
+    @Test
     @DisplayName("레이싱 경주 결과값 유효 테스트")
-    @CsvSource(value = {
-        "4:0:1:0",
-        "10:3:1:0",
-        "0:4:0:1",
-        "3:10:0:1"
-    }
-        , delimiter = ':'
-    )
-    void startRace_유효값(int randomInt1, int randomInt2, int expected1, int expected2) {
+    void startRace_유효값() {
         //given
-        RacingTrack racingTrack = new RacingTrack(
-            new Driver(new TestRandom(randomInt1)),
-            new Driver(new TestRandom(randomInt2))
+        Referee referee = new Referee();
+        RacingTrack racingTrack = new RacingTrack(List.of(new Driver()), referee);
+        List<CarStatus> status = List.of(
+            new CarStatus(new Name(), new Position())
         );
-
+        referee.record(status);
         //when
-        RaceResultDto result = racingTrack.startRace();
+        RaceResultDto result = racingTrack.startRace(1);
         //then
-        assertThat(result).isEqualTo(RaceResultDto.of(List.of(expected1, expected2)));
+        assertThat(result).isEqualTo(RaceResultDto.of(referee.playback(), referee.getWinners()));
     }
 
     @ParameterizedTest
@@ -43,7 +36,7 @@ class RacingTrackTest {
     void initRacingTrack_0이하_테스트(int driverCount) {
         assertThatThrownBy(() -> new RacingTrack(driverCount))
             .isInstanceOf(IllegalArgumentException.class)
-            .hasMessage("race 참가자가 0명 이하일 수 없습니다" );
+            .hasMessage("race 참가자가 0명 이하일 수 없습니다");
     }
 
     @Test
