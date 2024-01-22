@@ -8,7 +8,7 @@ import gameboy.gamepack.racinggame.data.vo.RaceLog;
 public class Referee {
 
     private RaceRecorder recorder;
-
+    private static final ThreadLocal<Integer> winnerPosition = ThreadLocal.withInitial( () -> 0);
     public Referee() {
         this.recorder = new RaceRecorder();
     }
@@ -23,18 +23,27 @@ public class Referee {
 
     public Set<String> getWinners() {
         RaceLog raceLog = recorder.playbackLastLog();
-        Integer winnerPosition = 0;
+
         Set<String> winnerNames = new HashSet<>();
         for(CarStatus status: raceLog.getStatuses()) {
-            if(winnerPosition < status.getPosition()){
-                winnerNames = new HashSet<>();
-                winnerNames.add(status.getName());
-                winnerPosition = status.getPosition();
-            }
-            if(winnerPosition == status.getPosition()) {
-                winnerNames.add(status.getName());
-            }
+            checkWin(status, winnerNames);
+            checkDraw(status, winnerNames);
         }
+        winnerPosition.remove();
         return winnerNames;
+    }
+
+    private void checkWin(CarStatus status, Set<String> winnerNames) {
+        if(winnerPosition.get() < status.getPosition()){
+            winnerNames.clear();
+            winnerNames.add(status.getName());
+            winnerPosition.set(status.getPosition());
+        }
+    }
+
+    private void checkDraw(CarStatus status, Set<String> winnerNames) {
+        if(winnerPosition.get() == status.getPosition()) {
+            winnerNames.add(status.getName());
+        }
     }
 }
