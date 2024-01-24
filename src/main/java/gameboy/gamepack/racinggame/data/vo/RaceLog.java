@@ -13,5 +13,4 @@ public class RaceLog {
     public List<CarStatus> getStatuses() {
         return statuses;
     }
-
 }

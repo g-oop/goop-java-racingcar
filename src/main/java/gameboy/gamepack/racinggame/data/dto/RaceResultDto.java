@@ -8,9 +8,9 @@ import gameboy.gamepack.racinggame.data.vo.RaceLog;
 public class RaceResultDto {
 
     private List<RaceLog> raceLogs;
-    private Set<String> winners;
+    private List<String> winners;
 
-    private RaceResultDto(List<RaceLog> raceLogs, Set<String> winners) {
+    private RaceResultDto(List<RaceLog> raceLogs, List<String> winners) {
         this.raceLogs = raceLogs;
         this.winners = winners;
     }
@@ -19,11 +19,11 @@ public class RaceResultDto {
         return raceLogs;
     }
 
-    public Set<String> getWinners() {
+    public List<String> getWinners() {
         return winners;
     }
 
-    public static RaceResultDto of(List<RaceLog> raceLogs, Set<String> winners) {
+    public static RaceResultDto of(List<RaceLog> raceLogs, List<String> winners) {
         return new RaceResultDto(raceLogs, winners);
     }
 

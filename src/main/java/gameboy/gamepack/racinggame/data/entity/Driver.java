@@ -3,6 +3,7 @@ package gameboy.gamepack.racinggame.data.entity;
 import java.util.Random;
 
 import gameboy.gamepack.racinggame.data.vo.CarStatus;
+import gameboy.gamepack.racinggame.data.vo.Name;
 
 public class Driver {
 
@@ -16,7 +17,7 @@ public class Driver {
         this(new Random());
     }
 
-    public Driver(String carName) {
+    public Driver(Name carName) {
         this(new Random(), new Car(carName));
     }
 

@@ -8,7 +8,8 @@ import gameboy.gamepack.racinggame.data.vo.RaceLog;
 public class Referee {
 
     private RaceRecorder recorder;
-    private static final ThreadLocal<Integer> winnerPosition = ThreadLocal.withInitial( () -> 0);
+    private int winnerPosition = 0;
+
     public Referee() {
         this.recorder = new RaceRecorder();
     }
@@ -21,28 +22,24 @@ public class Referee {
         return recorder.playback();
     }
 
-    public Set<String> getWinners() {
+    public List<String> getWinners() {
         RaceLog raceLog = recorder.playbackLastLog();
-
-        Set<String> winnerNames = new HashSet<>();
-        for(CarStatus status: raceLog.getStatuses()) {
-            checkWin(status, winnerNames);
-            checkDraw(status, winnerNames);
-        }
-        winnerPosition.remove();
+        int firstPosition = raceLog.getStatuses().stream().mapToInt(CarStatus::getPosition).max().orElse(0);
+        List<String> winnerNames = new ArrayList<>();
+        raceLog.getStatuses().forEach(status -> {if(firstPosition <= status.getPosition()) {winnerNames.add(status.getName());}});
         return winnerNames;
     }
 
     private void checkWin(CarStatus status, Set<String> winnerNames) {
-        if(winnerPosition.get() < status.getPosition()){
+        if(winnerPosition < status.getPosition()){
             winnerNames.clear();
             winnerNames.add(status.getName());
-            winnerPosition.set(status.getPosition());
+            winnerPosition = status.getPosition();
         }
     }
 
     private void checkDraw(CarStatus status, Set<String> winnerNames) {
-        if(winnerPosition.get() == status.getPosition()) {
+        if(winnerPosition == status.getPosition()) {
             winnerNames.add(status.getName());
         }
     }
