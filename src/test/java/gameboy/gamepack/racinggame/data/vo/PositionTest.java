@@ -22,13 +22,12 @@ public class PositionTest {
         assertThat(position).isEqualTo(new Position(1));
     }
 
-    @ParameterizedTest
+    @Test
     @DisplayName("0미만 위치 값 오류 테스트")
-    @ValueSource(ints = {-1})
-    void position_0이하_테스트(int initPosition) {
-        assertThatThrownBy(() -> new Position(initPosition))
+    void position_0미만_테스트() {
+        assertThatThrownBy(() -> new Position(-1))
             .isInstanceOf(IllegalArgumentException.class)
-            .hasMessage("0미만의 포지션 생성: " + initPosition);
+            .hasMessage("0미만의 포지션 생성: " + -1);
     }
 
     @ParameterizedTest

@@ -23,7 +23,7 @@ class RefereeTest {
         );
         referee.record(status);
         //when
-        Set<String> strings = referee.getWinners();
+        List<String> strings = referee.getWinners();
         //then
         assertThat(strings).contains("car3");
     }
@@ -40,7 +40,7 @@ class RefereeTest {
         );
         referee.record(status);
         //when
-        Set<String> strings = referee.getWinners();
+        List<String> strings = referee.getWinners();
         //then
         assertThat(strings).contains("car2", "car3");
     }
