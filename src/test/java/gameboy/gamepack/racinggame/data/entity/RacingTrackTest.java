@@ -19,11 +19,11 @@ class RacingTrackTest {
     void startRace_유효값() {
         //given
         Referee referee = new Referee();
-        RacingTrack racingTrack = new RacingTrack(List.of(new Driver()), referee);
-        List<CarStatus> status = List.of(
-            new CarStatus(new Name(), new Position())
+        RacingTrack racingTrack = new RacingTrack(List.of(new Car()), referee);
+        List<Car> cars = List.of(
+            new Car(new Name(), new Position())
         );
-        referee.record(status);
+        referee.record(cars);
         //when
         RaceResultDto result = racingTrack.startRace(1);
         //then
