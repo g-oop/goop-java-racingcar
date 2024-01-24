@@ -4,8 +4,8 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 import gameboy.gamepack.racinggame.data.dto.RaceResultDto;
+import gameboy.gamepack.racinggame.data.entity.Car;
 import gameboy.gamepack.racinggame.data.vo.RaceLog;
-import gameboy.gamepack.racinggame.data.vo.CarStatus;
 
 public class ResultView {
 
@@ -19,13 +19,13 @@ public class ResultView {
     }
 
     private static String createResult(RaceLog raceLog) {
-        return raceLog.getStatuses().stream()
+        return raceLog.getCars().stream()
             .map(ResultView::createWheelMark)
             .collect(Collectors.joining("\n","", "\n"));
     }
 
-    private static String createWheelMark(CarStatus status) {
-        return status.getName() + ": " + "-".repeat(status.getPosition());
+    private static String createWheelMark(Car car) {
+        return car.getName() + ": " + "-".repeat(car.getPosition());
     }
 
     private static String getRaceResult(List<String> winners) {

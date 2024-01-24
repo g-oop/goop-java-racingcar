@@ -2,15 +2,17 @@ package gameboy.gamepack.racinggame.data.vo;
 
 import java.util.*;
 
+import gameboy.gamepack.racinggame.data.entity.Car;
+
 public class RaceLog {
 
-    private List<CarStatus> statuses;
+    private List<Car> cars;
 
-    public RaceLog(List<CarStatus> statuses) {
-        this.statuses = statuses;
+    public RaceLog(List<Car> cars) {
+        this.cars = cars;
     }
 
-    public List<CarStatus> getStatuses() {
-        return statuses;
+    public List<Car> getCars() {
+        return cars;
     }
 }

@@ -1,7 +1,6 @@
 package gameboy.gamepack.racinggame.data.dto;
 
 import java.util.List;
-import java.util.Set;
 
 import gameboy.gamepack.racinggame.data.vo.RaceLog;
 
