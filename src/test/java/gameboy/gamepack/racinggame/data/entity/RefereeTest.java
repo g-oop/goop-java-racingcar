@@ -16,14 +16,14 @@ class RefereeTest {
     void getWinners_단일우승() {
         //given
         Referee referee = new Referee();
-        List<Car> status = List.of(
+        List<Car> cars = List.of(
             new Car(new Name("car1"), new Position(1)),
             new Car(new Name("car2"), new Position(2)),
             new Car(new Name("car3"), new Position(3))
         );
-        referee.record(status);
+        referee.record(cars);
         //when
-        List<String> strings = referee.getWinners();
+        List<String> strings = referee.getWinnerNames();
         //then
         assertThat(strings).contains("car3");
     }
@@ -40,7 +40,7 @@ class RefereeTest {
         );
         referee.record(status);
         //when
-        List<String> strings = referee.getWinners();
+        List<String> strings = referee.getWinnerNames();
         //then
         assertThat(strings).contains("car2", "car3");
     }

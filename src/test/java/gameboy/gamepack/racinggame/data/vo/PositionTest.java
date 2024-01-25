@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import static gameboy.gamepack.racinggame.data.vo.Position.MIN_POSITION_VALUE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -12,12 +13,12 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 public class PositionTest {
 
     @Test
-    @DisplayName("위치 값 증가 테스트")
+    @DisplayName("위치 값 1 증가 테스트")
     void add() {
         //given
         Position position = new Position();
         //when
-        position.add();
+        position.addOne();
         //then
         assertThat(position).isEqualTo(new Position(1));
     }
@@ -27,7 +28,7 @@ public class PositionTest {
     void position_0미만_테스트() {
         assertThatThrownBy(() -> new Position(-1))
             .isInstanceOf(IllegalArgumentException.class)
-            .hasMessage("0미만의 포지션 생성: " + -1);
+            .hasMessage(MIN_POSITION_VALUE + "미만의 포지션 생성: " + -1);
     }
 
     @ParameterizedTest

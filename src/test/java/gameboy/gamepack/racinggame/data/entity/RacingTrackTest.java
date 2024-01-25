@@ -27,7 +27,7 @@ class RacingTrackTest {
         //when
         RaceResultDto result = racingTrack.startRace(1);
         //then
-        assertThat(result).isEqualTo(RaceResultDto.of(referee.playback(), referee.getWinners()));
+        assertThat(result).isEqualTo(RaceResultDto.of(referee.playback(), referee.getWinnerNames()));
     }
 
     @ParameterizedTest
