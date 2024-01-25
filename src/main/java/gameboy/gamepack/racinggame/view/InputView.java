@@ -1,6 +1,7 @@
 package gameboy.gamepack.racinggame.view;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 import gameboy.gamepack.racinggame.data.vo.Name;
 import gameboy.gamepack.racinggame.exception.InvalidRacerNameException;
@@ -23,7 +24,7 @@ public class InputView {
     private static List<String> inputCarsName(String ask) {
         try {
             List<String> carsName = split(inputText(ask), CARS_NAME_SEPARATOR);
-            carsName.forEach(InputView::validRacerName);
+            validCarsName(carsName);
             return carsName;
         } catch (InvalidRacerNameException e) {
             return inputCarsName(e.getMessage());
@@ -58,10 +59,17 @@ public class InputView {
 
     private static List<String> split(String text, String separator) {
         List<String> tokens = List.of(text.split(separator));
-        return tokens.stream().map(String::trim).toList();
+        return tokens.stream().map(String::trim).collect(Collectors.toList());
     }
 
-    private static void validRacerName(String name) {
+    private static void validCarsName(List<String> carsName) {
+        carsName.forEach(InputView::validCarName);
+        if (carsName.size() > new HashSet<>(carsName).size()) {
+            throw new InvalidRacerNameException("자동차 이름이 중복될 수 없습니다.");
+        }
+    }
+
+    private static void validCarName(String name) {
         if (name.isBlank()) {
             throw new InvalidRacerNameException("자동차 이름은 공백이 될 수 없습니다.");
         }
