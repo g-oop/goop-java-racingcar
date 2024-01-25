@@ -7,32 +7,23 @@ import gameboy.gamepack.racinggame.data.vo.RaceLog;
 public class RaceResultDto {
 
     private List<RaceLog> raceLogs;
-    private List<String> winners;
+    private List<String> winnerNames;
 
-    private RaceResultDto(List<RaceLog> raceLogs, List<String> winners) {
+    private RaceResultDto(List<RaceLog> raceLogs, List<String> winnerNames) {
         this.raceLogs = raceLogs;
-        this.winners = winners;
+        this.winnerNames = winnerNames;
     }
 
     public List<RaceLog> getRaceLogs() {
         return raceLogs;
     }
 
-    public List<String> getWinners() {
-        return winners;
+    public List<String> getWinnerNames() {
+        return winnerNames;
     }
 
-    public static RaceResultDto of(List<RaceLog> raceLogs, List<String> winners) {
-        return new RaceResultDto(raceLogs, winners);
+    public static RaceResultDto of(List<RaceLog> raceLogs, List<String> winnerNames) {
+        return new RaceResultDto(raceLogs, winnerNames);
     }
 
-    @Override
-    public int hashCode() {
-        return this.getClass().hashCode() + raceLogs.hashCode();
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        return this.hashCode() == obj.hashCode();
-    }
 }

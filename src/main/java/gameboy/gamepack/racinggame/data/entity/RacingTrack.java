@@ -46,7 +46,7 @@ public class RacingTrack {
             cars.forEach(Car::run);
             referee.record(cars);
         }
-        return RaceResultDto.of(referee.playback(), referee.getWinners());
+        return RaceResultDto.of(referee.playback(), referee.getWinnerNames());
     }
 
 }

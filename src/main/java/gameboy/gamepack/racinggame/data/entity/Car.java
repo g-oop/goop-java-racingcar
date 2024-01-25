@@ -37,7 +37,7 @@ public class Car {
 
     public void run() {
         if (isPushAccelerator()) {
-            position.add();
+            position.addOne();
         }
     }
 
@@ -53,4 +53,7 @@ public class Car {
         return random.nextInt(MOVE_RANGE) >= MOVE_MIN;
     }
 
+    public boolean isWin(int winnerPosition) {
+        return getPosition() >= winnerPosition;
+    }
 }

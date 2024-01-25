@@ -11,7 +11,7 @@ public class ResultView {
 
     public static void display(RaceResultDto result) {
         System.out.println(getRacePlayback(result.getRaceLogs()));
-        System.out.println(getRaceResult(result.getWinners()));
+        System.out.println(getRaceResult(result.getWinnerNames()));
     }
 
     private static String getRacePlayback(List<RaceLog> raceLogs) {

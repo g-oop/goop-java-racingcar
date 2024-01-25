@@ -2,6 +2,8 @@ package gameboy.gamepack.racinggame.data.vo;
 
 public class Position {
 
+    public static final int MIN_POSITION_VALUE = 0;
+
     private int position;
 
     public Position() { }
@@ -12,12 +14,12 @@ public class Position {
     }
 
     private void validationPosition(int position) {
-        if (position < 0) {
-            throw new IllegalArgumentException("0미만의 포지션 생성: " + position);
+        if (position < MIN_POSITION_VALUE) {
+            throw new IllegalArgumentException(MIN_POSITION_VALUE + "미만의 포지션 생성: " + position);
         }
     }
 
-    public void add() {
+    public void addOne() {
         position += 1;
     }
 
