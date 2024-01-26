@@ -5,12 +5,13 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static gameboy.gamepack.racinggame.data.vo.Position.MIN_POSITION_VALUE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @DisplayName("도메인 - Position 테스트")
 public class PositionTest {
+
+    private static final int MIN_POSITION_VALUE = 0;
 
     @Test
     @DisplayName("위치 값 1 증가 테스트")
@@ -38,7 +39,7 @@ public class PositionTest {
         //given
         Position position = new Position(value);
         //when
-        int result = position.getPosition();
+        int result = position.value();
         //then
         assertThat(result).isEqualTo(value);
     }

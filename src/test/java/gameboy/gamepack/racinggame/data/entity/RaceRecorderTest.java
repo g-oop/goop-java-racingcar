@@ -10,35 +10,26 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class RaceRecorderTest {
 
-    private List<RaceLog> raceLogs;
+    private List<Car> cars = new ArrayList<>();
 
     @BeforeEach
-    void setUpRaceLogs() {
-        raceLogs = new ArrayList<>();
-        raceLogs.add(new RaceLog(setUpCars(0)));
-        raceLogs.add(new RaceLog(setUpCars(1)));
-        raceLogs.add(new RaceLog(setUpCars(2)));
-
-    }
-
-    private List<Car> setUpCars(int addPosition) {
-        List<Car> cars = new ArrayList<>();
-        cars.add(new Car(new Name("일번말"), new Position(1 + addPosition)));
-        cars.add(new Car(new Name("이번말"), new Position(2 + addPosition)));
-        cars.add(new Car(new Name("삼번말"), new Position(3 + addPosition)));
-        cars.add(new Car(new Name("삼번말"), new Position(3 + addPosition)));
-        return cars;
+    void setUpCars() {
+        cars.add(new Car(new Name("일번말"), new Position(1)));
+        cars.add(new Car(new Name("이번말"), new Position(2)));
+        cars.add(new Car(new Name("삼번말"), new Position(3)));
+        cars.add(new Car(new Name("삼번말"), new Position(3)));
     }
 
     @Test
     @DisplayName("마지막 경기 결과 로그 조회 테스트")
     void playbackLastLog() {
         //given
-        RaceRecorder raceRecorder = new RaceRecorder(raceLogs);
+        RaceRecorder raceRecorder = new RaceRecorder();
+        raceRecorder.record(cars);
         //when
         RaceLog result = raceRecorder.playbackLastLog();
         //then
-        assertThat(result).isEqualTo(raceLogs.get(raceLogs.size() - 1));
+        assertThat(result.getCars()).isEqualTo(cars);
     }
 
     @Test

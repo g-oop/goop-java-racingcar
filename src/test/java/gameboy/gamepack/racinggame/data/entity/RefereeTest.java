@@ -23,9 +23,9 @@ class RefereeTest {
         );
         referee.record(cars);
         //when
-        List<String> strings = referee.getWinnerNames();
+        List<Car> strings = referee.getWinner();
         //then
-        assertThat(strings).contains("car3");
+        assertThat(strings).contains(cars.get(2));
     }
 
     @Test
@@ -33,15 +33,15 @@ class RefereeTest {
     void getWinners_공동우승() {
         //given
         Referee referee = new Referee();
-        List<Car> status = List.of(
+        List<Car> cars = List.of(
             new Car(new Name("car1"), new Position(1)),
             new Car(new Name("car2"), new Position(3)),
             new Car(new Name("car3"), new Position(3))
         );
-        referee.record(status);
+        referee.record(cars);
         //when
-        List<String> strings = referee.getWinnerNames();
+        List<Car> winner = referee.getWinner();
         //then
-        assertThat(strings).contains("car2", "car3");
+        assertThat(winner).contains(cars.get(1), cars.get(2));
     }
 }
