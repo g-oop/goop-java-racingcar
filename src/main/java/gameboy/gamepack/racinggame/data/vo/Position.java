@@ -1,5 +1,7 @@
 package gameboy.gamepack.racinggame.data.vo;
 
+import java.util.Objects;
+
 public class Position implements Comparable<Position> {
 
     private static final int MIN_POSITION_VALUE = 0;
@@ -38,7 +40,7 @@ public class Position implements Comparable<Position> {
 
     @Override
     public int hashCode() {
-        return value;
+        return Objects.hash(value);
     }
 
     @Override

@@ -1,5 +1,7 @@
 package gameboy.gamepack.racinggame.data.vo;
 
+import java.util.Objects;
+
 import gameboy.gamepack.racinggame.exception.InvalidRacerNameException;
 
 public class Name {
@@ -26,4 +28,17 @@ public class Name {
         return name;
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        return this.hashCode() == obj.hashCode()
+            && this.getClass() == obj.getClass();
+    }
 }

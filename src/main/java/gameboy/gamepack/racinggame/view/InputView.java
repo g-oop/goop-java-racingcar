@@ -21,13 +21,22 @@ public class InputView {
 
     private static List<Name> inputCarsName(String ask) {
         try {
-            return split(inputText(ask), CARS_NAME_SEPARATOR)
-                .stream()
+            List<String> carNames = split(inputText(ask), CARS_NAME_SEPARATOR);
+            validDuplicateName(carNames);
+            return carNames.stream()
                 .map(Name::new)
                 .toList();
         } catch (InvalidRacerNameException e) {
             return inputCarsName(e.getMessage());
         }
+    }
+
+    private static List<String> split(String text, String separator) {
+        List<String> carNames = List.of(text.split(separator))
+            .stream()
+            .map(String::trim)
+            .collect(Collectors.toList());
+        return carNames;
     }
 
     private static int inputNumber(String ask) {
@@ -56,11 +65,10 @@ public class InputView {
         return SCANNER.nextLine();
     }
 
-    private static List<String> split(String text, String separator) {
-        return List.of(text.split(separator))
-            .stream()
-            .map(String::trim)
-            .collect(Collectors.toList());
+    private static void validDuplicateName(List<String> carNames) {
+        if (carNames.size() > new HashSet<>(carNames).size()) {
+            throw new InvalidRacerNameException("자동차 이름이 중복될 수 없습니다.");
+        }
     }
 
 }

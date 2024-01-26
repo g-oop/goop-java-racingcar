@@ -1,5 +1,6 @@
 package gameboy.gamepack.racinggame.data.entity;
 
+import java.util.Objects;
 import java.util.Random;
 
 import gameboy.gamepack.racinggame.data.vo.*;
@@ -59,5 +60,19 @@ public class Car {
 
     public boolean isSamePosition(Position that) {
         return position.equals(that);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(position, name);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        return this.hashCode() == obj.hashCode()
+            && this.getClass() == obj.getClass();
     }
 }
