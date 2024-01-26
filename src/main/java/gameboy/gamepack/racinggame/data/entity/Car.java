@@ -13,12 +13,8 @@ public class Car {
     private Name name;
     private Position position;
 
-    public Car() {
-        this(new Name(), new Position(), new Random());
-    }
-
-    public Car(Random random) {
-        this(new Name(), new Position(), random);
+    public Car(Name name, Random random) {
+        this(name, new Position(), random);
     }
 
     public Car(Name name) {
@@ -35,14 +31,22 @@ public class Car {
         this.random = random;
     }
 
+    public static Car copy(Car car) {
+        return new Car(
+            new Name(car.name.getName()),
+            new Position(car.position.value()),
+            car.random
+        );
+    }
+
     public void run() {
         if (isPushAccelerator()) {
             position.addOne();
         }
     }
 
-    public int getPosition() {
-        return position.getPosition();
+    public Position getPosition() {
+        return position;
     }
 
     public String getName() {
@@ -53,7 +57,7 @@ public class Car {
         return random.nextInt(MOVE_RANGE) >= MOVE_MIN;
     }
 
-    public boolean isWin(int winnerPosition) {
-        return getPosition() >= winnerPosition;
+    public boolean isSamePosition(Position that) {
+        return position.equals(that);
     }
 }

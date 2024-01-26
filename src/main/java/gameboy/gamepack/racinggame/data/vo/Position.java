@@ -1,16 +1,16 @@
 package gameboy.gamepack.racinggame.data.vo;
 
-public class Position {
+public class Position implements Comparable<Position> {
 
-    public static final int MIN_POSITION_VALUE = 0;
+    private static final int MIN_POSITION_VALUE = 0;
 
-    private int position;
+    private int value;
 
     public Position() { }
 
-    public Position(int position) {
-        validationPosition(position);
-        this.position = position;
+    public Position(int value) {
+        validationPosition(value);
+        this.value = value;
     }
 
     private void validationPosition(int position) {
@@ -20,20 +20,36 @@ public class Position {
     }
 
     public void addOne() {
-        position += 1;
+        value += 1;
     }
 
-    public int getPosition() {
-        return position;
+    public int value() {
+        return value;
     }
 
     @Override
     public boolean equals(Object obj) {
-        return this.hashCode() == obj.hashCode();
+        if (obj == null) {
+            return false;
+        }
+        return this.hashCode() == obj.hashCode()
+            && this.getClass() == obj.getClass();
     }
 
     @Override
     public int hashCode() {
-        return this.getClass().getTypeName().hashCode() + position;
+        return value;
     }
+
+    @Override
+    public int compareTo(Position o) {
+        if (this.equals(o)) {
+            return 0;
+        }
+        if (this.value > o.value) {
+            return 1;
+        }
+        return -1;
+    }
+
 }

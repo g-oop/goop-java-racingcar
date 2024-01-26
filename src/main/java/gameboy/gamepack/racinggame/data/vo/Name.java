@@ -4,20 +4,13 @@ import gameboy.gamepack.racinggame.exception.InvalidRacerNameException;
 
 public class Name {
 
-    public static final int MAX_NAME_SIZE = 5;
+    private static final int MAX_NAME_SIZE = 5;
 
     String name;
-
-    public Name() {
-    }
 
     public Name(String name) {
         validationName(name);
         this.name = name;
-    }
-
-    public String getName() {
-        return name;
     }
 
     private void validationName(String name) {
@@ -28,4 +21,9 @@ public class Name {
             throw new InvalidRacerNameException("자동차 이름이 " + MAX_NAME_SIZE + "글자를 초과할 수 없습니다.");
         }
     }
+
+    public String getName() {
+        return name;
+    }
+
 }

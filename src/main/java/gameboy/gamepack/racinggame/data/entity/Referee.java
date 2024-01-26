@@ -2,6 +2,7 @@ package gameboy.gamepack.racinggame.data.entity;
 
 import java.util.*;
 
+import gameboy.gamepack.racinggame.data.vo.Position;
 import gameboy.gamepack.racinggame.data.vo.RaceLog;
 
 public class Referee {
@@ -22,14 +23,21 @@ public class Referee {
         return recorder.playback();
     }
 
-    public List<String> getWinnerNames() {
+    public List<Car> getWinner() {
         RaceLog raceLog = recorder.playbackLastLog();
-        int winnerPosition = getWinnerPosition(raceLog);
-        return raceLog.getCars().stream().filter(car -> car.isWin(winnerPosition)).map(Car::getName).toList();
+        Position winnerPosition = getWinnerPosition(raceLog);
+        return raceLog.getCars()
+            .stream()
+            .filter(car -> car.isSamePosition(winnerPosition))
+            .toList();
     }
 
-    private int getWinnerPosition(RaceLog raceLog) {
-        return raceLog.getCars().stream().mapToInt(Car::getPosition).max().orElse(MIN_POSITION_VALUE);
+    private Position getWinnerPosition(RaceLog raceLog) {
+        return raceLog.getCars()
+            .stream()
+            .map(Car::getPosition)
+            .max(Position::compareTo)
+            .orElse(new Position(MIN_POSITION_VALUE));
     }
 
 }

@@ -2,28 +2,29 @@ package gameboy.gamepack.racinggame.data.dto;
 
 import java.util.List;
 
+import gameboy.gamepack.racinggame.data.entity.Car;
 import gameboy.gamepack.racinggame.data.vo.RaceLog;
 
 public class RaceResultDto {
 
     private List<RaceLog> raceLogs;
-    private List<String> winnerNames;
+    private List<Car> winner;
 
-    private RaceResultDto(List<RaceLog> raceLogs, List<String> winnerNames) {
+    private RaceResultDto(List<RaceLog> raceLogs, List<Car> winner) {
         this.raceLogs = raceLogs;
-        this.winnerNames = winnerNames;
+        this.winner = winner;
     }
 
     public List<RaceLog> getRaceLogs() {
         return raceLogs;
     }
 
-    public List<String> getWinnerNames() {
-        return winnerNames;
+    public List<Car> getWinner() {
+        return winner;
     }
 
-    public static RaceResultDto of(List<RaceLog> raceLogs, List<String> winnerNames) {
-        return new RaceResultDto(raceLogs, winnerNames);
+    public static RaceResultDto of(List<RaceLog> raceLogs, List<Car> winner) {
+        return new RaceResultDto(raceLogs, winner);
     }
 
 }

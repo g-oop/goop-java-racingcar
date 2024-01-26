@@ -11,7 +11,7 @@ public class ResultView {
 
     public static void display(RaceResultDto result) {
         System.out.println(getRacePlayback(result.getRaceLogs()));
-        System.out.println(getRaceResult(result.getWinnerNames()));
+        System.out.println(getRaceResult(result.getWinner()));
     }
 
     private static String getRacePlayback(List<RaceLog> raceLogs) {
@@ -21,15 +21,15 @@ public class ResultView {
     private static String createResult(RaceLog raceLog) {
         return raceLog.getCars().stream()
             .map(ResultView::createWheelMark)
-            .collect(Collectors.joining("\n","", "\n"));
+            .collect(Collectors.joining("\n", "", "\n"));
     }
 
     private static String createWheelMark(Car car) {
-        return car.getName() + ": " + "-".repeat(car.getPosition());
+        return car.getName() + ": " + "-".repeat(car.getPosition().value());
     }
 
-    private static String getRaceResult(List<String> winners) {
-        return winners.stream().collect(Collectors.joining(", ")) + "가 최종 우승했습니다.";
+    private static String getRaceResult(List<Car> winners) {
+        return winners.stream().map(Car::getName).collect(Collectors.joining(", ")) + "가 최종 우승했습니다.";
     }
 
 }

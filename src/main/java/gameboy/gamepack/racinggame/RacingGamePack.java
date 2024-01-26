@@ -18,8 +18,7 @@ public class RacingGamePack implements GamePack {
 
         int raceCount = InputView.inputRaceCount();
         RaceResultDto raceResult = racingTrack.startRace(raceCount);
-        ResultView resultView = new ResultView();
-        resultView.display(raceResult);
+        ResultView.display(raceResult);
     }
 
     private RacingTrack initializeRacingTrack() {
