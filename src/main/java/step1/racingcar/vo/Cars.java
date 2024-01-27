@@ -17,9 +17,8 @@ public class Cars {
     }
 
     public List<Integer> moveCars() {
-        return cars.stream()
-            .peek(car -> car.move(new RandomNumberGenerator()))
-            .map(Car::getPosition)
+       return cars.stream()
+            .map(car -> car.move(new RandomNumberGenerator()))
             .toList();
     }
 
@@ -29,7 +28,4 @@ public class Cars {
             .toList();
     }
 
-    public int getCarsCount() {
-        return cars.size();
-    }
 }

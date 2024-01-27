@@ -16,10 +16,11 @@ public class Car {
         return 1;
     }
 
-    public void move(NumberGenerator numberGenerator) {
+    public int move(NumberGenerator numberGenerator) {
         if (isMovable(numberGenerator.generateNumber())) {
-            position++;
+            return position++;
         }
+        return position;
     }
 
     private boolean isMovable(int condition) {
