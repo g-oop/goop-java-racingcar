@@ -4,7 +4,7 @@ import java.util.List;
 
 import domain.Car;
 
-public class OutputResult implements OutputProvider {
+public class OutputResult {
 
     public void printMessage(String message) {
         System.out.println(message);

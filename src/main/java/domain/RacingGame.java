@@ -2,19 +2,19 @@ package domain;
 
 import java.util.*;
 
-import ui.InputProvider;
-import ui.OutputProvider;
+import ui.InputResult;
+import ui.OutputResult;
 
 
 public class RacingGame implements Game {
 
     private final List<Car> cars;
-    private final InputProvider inputProvider;
-    private final OutputProvider outputProvider;
+    private final InputResult inputProvider;
+    private final OutputResult outputProvider;
     private static final int RANGE_NUMBER = 10;
 
 
-    public RacingGame(InputProvider inputProvider, OutputProvider outputProvider) {
+    public RacingGame(InputResult inputProvider, OutputResult outputProvider) {
         this.cars = new ArrayList<>();
         this.inputProvider = inputProvider;
         this.outputProvider = outputProvider;
