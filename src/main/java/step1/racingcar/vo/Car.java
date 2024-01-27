@@ -18,7 +18,7 @@ public class Car {
 
     public int move(NumberGenerator numberGenerator) {
         if (isMovable(numberGenerator.generateNumber())) {
-            return position++;
+            return ++position;
         }
         return position;
     }
