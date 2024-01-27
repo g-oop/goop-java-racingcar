@@ -32,7 +32,7 @@ public class RacingGameTest {
 
         car.move(randmomNumber);
 
-        Assertions.assertThat(car.getPosition()).isEqualTo(position + 1);
+        Assertions.assertThat(car.getPosition()).isEqualTo(position);
     }
 }
 

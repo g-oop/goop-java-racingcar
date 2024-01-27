@@ -5,6 +5,7 @@ import java.util.Random;
 public class Car {
 
     private static final int MIN_VALUE = 4;
+    private static final int RANGE_NUMBER = 10;
 
 
     private int position;
@@ -18,14 +19,14 @@ public class Car {
         return position;
     }
 
-    public void move(int rangeNumber) {
-        if (generateRandom(rangeNumber) >= MIN_VALUE) {
+    public void move(int randomValue) {
+        if (randomValue >= MIN_VALUE) {
             position++;
         }
     }
 
-    private int generateRandom(int rangeNumber) {
-        return new Random().nextInt(rangeNumber);
+    public int generateRandomValueAndMove(int RANGE_NUMBER) {
+        return new Random().nextInt(RANGE_NUMBER);
     }
 
     @Override

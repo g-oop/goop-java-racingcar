@@ -38,16 +38,12 @@ public class RacingGame {
 
     private void moveCars(int tryCount) {
         for (int move = 0; move < tryCount; move++) {
-            extracted(RANGE_NUMBER);
+            for (Car car: cars) {
+                int randomValue = car.generateRandomValueAndMove(RacingGame.RANGE_NUMBER);
+                car.move(randomValue);
+            }
             outputResult.printCarStates(cars);
         }
     }
-
-    private void extracted(int randomNumber) {
-        for (Car car: cars) {
-            car.move(randomNumber);
-        }
-    }
-
 
 }
