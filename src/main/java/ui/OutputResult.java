@@ -1,4 +1,4 @@
-package domain.ui;
+package ui;
 
 import java.util.List;
 
