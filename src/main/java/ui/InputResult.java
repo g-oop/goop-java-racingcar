@@ -3,7 +3,7 @@ package ui;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class InputResult implements InputProvider {
+public class InputResult {
 
     private static final Scanner scanner = new Scanner(System.in);
 
