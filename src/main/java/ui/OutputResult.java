@@ -1,19 +1,22 @@
 package ui;
 
-import java.util.List;
-
-import domain.Car;
-
 public class OutputResult {
 
     public void printMessage(String message) {
         System.out.println(message);
     }
 
-    public void printCarStates(List<Car> cars) {
-        for (Car car: cars) {
-            System.out.println(car.getState());
+    public void printCarStates(int[] positions) {
+        for (int position: positions) {
+            System.out.println(getState(position));
         }
         System.out.println("\n");
+    }
+
+    private String getState(int position) {
+        StringBuilder state = new StringBuilder("|");
+        state.append("-".repeat(Math.max(0, position)));
+        state.append(">");
+        return state.toString();
     }
 }

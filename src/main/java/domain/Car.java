@@ -13,6 +13,10 @@ public class Car {
         this.position = 0;
     }
 
+    public int getPosition() {
+        return position;
+    }
+
     public void move(int randomValue) {
         if (randomValue >= MIN_VALUE) {
             position++;
@@ -43,10 +47,10 @@ public class Car {
     }
 
 
-    public String getState() {
-        StringBuilder state = new StringBuilder("|");
-        state.append("-".repeat(Math.max(0, position)));
-        state.append(">");
-        return state.toString();
-    }
+    //public String getState() {
+    //    StringBuilder state = new StringBuilder("|");
+    //    state.append("-".repeat(Math.max(0, position)));
+    //    state.append(">");
+    //    return state.toString();
+    //}
 }
