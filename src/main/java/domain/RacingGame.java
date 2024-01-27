@@ -9,8 +9,6 @@ import ui.OutputResult;
 public class RacingGame {
 
     private final List<Car> cars;
-    private final InputResult inputProvider;
-    private final OutputResult outputProvider;
     private static final int RANGE_NUMBER = 10;
 
 
@@ -20,13 +18,13 @@ public class RacingGame {
         this.outputProvider = outputProvider;
     }
 
-    public void play() {
-        int carCount = inputProvider.getCarCount();
-        int tryCount = inputProvider.getTryCount();
+    public void play(InputResult inputResult, OutputResult outputResult) {
+        int carCount = inputResult.getCarCount();
+        int tryCount = inputResult.getTryCount();
         initializeCars(carCount);
-        outputProvider.printMessage("\n실행 결과:");
+        outputResult.printMessage("\n실행 결과:");
         moveCars(tryCount);
-        outputProvider.printCarStates(cars);
+        outputResult.printCarStates(cars);
     }
 
 
