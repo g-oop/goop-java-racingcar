@@ -24,8 +24,8 @@ public class CarManager {
         cars = new Cars(carList);
     }
 
-    public List<Integer> moveCars(int condition) {
-        return cars.moveCars(condition);
+    public List<Integer> moveCars(int bound) {
+        return cars.moveCars(bound);
     }
 
     public int getCarCount() {

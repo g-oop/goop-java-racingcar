@@ -11,7 +11,7 @@ import step1.racingcar.vo.Cars;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class MoveCarTest {
+public class RacingCarTest {
 
     @ParameterizedTest
     @CsvSource(value = {"5,3,10"}, delimiter = ',')
@@ -31,16 +31,5 @@ public class MoveCarTest {
         Car car = new Car();
         car.moveIfMovable(condition);
         assertThat(car.getLoc()).isEqualTo(expected);
-
-        Cars cars = new Cars(List.of(new Car()));
-        assertTrue(cars.moveCars(condition)
-            .stream()
-            .allMatch(loc -> loc == expected));
-
-        CarManager carManager = new CarManager(5, 3);
-        carManager.readyToStart();
-        assertTrue(carManager.moveCars(condition)
-            .stream()
-            .allMatch(loc -> loc == expected));
     }
 }

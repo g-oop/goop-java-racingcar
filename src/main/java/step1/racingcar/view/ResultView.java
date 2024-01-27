@@ -20,7 +20,7 @@ public class ResultView {
 
     public static void printResult(int tryCount, CarManager carManager) {
         for (int i = 0; i < tryCount; i++) {
-            carManager.moveCars(RandomUtils.getRandom(10))
+            carManager.moveCars(10)
                 .stream()
                 .peek(ResultView::drawMoveStatus)
                 .toList();
