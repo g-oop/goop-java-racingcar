@@ -21,12 +21,12 @@ public class CarManager {
         cars.initializeCars();
     }
 
-    public List<Integer> moveCars(int bound) {
-        return cars.moveCars(bound);
+    public List<Integer> moveCars() {
+        return cars.moveCars();
     }
 
-    public List<Integer> getLocs() {
-        return cars.getLocs();
+    public List<Integer> getPositions() {
+        return cars.getPositions();
     }
 
 

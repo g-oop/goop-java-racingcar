@@ -16,14 +16,14 @@ public class Cars {
         cars.forEach(Car::initializePosition);
     }
 
-    public List<Integer> moveCars(int bound) {
+    public List<Integer> moveCars() {
         return cars.stream()
-            .peek(car -> car.move(RandomUtils.getRandom(bound)))
+            .peek(car -> car.move(RandomUtils.getRandom()))
             .map(Car::getPosition)
             .toList();
     }
 
-    public List<Integer> getLocs() {
+    public List<Integer> getPositions() {
         return cars.stream()
             .map(Car::getPosition)
             .toList();

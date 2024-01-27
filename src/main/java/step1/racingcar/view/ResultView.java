@@ -1,7 +1,6 @@
 package step1.racingcar.view;
 
 import step1.racingcar.CarManager;
-import step1.racingcar.RandomUtils;
 
 public class ResultView {
 
@@ -12,7 +11,7 @@ public class ResultView {
 
     public static void printReadyToStart(CarManager carManager) {
         System.out.println("실행 결과");
-        carManager.getLocs()
+        carManager.getPositions()
             .forEach(ResultView::drawMoveStatus);
         System.out.println();
     }
@@ -27,8 +26,8 @@ public class ResultView {
         //}
     }
 
-    public static void drawMoveStatus(int loc) {
-        System.out.println("-".repeat(loc));
+    public static void drawMoveStatus(int position) {
+        System.out.println("-".repeat(position));
     }
 
 }

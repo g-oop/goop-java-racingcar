@@ -6,7 +6,7 @@ public class RandomUtils {
 
     private final static Random RANDOM = new Random();
 
-    public static int getRandom(int bound) {
-        return RANDOM.nextInt(bound);
+    public static int getRandom() {
+        return RANDOM.nextInt(10);
     }
 }

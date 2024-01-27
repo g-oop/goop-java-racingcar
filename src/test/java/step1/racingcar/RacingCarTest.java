@@ -17,7 +17,7 @@ public class RacingCarTest {
         carManager.readyToStart();
         //assertThat(carManager.getCarCount()).isEqualTo(carCount);
         //assertThat(carManager.getTryCount()).isEqualTo(tryCount);
-        assertThat(carManager.moveCars(condition).size()).isEqualTo(carCount);
+        assertThat(carManager.moveCars().size()).isEqualTo(carCount);
     }
 
     @ParameterizedTest
