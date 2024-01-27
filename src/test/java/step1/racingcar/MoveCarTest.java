@@ -25,16 +25,8 @@ public class MoveCarTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = {"3:false", "4:true", "5:true"}, delimiter = ':')
-    @DisplayName("자동차 게임 - 2. 4 이상인지 확인")
-    public void carMovableTest(int condition, boolean expected) throws Exception {
-        Car car = new Car();
-        assertThat(car.isMovable(condition)).isEqualTo(expected);
-    }
-
-    @ParameterizedTest
     @CsvSource(value = {"0:1", "3:1", "4:2", "5:2", "9:2"}, delimiter = ':')
-    @DisplayName("자동차 게임 - 3. 4 이상이면 자동차 전진, 4 미만이면 정지 확인")
+    @DisplayName("자동차 게임 - 2. 4 이상이면 자동차 전진, 4 미만이면 정지 확인")
     public void carMoveTest(int condition, int expected) throws Exception {
         Car car = new Car();
         car.moveIfMovable(condition);

@@ -14,7 +14,7 @@ public class Car {
         }
     }
 
-    public boolean isMovable(int condition) {
+    private boolean isMovable(int condition) {
         return condition >= 4;
     }
 
