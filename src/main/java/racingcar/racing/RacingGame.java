@@ -20,7 +20,7 @@ public class RacingGame {
         }
 
         this.preference = preference;
-        this.racingEntries = new RacingEntries(this.preference.carCount(), movePolicy);
+        this.racingEntries = new RacingEntries(this.preference.carNames(), movePolicy);
     }
 
     public RacingResult race() {

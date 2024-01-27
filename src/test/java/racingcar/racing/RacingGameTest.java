@@ -17,9 +17,9 @@ class RacingGameTest {
     @Test
     @DisplayName("게임을 시작하면, 각 경주 참가자가 이동 횟수만큼 이동한다.")
     void start() {
-        int entryCount = 3;
+        String[] carNames = new String[] {"yamsr", "gilbe", "nooos"};
         int moveCount = 5;
-        RacingUi racingUi = new TestRacingUi(entryCount, moveCount);
+        RacingUi racingUi = new TestRacingUi(carNames, moveCount);
         RacingPreference preference = racingUi.inputPreference();
         MovePolicy movePolicy = new AlwaysMovePolicy();
 
@@ -37,17 +37,17 @@ class RacingGameTest {
 
     static class TestRacingUi implements RacingUi {
 
-        private final int carCount;
+        private final String[] carNames;
         private final int moveCount;
 
-        public TestRacingUi(int carCount, int moveCount) {
-            this.carCount = carCount;
+        public TestRacingUi(String[] carNames, int moveCount) {
+            this.carNames = carNames;
             this.moveCount = moveCount;
         }
 
         @Override
         public RacingPreference inputPreference() {
-            return new RacingPreference(carCount, moveCount);
+            return new RacingPreference(carNames, moveCount);
         }
 
         @Override

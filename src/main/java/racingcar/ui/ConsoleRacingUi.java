@@ -7,31 +7,44 @@ import java.util.Scanner;
 
 public class ConsoleRacingUi implements RacingUi {
 
-    private static final String CAR_START_UNIT = "|";
     private static final String CAR_POSITION_UNIT = "-";
 
     private static final Scanner SCANNER = new Scanner(System.in);
 
     @Override
     public RacingPreference inputPreference() {
-        int carCount = scanInt("자동차 대수는 몇 대인가요? ");
-        int moveCount = scanInt("시도할 횟수는 몇 회인가요? ");
-        return new RacingPreference(carCount, moveCount);
+        String carNames = scanCarNames();
+        int moveCount = scanMoveCount();
+        return new RacingPreference(splitCarNames(carNames), moveCount);
     }
 
-    private static int scanInt(String title) {
-        print(title);
+    private static String scanCarNames() {
+        print("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분). ");
+        return SCANNER.next();
+    }
+
+    private static int scanMoveCount() {
+        print("시도할 횟수는 몇 회인가요? ");
         return SCANNER.nextInt();
+    }
+
+    private String[] splitCarNames(String carNames) {
+        return carNames.split(",");
     }
 
     @Override
     public void showResult(RacingResult result) {
         for (RacingEntries entries: result.getRacingEntriesList()) {
-            for (Car car: entries.getEntries()) {
-                int position = car.currentPosition();
-                println(CAR_START_UNIT + CAR_POSITION_UNIT.repeat(position));
-            }
+            showResult(entries);
             println();
+        }
+    }
+
+    private static void showResult(RacingEntries entries) {
+        for (Car car: entries.getEntries()) {
+            int position = car.currentPosition();
+            String name = String.format("%5s", car.getName());
+            println(name + ": " + CAR_POSITION_UNIT.repeat(position));
         }
     }
 

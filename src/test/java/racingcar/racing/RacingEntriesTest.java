@@ -12,20 +12,20 @@ class RacingEntriesTest {
     @Test
     @DisplayName("지정한 수만큼 경주 참가자가 생성된다.")
     void create() {
-        int entryCount = 5;
+        String[] carNames = new String[] {"ab", "nm", "xy"};
         MovePolicy movePolicy = new RandomMovePolicy();
-        RacingEntries racingEntries = new RacingEntries(entryCount, movePolicy);
+        RacingEntries racingEntries = new RacingEntries(carNames, movePolicy);
         int result = racingEntries.getEntryCount();
-        assertThat(result).isEqualTo(entryCount);
+        assertThat(result).isEqualTo(carNames.length);
     }
 
     @Test
     @DisplayName("각 경주 참가자가 이동 횟수만큼 이동한다.")
     void move() {
-        int entryCount = 5;
+        String[] carNames = new String[] {"ab", "nm", "xy"};
 
         MovePolicy movePolicy = new AlwaysMovePolicy();
-        RacingEntries racingEntries = new RacingEntries(entryCount, movePolicy);
+        RacingEntries racingEntries = new RacingEntries(carNames, movePolicy);
         RacingEntries newEntries = racingEntries.move();
 
         for (Car car: newEntries.getEntries()) {

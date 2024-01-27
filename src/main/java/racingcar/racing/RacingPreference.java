@@ -1,7 +1,7 @@
 package racingcar.racing;
 
 public record RacingPreference(
-    int carCount,
+    String[] carNames,
     int moveCount
 ) {
 }

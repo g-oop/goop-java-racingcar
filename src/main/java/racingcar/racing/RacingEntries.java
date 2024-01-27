@@ -11,10 +11,10 @@ public class RacingEntries {
     private final List<Car> cars;
     private final MovePolicy movePolicy;
 
-    public RacingEntries(int entryCount, MovePolicy movePolicy) {
+    public RacingEntries(String[] carNames, MovePolicy movePolicy) {
         this.cars = new ArrayList<>();
-        for (int i = 0; i < entryCount; i++) {
-            this.cars.add(new Car());
+        for (String carName: carNames) {
+            this.cars.add(new Car(carName));
         }
         this.movePolicy = movePolicy;
     }
