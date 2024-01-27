@@ -14,10 +14,16 @@ public class InputView {
         return inputToNum("시도할 횟수는 몇 회 인가요?");
     }
 
-    private static int inputToNum(String question) throws NumberFormatException {
+    private static int inputToNum(String question) {
         System.out.println(question);
         String input = SCANNER.nextLine();
-        return Integer.parseInt(input);
+        int inputNumber = 0;
+        try {
+            inputNumber = Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            System.out.println("잘못된 값이 입력되었습니다.");
+        }
+        return inputNumber;
     }
 
 }
