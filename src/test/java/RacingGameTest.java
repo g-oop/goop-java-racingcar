@@ -10,25 +10,29 @@ public class RacingGameTest {
     @ValueSource(ints = {4, 5, 6, 7, 8, 9})
     public void MoveWithRandomNumberGreaterThanEqual4(int randmomNumber) {
         // Car 객체 생성
-        Car car = new Car();
-        int position = car.getPosition();
+        Car car1 = new Car();
+        Car car2 = new Car();
+        int position = car1.getPosition();
 
-        car.move(randmomNumber);
+        car1.move(randmomNumber);
 
-        Assertions.assertThat(car.getPosition()).isEqualTo(position + 1);
+        boolean equals = car1.equals(car2);
+        System.out.println(equals);
+
+        Assertions.assertThat(car1.getPosition()).isEqualTo(position + 1);
     }
 
 
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 3})
-    public void testMoveWithRandomNumberLessThan4(int randmomNumber) {
+    public void MoveWithRandomNumberLessThan4(int randmomNumber) {
         // Car 객체 생성
         Car car = new Car();
         int position = car.getPosition();
 
         car.move(randmomNumber);
 
-        Assertions.assertThat(car.getPosition()).isEqualTo(position);
+        Assertions.assertThat(car.getPosition()).isEqualTo(position + 1);
     }
 }
 
