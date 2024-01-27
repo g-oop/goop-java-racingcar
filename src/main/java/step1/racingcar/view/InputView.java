@@ -17,13 +17,12 @@ public class InputView {
     private static int inputToNum(String question) {
         System.out.println(question);
         String input = SCANNER.nextLine();
-        int inputNumber = 0;
         try {
-            inputNumber = Integer.parseInt(input);
+            return Integer.parseInt(input);
         } catch (NumberFormatException e) {
             System.out.println("잘못된 값이 입력되었습니다.");
+            return inputToNum(question);
         }
-        return inputNumber;
     }
 
 }
