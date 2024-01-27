@@ -1,4 +1,4 @@
-package step1;
+package step1.util;
 
 import org.junit.jupiter.api.*;
 

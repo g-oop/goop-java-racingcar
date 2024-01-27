@@ -1,4 +1,4 @@
-package step1;
+package step1.util;
 
 import java.util.HashSet;
 import java.util.Set;
