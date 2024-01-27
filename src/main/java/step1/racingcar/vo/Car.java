@@ -2,15 +2,19 @@ package step1.racingcar.vo;
 
 public class Car {
 
-    private int loc;
+    private int position;
 
     public Car() {
-        loc = 1;
+        this.position = initializePosition();
     }
 
-    public void moveIfMovable(int condition) {
+    public int initializePosition() {
+        return 1;
+    }
+
+    public void move(int condition) {
         if (isMovable(condition)) {
-            loc++;
+            position++;
         }
     }
 
@@ -18,7 +22,7 @@ public class Car {
         return condition >= 4;
     }
 
-    public int getLoc() {
-        return loc;
+    public int getPosition() {
+        return position;
     }
 }

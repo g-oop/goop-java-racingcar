@@ -1,39 +1,33 @@
 package step1.racingcar;
 
 import java.util.List;
-import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 import step1.racingcar.vo.Car;
 import step1.racingcar.vo.Cars;
 
 public class CarManager {
 
-    private final int carCount;
-    private final int tryCount;
-    private Cars cars;
+    private final Cars cars;
 
     public CarManager(int carCount, int tryCount) {
-        this.carCount = carCount;
-        this.tryCount = tryCount;
+        List<Car> carList = Stream.generate(Car::new)
+            .limit(carCount)
+            .toList();
+        cars = new Cars(carList);
     }
 
     public void readyToStart() {
-        List<Car> carList = IntStream.range(0, carCount)
-            .mapToObj(i -> new Car())
-            .toList();
-        cars = new Cars(carList);
+        cars.initializeCars();
     }
 
     public List<Integer> moveCars(int bound) {
         return cars.moveCars(bound);
     }
 
-    public int getCarCount() {
-        return carCount;
+    public List<Integer> getLocs() {
+        return cars.getLocs();
     }
 
-    public int getTryCount() {
-        return tryCount;
-    }
 
 }

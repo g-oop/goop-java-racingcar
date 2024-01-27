@@ -12,10 +12,24 @@ public class Cars {
         this.cars = cars;
     }
 
+    public void initializeCars() {
+        cars.forEach(Car::initializePosition);
+    }
+
     public List<Integer> moveCars(int bound) {
         return cars.stream()
-            .peek(car -> car.moveIfMovable(RandomUtils.getRandom(bound)))
-            .map(Car::getLoc)
+            .peek(car -> car.move(RandomUtils.getRandom(bound)))
+            .map(Car::getPosition)
             .toList();
+    }
+
+    public List<Integer> getLocs() {
+        return cars.stream()
+            .map(Car::getPosition)
+            .toList();
+    }
+
+    public int getCarsCount() {
+        return cars.size();
     }
 }
