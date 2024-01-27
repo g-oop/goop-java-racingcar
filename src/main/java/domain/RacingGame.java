@@ -6,7 +6,7 @@ import ui.InputResult;
 import ui.OutputResult;
 
 
-public class RacingGame implements Game {
+public class RacingGame {
 
     private final List<Car> cars;
     private final InputResult inputProvider;
