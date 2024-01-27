@@ -10,12 +10,14 @@ public class RacingGame {
 
     private final List<Car> cars;
     private static final int RANGE_NUMBER = 10;
+    private final InputResult inputResult;
+    private final OutputResult outputResult;
 
 
-    public RacingGame(InputResult inputProvider, OutputResult outputProvider) {
+    public RacingGame(InputResult inputResult, OutputResult outputResult) {
         this.cars = new ArrayList<>();
-        this.inputProvider = inputProvider;
-        this.outputProvider = outputProvider;
+        this.inputResult = inputResult;
+        this.outputResult = outputResult;
     }
 
     public void play(InputResult inputResult, OutputResult outputResult) {
@@ -40,7 +42,7 @@ public class RacingGame {
             for (Car car: cars) {
                 car.move(randomNumber);
             }
-            outputProvider.printCarStates(cars);
+            outputResult.printCarStates(cars);
         }
     }
 
