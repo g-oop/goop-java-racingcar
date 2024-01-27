@@ -13,6 +13,7 @@ public class GameApp {
             tryCount = InputView.getTryCount();
         } catch (NumberFormatException e) {
             System.out.println("잘못된 값이 입력되었습니다.");
+            System.exit(0);
         }
         CarManager carManager = new CarManager(carCount, tryCount);
         carManager.readyToStart();
