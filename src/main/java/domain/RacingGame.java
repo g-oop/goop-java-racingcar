@@ -39,7 +39,7 @@ public class RacingGame {
     private void moveCars(int tryCount) {
         for (int move = 0; move < tryCount; move++) {
             moveIfRandomValueGreaterThan();
-            outputResult.printCarStates(cars);
+            outputResult.printCarStates(getCarPositions());
         }
     }
 
@@ -48,6 +48,14 @@ public class RacingGame {
             int randomValue = car.generateRandomValueAndMove(RacingGame.RANGE_NUMBER);
             car.move(randomValue);
         }
+    }
+
+    private int[] getCarPositions() {
+        int[] positions = new int[cars.size()];
+        for (int i = 0; i < cars.size(); i++) {
+            positions[i] = cars.get(i).getPosition();
+        }
+        return positions;
     }
 
 }
