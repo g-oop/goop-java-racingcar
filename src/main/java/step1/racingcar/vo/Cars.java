@@ -2,7 +2,7 @@ package step1.racingcar.vo;
 
 import java.util.List;
 
-import step1.racingcar.RandomUtils;
+import step1.racingcar.util.RandomNumberGenerator;
 
 public class Cars {
 
@@ -18,7 +18,7 @@ public class Cars {
 
     public List<Integer> moveCars() {
         return cars.stream()
-            .peek(car -> car.move(RandomUtils.getRandom()))
+            .peek(car -> car.move(new RandomNumberGenerator()))
             .map(Car::getPosition)
             .toList();
     }

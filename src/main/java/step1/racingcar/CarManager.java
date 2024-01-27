@@ -29,5 +29,4 @@ public class CarManager {
         return cars.getPositions();
     }
 
-
 }

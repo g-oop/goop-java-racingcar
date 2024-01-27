@@ -1,5 +1,7 @@
 package step1.racingcar.vo;
 
+import step1.racingcar.util.NumberGenerator;
+
 public class Car {
 
     private int position;
@@ -12,8 +14,8 @@ public class Car {
         return 1;
     }
 
-    public void move(int condition) {
-        if (isMovable(condition)) {
+    public void move(NumberGenerator numberGenerator) {
+        if (isMovable(numberGenerator.generateNumber())) {
             position++;
         }
     }

@@ -17,13 +17,11 @@ public class ResultView {
     }
 
     public static void printMoveResult(CarManager carManager) {
-        //for (int i = 0; i < tryCount; i++) {
-        //    carManager.moveCars(10)
-        //        .stream()
-        //        .peek(ResultView::drawMoveStatus)
-        //        .toList();
-        //    System.out.println();
-        //}
+        for (int i = 0; i < 5; i++) {
+            carManager.moveCars()
+                .forEach(ResultView::drawMoveStatus);
+            System.out.println();
+        }
     }
 
     public static void drawMoveStatus(int position) {
