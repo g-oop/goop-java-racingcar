@@ -2,23 +2,22 @@ package step1.racingcar;
 
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 import step1.racingcar.util.ImmovableNumberGenerator;
 import step1.racingcar.util.MovableNumberGenerator;
 import step1.racingcar.vo.Car;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 public class RacingCarTest {
 
     @ParameterizedTest
-    @CsvSource(value = {"5,3"}, delimiter = ',')
+    @ValueSource(ints = {0, 1, 10})
     @DisplayName("자동차 게임 - 1. 자동차 생성 확인")
-    public void carCreateTest(int carCount, int tryCount) throws Exception {
-        CarManager carManager = new CarManager(carCount, tryCount);
+    public void carCreateTest(int carCount) throws Exception {
+        CarManager carManager = new CarManager(carCount);
         carManager.readyToStart();
-        assertThat(carManager.moveCars().size()).isEqualTo(carCount);
+        assertThat(carManager.getPositions()).hasSize(carCount);
     }
 
     @Test
@@ -30,6 +29,6 @@ public class RacingCarTest {
 
         Car nonMovingCar = new Car();
         nonMovingCar.move(new ImmovableNumberGenerator());
-        assertThat(movingCar.getPosition()).isEqualTo(1);
+        assertThat(nonMovingCar.getPosition()).isEqualTo(1);
     }
 }

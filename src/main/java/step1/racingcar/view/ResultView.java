@@ -4,24 +4,22 @@ import step1.racingcar.CarManager;
 
 public class ResultView {
 
-    public static void printResult(CarManager carManager) {
+    public static void printResult(CarManager carManager, int tryCount) {
         printReadyToStart(carManager);
-        printMoveResult(carManager);
+        printMoveResult(carManager, tryCount);
     }
 
     public static void printReadyToStart(CarManager carManager) {
         System.out.println("실행 결과");
-        carManager.getPositions()
-            .forEach(ResultView::drawMoveStatus);
+        carManager.getPositions().forEach(ResultView::drawMoveStatus);
         System.out.println();
     }
 
-    public static void printMoveResult(CarManager carManager) {
-        for (int i = 0; i < 5; i++) {
-            carManager.moveCars()
-                .forEach(ResultView::drawMoveStatus);
+    public static void printMoveResult(CarManager carManager, int tryCount) {
+        carManager.moveCars(tryCount).forEach(positions -> {
+            positions.forEach(ResultView::drawMoveStatus);
             System.out.println();
-        }
+        });
     }
 
     public static void drawMoveStatus(int position) {

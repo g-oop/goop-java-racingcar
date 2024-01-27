@@ -1,7 +1,5 @@
 package step1.racingcar.vo;
 
-import java.util.Objects;
-
 import step1.racingcar.util.NumberGenerator;
 
 public class Car {

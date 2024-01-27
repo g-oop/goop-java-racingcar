@@ -17,15 +17,11 @@ public class Cars {
     }
 
     public List<Integer> moveCars() {
-       return cars.stream()
-            .map(car -> car.move(new RandomNumberGenerator()))
-            .toList();
+        return cars.stream().map(car -> car.move(new RandomNumberGenerator())).toList();
     }
 
     public List<Integer> getPositions() {
-        return cars.stream()
-            .map(Car::getPosition)
-            .toList();
+        return cars.stream().map(Car::getPosition).toList();
     }
 
 }

@@ -6,8 +6,8 @@ import step1.racingcar.view.ResultView;
 public class GameApp {
 
     public static void main(String[] args) {
-        CarManager carManager = new CarManager(InputView.getCarCount(), InputView.getTryCount());
+        CarManager carManager = new CarManager(InputView.getCarCount());
         carManager.readyToStart();
-        ResultView.printResult(carManager);
+        ResultView.printResult(carManager, InputView.getTryCount());
     }
 }
