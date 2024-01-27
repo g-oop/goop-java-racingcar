@@ -22,17 +22,14 @@ public class RacingCarTest {
     }
 
     @Test
-    @DisplayName("자동차 게임 - 2. 4 이상이면 전진, 4 미만이면 정지")
+    @DisplayName("자동차 게임 - 2. 4 이상이면 자동차 전진, 4 미만이면 정지 확인")
     public void carMoveTest() throws Exception {
-        Car beforeMoveCar = new Car();
-
         Car movingCar = new Car();
         movingCar.move(new MovableNumberGenerator());
-        assertNotEquals(beforeMoveCar, movingCar);
-        assertEquals(movingCar.getPosition(), 2);
+        assertThat(movingCar.getPosition()).isEqualTo(2);
 
         Car nonMovingCar = new Car();
         nonMovingCar.move(new ImmovableNumberGenerator());
-        assertEquals(beforeMoveCar, nonMovingCar);
+        assertThat(movingCar.getPosition()).isEqualTo(1);
     }
 }
