@@ -2,8 +2,8 @@ package domain;
 
 import java.util.*;
 
-import domain.ui.InputProvider;
-import domain.ui.OutputProvider;
+import ui.InputProvider;
+import ui.OutputProvider;
 
 
 public class RacingGame implements Game {
