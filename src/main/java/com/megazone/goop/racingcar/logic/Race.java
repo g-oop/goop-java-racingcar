@@ -1,6 +1,7 @@
 package com.megazone.goop.racingcar.logic;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.megazone.goop.racingcar.ui.ResultView;
 
@@ -10,7 +11,7 @@ public class Race {
 
     private final ResultView resultView;
     private final RandomGenerator randomGenerator;
-    private ArrayList<Car> cars;
+    private List<Car> cars;
 
     private int currentRound = 0;
 
