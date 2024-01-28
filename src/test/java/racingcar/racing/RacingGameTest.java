@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import racingcar.entry.Car;
 import racingcar.entry.MovePolicy;
 import racingcar.mock.AlwaysMovePolicy;
-import racingcar.ui.ConsoleRacingUi;
 import racingcar.ui.RacingUi;
 
 import java.util.List;
@@ -27,8 +26,8 @@ class RacingGameTest {
         RacingResult result = racingGame.race();
         racingUi.showResult(result);
 
-        List<RacingEntries> racingEntriesList = result.getRacingEntriesList();
-        RacingEntries lastEntries = result.getRacingEntriesList().get(racingEntriesList.size() - 1);
+        List<RacingEntries> racingEntriesList = result.getRacingEntriesHistory();
+        RacingEntries lastEntries = result.getRacingEntriesHistory().get(racingEntriesList.size() - 1);
         for (Car car: lastEntries.getEntries()) {
             assertThat(car.currentPosition()).isEqualTo(moveCount);
         }
@@ -53,7 +52,7 @@ class RacingGameTest {
         @Override
         public void showResult(RacingResult result) {
             //noop
-            new ConsoleRacingUi().showResult(result);
+            //new ConsoleRacingUi().showResult(result);
         }
     }
 

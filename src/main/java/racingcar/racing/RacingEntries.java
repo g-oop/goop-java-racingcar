@@ -11,6 +11,9 @@ public class RacingEntries {
     private final List<Car> cars;
     private final MovePolicy movePolicy;
 
+    private final List<Car> winners = new ArrayList<>();
+    private int maxPosition = 0;
+
     public RacingEntries(String[] carNames, MovePolicy movePolicy) {
         this.cars = new ArrayList<>();
         for (String carName: carNames) {
@@ -38,5 +41,27 @@ public class RacingEntries {
 
     public List<Car> getEntries() {
         return cars;
+    }
+
+    public List<Car> getWinners() {
+        winners.clear();
+        maxPosition = 0;
+        for (Car car: this.cars) {
+            maxPosition = addWinnerAndGetNewMaxPosition(car);
+        }
+        return winners;
+    }
+
+    private int addWinnerAndGetNewMaxPosition(Car car) {
+        int currentPosition = car.currentPosition();
+        if (currentPosition > maxPosition) {
+            winners.clear();
+            winners.add(car);
+            return currentPosition;
+        }
+        if (currentPosition == maxPosition) {
+            winners.add(car);
+        }
+        return maxPosition;
     }
 }

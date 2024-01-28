@@ -3,6 +3,7 @@ package racingcar.ui;
 import racingcar.entry.Car;
 import racingcar.racing.*;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class ConsoleRacingUi implements RacingUi {
@@ -34,10 +35,11 @@ public class ConsoleRacingUi implements RacingUi {
 
     @Override
     public void showResult(RacingResult result) {
-        for (RacingEntries entries: result.getRacingEntriesList()) {
+        for (RacingEntries entries: result.getRacingEntriesHistory()) {
             showResult(entries);
             println();
         }
+        showWinners(result);
     }
 
     private static void showResult(RacingEntries entries) {
@@ -48,8 +50,12 @@ public class ConsoleRacingUi implements RacingUi {
         }
     }
 
-    private static void print(String s) {
-        System.out.print(s);
+    private static void showWinners(RacingResult result) {
+        List<String> winnerCarNames = result.getWinners()
+            .stream()
+            .map(Car::getName)
+            .toList();
+        println(String.format("최종 우승자: %s", String.join(", ", winnerCarNames)));
     }
 
     private static void println() {
@@ -58,5 +64,9 @@ public class ConsoleRacingUi implements RacingUi {
 
     private static void println(String s) {
         print(s + System.lineSeparator());
+    }
+
+    private static void print(String s) {
+        System.out.print(s);
     }
 }

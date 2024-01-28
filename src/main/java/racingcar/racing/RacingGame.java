@@ -10,10 +10,6 @@ public class RacingGame {
     private final RacingPreference preference;
     private final RacingEntries racingEntries;
 
-    public RacingGame(RacingPreference preference) {
-        this(preference, null);
-    }
-
     public RacingGame(RacingPreference preference, MovePolicy movePolicy) {
         if (preference == null) {
             throw new IllegalArgumentException("게임 속성이 지정되지 않았습니다.");
