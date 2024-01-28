@@ -1,9 +1,6 @@
 package com.megazone.goop.racingcar.logic;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.jupiter.api.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -17,14 +14,14 @@ class RandomGeneratorTest {
     }
 
     @DisplayName("0~9 사이의 랜덤값을 구한다.")
-    @ParameterizedTest
-    @ValueSource(ints = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9})
-    void randomBetweenTest(int value) {
+    @Test
+    void randomBetweenTest() {
         int bound = 10;
 
-        assertThat(randomGenerator.getRandomValue(bound)).isGreaterThanOrEqualTo(0);
-
-        assertThat(randomGenerator.getRandomValue(bound)).isLessThanOrEqualTo(9);
+        for (int i = 0; i < 100000; i++) {
+            assertThat(randomGenerator.getRandomValue(bound))
+                .isNotNegative()
+                .isLessThanOrEqualTo(bound - 1);
+        }
     }
-
 }
