@@ -7,29 +7,28 @@ public class InputResult {
     private static final Scanner scanner = new Scanner(System.in);
 
     public int getCarCount() {
-        System.out.println("자동차 대수는 몇 대 인가요?");
-        return scanner.nextInt();
+        return getInput("자동차 대수는 몇 대 인가요?");
     }
 
     public int getTryCount() {
-        System.out.println("시도할 회수는 몇 회 인가요?");
-        return scanner.nextInt();
+
+        return getInput("시도할 회수는 몇 회 인가요?");
     }
 
-    public int getInput(String message) {
+    private int getInput(String message) {
         int input = 0;
         boolean validInput = false;
 
         while (!validInput) {
             try {
-                System.out.print(message);
+                System.out.println(message);
                 input = Integer.parseInt(scanner.nextLine());
 
                 if (input <= 0) {
-                    System.out.println("0보다 큰 정수를 입력하세요.");
-                } else {
-                    validInput = true;
+                    System.out.println("0보다 큰 정수를 입력하세요");
+                    continue;
                 }
+                validInput = true;
             } catch (NumberFormatException e) {
                 System.out.println("유효하지 않은 입력입니다. 정수를 입력하세요.");
             }
