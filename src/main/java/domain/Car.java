@@ -1,11 +1,11 @@
 package domain;
 
-import java.util.Random;
+import domain.strategy.RandomMoveStrategy;
 
 public class Car {
 
     private static final int MIN_VALUE = 4;
-
+    private RandomMoveStrategy randomMoveStrategy;
 
     private int position;
 
@@ -23,34 +23,7 @@ public class Car {
         }
     }
 
-    public int generateRandomValueAndMove(int RANGE_NUMBER) {
-        return new Random().nextInt(RANGE_NUMBER);
+    public int generateRandomValueAndMove(int rangeNumber) {
+        return randomMoveStrategy.generateRandomValue(rangeNumber);
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-
-        Car car = (Car) o;
-
-        return position == car.position;
-    }
-
-    @Override
-    public int hashCode() {
-        return position;
-    }
-
-
-    //public String getState() {
-    //    StringBuilder state = new StringBuilder("|");
-    //    state.append("-".repeat(Math.max(0, position)));
-    //    state.append(">");
-    //    return state.toString();
-    //}
 }
