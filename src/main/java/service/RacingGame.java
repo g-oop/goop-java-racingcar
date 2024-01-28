@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import domain.Car;
+import strategy.RandomMoveStrategy;
 import ui.InputResult;
 import ui.OutputResult;
 
@@ -12,9 +13,11 @@ public class RacingGame {
 
     private final List<Car> cars;
     private static final int RANGE_NUMBER = 10;
+    private final RandomMoveStrategy randomMoveStrategy;
 
-    public RacingGame(int carCount) {
+    public RacingGame(int carCount, RandomMoveStrategy randomMoveStrategy) {
         this.cars = new ArrayList<>();
+        this.randomMoveStrategy = randomMoveStrategy;
         initializeCars(carCount);
     }
 
@@ -40,8 +43,8 @@ public class RacingGame {
 
     private void moveIfRandomValueGreaterThan() {
         for (Car car: cars) {
-            car.generateRandomValueAndMove(RANGE_NUMBER);
-            //car.move(randomValue);
+            int randomValue = randomMoveStrategy.generateRandomValue(RANGE_NUMBER);
+            car.move(randomValue);
         }
     }
 

@@ -1,4 +1,4 @@
-package domain.strategy;
+package strategy;
 
 public interface RandomMoveStrategy {
 
