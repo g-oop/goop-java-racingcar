@@ -1,8 +1,8 @@
-package step1.racingcar.vo;
+package step1.racingcar.domain.vo;
 
 import java.util.List;
 
-import step1.racingcar.util.RandomNumberGenerator;
+import step1.racingcar.domain.RandomNumberGenerator;
 
 public class Cars {
 

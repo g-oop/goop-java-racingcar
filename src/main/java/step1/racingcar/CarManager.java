@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.stream.*;
 
 import step1.racingcar.view.ResultView;
-import step1.racingcar.vo.Car;
-import step1.racingcar.vo.Cars;
+import step1.racingcar.domain.vo.Car;
+import step1.racingcar.domain.vo.Cars;
 
 public class CarManager {
 

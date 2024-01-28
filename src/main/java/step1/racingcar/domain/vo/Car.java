@@ -1,4 +1,4 @@
-package step1.racingcar.vo;
+package step1.racingcar.domain.vo;
 
 public class Car {
 

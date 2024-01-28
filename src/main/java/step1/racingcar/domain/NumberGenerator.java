@@ -1,4 +1,4 @@
-package step1.racingcar.util;
+package step1.racingcar.domain;
 
 public interface NumberGenerator {
 

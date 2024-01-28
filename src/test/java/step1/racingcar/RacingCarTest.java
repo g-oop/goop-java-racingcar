@@ -3,9 +3,7 @@ package step1.racingcar;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import step1.racingcar.util.ImmovableNumberGenerator;
-import step1.racingcar.util.MovableNumberGenerator;
-import step1.racingcar.vo.Car;
+import step1.racingcar.domain.vo.Car;
 
 import static org.assertj.core.api.Assertions.*;
 

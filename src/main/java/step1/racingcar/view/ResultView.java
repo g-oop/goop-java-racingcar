@@ -1,6 +1,6 @@
 package step1.racingcar.view;
 
-import step1.racingcar.vo.Cars;
+import step1.racingcar.domain.vo.Cars;
 
 public class ResultView {
 
