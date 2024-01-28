@@ -3,27 +3,48 @@ package gameboy.gamepack.racinggame;
 import java.util.List;
 
 import gameboy.gamepack.GamePack;
+import gameboy.gamepack.racinggame.data.dto.RaceResultDto;
+import gameboy.gamepack.racinggame.data.entity.Car;
 import gameboy.gamepack.racinggame.data.entity.RacingTrack;
+import gameboy.gamepack.racinggame.data.vo.Name;
+import gameboy.gamepack.racinggame.exception.InvalidRacerNameException;
 import gameboy.gamepack.racinggame.view.InputView;
 import gameboy.gamepack.racinggame.view.ResultView;
 
 public class RacingGamePack implements GamePack {
 
-    private RacingTrack racingTrack;
-
     @Override
     public void play() {
-        initializeRacingTrack();
+        RacingTrack racingTrack = initializeRacingTrack();
 
-        int raceCount = InputView.inputNumber("시도할 회수는 몇 회 인가요?");
-        for (int i = 0; i < raceCount; i++) {
-            List<Integer> raceResult = racingTrack.startRace();
-            ResultView.display(raceResult);
+        int raceCount = InputView.inputRaceCount();
+        RaceResultDto raceResult = racingTrack.startRace(raceCount);
+        ResultView.display(raceResult);
+    }
+
+    private RacingTrack initializeRacingTrack() {
+        return initializeRacingTrack(null);
+    }
+
+    private RacingTrack initializeRacingTrack(String message) {
+        try{
+            return new RacingTrack(initializeCars(message));
+        } catch (InvalidRacerNameException e) {
+            return initializeRacingTrack(e.getMessage());
         }
     }
 
-    private void initializeRacingTrack() {
-        int driverCount = InputView.inputNumber("자동차 대수는 몇 대 인가요?");
-        racingTrack = new RacingTrack(driverCount);
+    private List<Car> initializeCars(String message) {
+        return initializeNames(message)
+            .stream()
+            .map(Car::new)
+            .toList();
+    }
+
+    private List<Name> initializeNames(String message) {
+        if (message == null || message.isBlank()) {
+            return InputView.inputCarsName();
+        }
+        return InputView.inputCarsName(message);
     }
 }

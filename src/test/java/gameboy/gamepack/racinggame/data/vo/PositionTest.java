@@ -11,24 +11,25 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 @DisplayName("도메인 - Position 테스트")
 public class PositionTest {
 
+    private static final int MIN_POSITION_VALUE = 0;
+
     @Test
-    @DisplayName("위치 값 증가 테스트")
+    @DisplayName("위치 값 1 증가 테스트")
     void add() {
         //given
         Position position = new Position();
         //when
-        position.add();
+        position.addOne();
         //then
         assertThat(position).isEqualTo(new Position(1));
     }
 
-    @ParameterizedTest
-    @DisplayName("0이하 위치 값 오류 테스트")
-    @ValueSource(ints = {0, -1})
-    void position_0이하_테스트(int initPosition) {
-        assertThatThrownBy(() -> new Position(initPosition))
+    @Test
+    @DisplayName("0미만 위치 값 오류 테스트")
+    void position_0미만_테스트() {
+        assertThatThrownBy(() -> new Position(-1))
             .isInstanceOf(IllegalArgumentException.class)
-            .hasMessage("0이하의 포지션 생성: " + initPosition);
+            .hasMessage(MIN_POSITION_VALUE + "미만의 포지션 생성: " + -1);
     }
 
     @ParameterizedTest
@@ -38,7 +39,7 @@ public class PositionTest {
         //given
         Position position = new Position(value);
         //when
-        int result = position.getPosition();
+        int result = position.value();
         //then
         assertThat(result).isEqualTo(value);
     }

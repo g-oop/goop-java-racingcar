@@ -37,7 +37,9 @@ public class StringAddCalculator {
     }
 
     private static int sum(String[] numbers) {
-        return Arrays.stream(numbers).mapToInt(StringAddCalculator::parseUnsignedInt).sum();
+        return Arrays.stream(numbers)
+            .mapToInt(StringAddCalculator::parseUnsignedInt)
+            .sum();
     }
 
     private static int parseUnsignedInt(String text) {
