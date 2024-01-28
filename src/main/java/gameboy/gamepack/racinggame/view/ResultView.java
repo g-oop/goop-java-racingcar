@@ -15,13 +15,15 @@ public class ResultView {
     }
 
     private static String getRacePlayback(List<RaceLog> raceLogs) {
-        return raceLogs.stream()
+        return raceLogs
+            .stream()
             .map(ResultView::createResult)
             .collect(Collectors.joining("\n"));
     }
 
     private static String createResult(RaceLog raceLog) {
-        return raceLog.getCars().stream()
+        return raceLog.getCars()
+            .stream()
             .map(ResultView::createWheelMark)
             .collect(Collectors.joining("\n", "", "\n"));
     }
@@ -31,7 +33,8 @@ public class ResultView {
     }
 
     private static String getRaceResult(List<Car> winners) {
-        return winners.stream()
+        return winners
+            .stream()
             .map(Car::getName)
             .collect(Collectors.joining(", ")) + "가 최종 우승했습니다.";
     }

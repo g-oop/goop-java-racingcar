@@ -13,7 +13,10 @@ public class RaceLog {
     }
 
     private List<Car> createCarsLog(List<Car> cars) {
-        return cars.stream().map(Car::copy).toList();
+        return cars
+            .stream()
+            .map(Car::copy)
+            .toList();
     }
 
     public List<Car> getCars() {

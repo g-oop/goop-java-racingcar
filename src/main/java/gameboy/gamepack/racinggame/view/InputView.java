@@ -22,7 +22,8 @@ public class InputView {
     public static List<Name> inputCarsName(String message) {
         try {
             List<String> carNames = split(inputText(message));
-            return carNames.stream()
+            return carNames
+                .stream()
                 .map(Name::new)
                 .toList();
         } catch (InvalidRacerNameException e) {

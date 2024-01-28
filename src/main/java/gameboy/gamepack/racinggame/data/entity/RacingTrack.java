@@ -29,7 +29,10 @@ public class RacingTrack {
     }
 
     private static void validDuplicateName(List<Car> cars) {
-        List<String> carNames = cars.stream().map(Car::getName).toList();
+        List<String> carNames = cars
+            .stream()
+            .map(Car::getName)
+            .toList();
         if (carNames.size() > new HashSet<>(carNames).size()) {
             throw new InvalidRacerNameException("자동차 이름이 중복될 수 없습니다.");
         }
