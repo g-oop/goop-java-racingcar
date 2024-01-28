@@ -46,11 +46,6 @@ public class RacingGame {
     }
 
     private int[] getCarPositions() {
-        int[] positions = new int[cars.size()];
-        for (int i = 0; i < cars.size(); i++) {
-            positions[i] = cars.get(i).getPosition();
-        }
-        return positions;
+        return cars.stream().mapToInt(Car::getPosition).toArray();
     }
-
 }
