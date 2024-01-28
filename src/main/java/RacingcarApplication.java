@@ -7,7 +7,8 @@ public class RacingcarApplication {
     public static void main(String[] args) {
         InputResult inputResult = new InputResult();
         OutputResult outputResult = new OutputResult();
-        RacingGame racingGame = new RacingGame();
+        int carCount = inputResult.getCarCount();
+        RacingGame racingGame = new RacingGame(carCount);
         racingGame.play(inputResult, outputResult);
     }
 }
