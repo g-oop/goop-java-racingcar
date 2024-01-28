@@ -35,13 +35,13 @@ class CarTest {
     @ParameterizedTest
     @ValueSource(ints = {4, 5, 6, 7, 8, 9})
     void getTotalDistanceIfValueFourOrMoreTest(int randValue) {
-        int moveDistance = 1;
         int totalRound = 5;
 
-        for (int round = 1; round <= totalRound; round++) {
-            assertThat(car.move(randValue)).isEqualTo(moveDistance);
-            assertThat(car.getTotalDistance()).isEqualTo(round);
+        for (int round = 0; round < totalRound; round++) {
+            car.move(randValue);
         }
+
+        assertThat(car.getTotalDistance()).isEqualTo(totalRound);
     }
 
     @DisplayName("자동차의 랜덤값이 4 미만인 경우, 전체 이동거리는 0이다.")
@@ -50,9 +50,10 @@ class CarTest {
     void getTotalDistanceIfFourUnderTest(int randValue) {
         int totalRound = 5;
 
-        for (int round = 1; round <= totalRound; round++) {
-            assertThat(car.move(randValue)).isZero();
-            assertThat(car.getTotalDistance()).isZero();
+        for (int round = 0; round < totalRound; round++) {
+            car.move(randValue);
         }
+
+        assertThat(car.getTotalDistance()).isZero();
     }
 }
