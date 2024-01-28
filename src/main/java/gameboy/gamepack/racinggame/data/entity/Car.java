@@ -32,11 +32,19 @@ public class Car {
         this.random = random;
     }
 
-    public static Car copy(Car car) {
+    public Position getPosition() {
+        return position;
+    }
+
+    public String getName() {
+        return name.getName();
+    }
+
+    public Car copy() {
         return new Car(
-            new Name(car.name.getName()),
-            new Position(car.position.value()),
-            car.random
+            new Name(this.name.getName()),
+            new Position(this.position.value()),
+            this.random
         );
     }
 
@@ -44,14 +52,6 @@ public class Car {
         if (isPushAccelerator()) {
             position.addOne();
         }
-    }
-
-    public Position getPosition() {
-        return position;
-    }
-
-    public String getName() {
-        return name.getName();
     }
 
     private boolean isPushAccelerator() {
@@ -63,16 +63,19 @@ public class Car {
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(position, name);
+    public boolean equals(Object that) {
+        if (this == that) {
+            return true;
+        }
+        if (that == null || getClass() != that.getClass()) {
+            return false;
+        }
+        Car car = (Car) that;
+        return Objects.equals(name, car.name) && Objects.equals(position, car.position);
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        return this.hashCode() == obj.hashCode()
-            && this.getClass() == obj.getClass();
+    public int hashCode() {
+        return Objects.hash(name, position);
     }
 }

@@ -23,7 +23,7 @@ class RefereeTest {
         );
         referee.record(cars);
         //when
-        List<Car> strings = referee.getWinner();
+        List<Car> strings = referee.getWinners();
         //then
         assertThat(strings).contains(cars.get(2));
     }
@@ -40,8 +40,8 @@ class RefereeTest {
         );
         referee.record(cars);
         //when
-        List<Car> winner = referee.getWinner();
+        List<Car> winners = referee.getWinners();
         //then
-        assertThat(winner).contains(cars.get(1), cars.get(2));
+        assertThat(winners).contains(cars.get(1), cars.get(2));
     }
 }

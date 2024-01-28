@@ -1,7 +1,7 @@
 package gameboy.gamepack.racinggame.view;
 
 import java.util.*;
-import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import gameboy.gamepack.racinggame.data.vo.Name;
 import gameboy.gamepack.racinggame.exception.InvalidRacerNameException;
@@ -19,10 +19,9 @@ public class InputView {
         return inputCarsName("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
     }
 
-    private static List<Name> inputCarsName(String ask) {
+    public static List<Name> inputCarsName(String message) {
         try {
-            List<String> carNames = split(inputText(ask), CARS_NAME_SEPARATOR);
-            validDuplicateName(carNames);
+            List<String> carNames = split(inputText(message));
             return carNames.stream()
                 .map(Name::new)
                 .toList();
@@ -31,12 +30,10 @@ public class InputView {
         }
     }
 
-    private static List<String> split(String text, String separator) {
-        List<String> carNames = List.of(text.split(separator))
-            .stream()
+    private static List<String> split(String text) {
+        return Stream.of(text.split(CARS_NAME_SEPARATOR))
             .map(String::trim)
-            .collect(Collectors.toList());
-        return carNames;
+            .toList();
     }
 
     private static int inputNumber(String ask) {
@@ -63,12 +60,6 @@ public class InputView {
 
     private static String userTextInput() {
         return SCANNER.nextLine();
-    }
-
-    private static void validDuplicateName(List<String> carNames) {
-        if (carNames.size() > new HashSet<>(carNames).size()) {
-            throw new InvalidRacerNameException("자동차 이름이 중복될 수 없습니다.");
-        }
     }
 
 }

@@ -30,12 +30,11 @@ public class Position implements Comparable<Position> {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
+    public boolean equals(Object that) {
+        if (that == null || getClass() != that.getClass()) {
             return false;
         }
-        return this.hashCode() == obj.hashCode()
-            && this.getClass() == obj.getClass();
+        return Objects.equals(value, ((Position) that).value);
     }
 
     @Override
@@ -44,11 +43,11 @@ public class Position implements Comparable<Position> {
     }
 
     @Override
-    public int compareTo(Position o) {
-        if (this.equals(o)) {
+    public int compareTo(Position that) {
+        if (this.equals(that)) {
             return 0;
         }
-        if (this.value > o.value) {
+        if (this.value > that.value) {
             return 1;
         }
         return -1;

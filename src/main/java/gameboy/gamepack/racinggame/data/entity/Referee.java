@@ -23,7 +23,7 @@ public class Referee {
         return recorder.playback();
     }
 
-    public List<Car> getWinner() {
+    public List<Car> getWinners() {
         RaceLog raceLog = recorder.playbackLastLog();
         Position winnerPosition = getWinnerPosition(raceLog);
         return raceLog.getCars()

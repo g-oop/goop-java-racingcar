@@ -8,7 +8,7 @@ public class Name {
 
     private static final int MAX_NAME_SIZE = 5;
 
-    String name;
+    private String name;
 
     public Name(String name) {
         validationName(name);
@@ -29,16 +29,15 @@ public class Name {
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(name);
+    public boolean equals(Object that) {
+        if (that == null || getClass() != that.getClass()) {
+            return false;
+        }
+        return Objects.equals(name, ((Name) that).name);
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        return this.hashCode() == obj.hashCode()
-            && this.getClass() == obj.getClass();
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }

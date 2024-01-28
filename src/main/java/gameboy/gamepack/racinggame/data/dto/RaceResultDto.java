@@ -8,23 +8,23 @@ import gameboy.gamepack.racinggame.data.vo.RaceLog;
 public class RaceResultDto {
 
     private List<RaceLog> raceLogs;
-    private List<Car> winner;
+    private List<Car> winners;
 
-    private RaceResultDto(List<RaceLog> raceLogs, List<Car> winner) {
+    private RaceResultDto(List<RaceLog> raceLogs, List<Car> winners) {
         this.raceLogs = raceLogs;
-        this.winner = winner;
+        this.winners = winners;
     }
 
     public List<RaceLog> getRaceLogs() {
         return raceLogs;
     }
 
-    public List<Car> getWinner() {
-        return winner;
+    public List<Car> getWinners() {
+        return winners;
     }
 
-    public static RaceResultDto of(List<RaceLog> raceLogs, List<Car> winner) {
-        return new RaceResultDto(raceLogs, winner);
+    public static RaceResultDto of(List<RaceLog> raceLogs, List<Car> winners) {
+        return new RaceResultDto(raceLogs, winners);
     }
 
 }
