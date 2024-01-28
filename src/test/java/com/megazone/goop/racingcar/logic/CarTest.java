@@ -20,13 +20,39 @@ class CarTest {
     @ParameterizedTest
     @ValueSource(ints = {4, 5, 6, 7, 8, 9})
     void moveByOneIfValueFourOrMoreTest(int randValue) {
-        assertThat(car.move(randValue)).isEqualTo(1);
+        int moveDistance = 1;
+        assertThat(car.move(randValue)).isEqualTo(moveDistance);
     }
 
     @DisplayName("자동차는 랜덤값이 4 미만인 경우에 전진하지 않는다.")
     @ParameterizedTest
     @ValueSource(ints = {0, 1, 2, 3})
     void noMoveIfValueFourOrMoreTest(int randValue) {
-        assertThat(car.move(randValue)).isEqualTo(0);
+        assertThat(car.move(randValue)).isZero();
+    }
+
+    @DisplayName("자동차의 랜덤값이 4 이상인 경우, 전체 이동거리는 반복회수와 같다.")
+    @ParameterizedTest
+    @ValueSource(ints = {4, 5, 6, 7, 8, 9})
+    void getTotalDistanceIfValueFourOrMoreTest(int randValue) {
+        int moveDistance = 1;
+        int totalRound = 5;
+
+        for (int round = 1; round <= totalRound; round++) {
+            assertThat(car.move(randValue)).isEqualTo(moveDistance);
+            assertThat(car.getTotalDistance()).isEqualTo(round);
+        }
+    }
+
+    @DisplayName("자동차의 랜덤값이 4 미만인 경우, 전체 이동거리는 0이다.")
+    @ParameterizedTest
+    @ValueSource(ints = {0, 1, 2, 3})
+    void getTotalDistanceIfFourUnderTest(int randValue) {
+        int totalRound = 5;
+
+        for (int round = 1; round <= totalRound; round++) {
+            assertThat(car.move(randValue)).isZero();
+            assertThat(car.getTotalDistance()).isZero();
+        }
     }
 }
