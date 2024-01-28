@@ -18,4 +18,8 @@ public class Car {
     public int getTotalDistance() {
         return totalDistance;
     }
+
+    public void resetTotalDistance() {
+        totalDistance = 0;
+    }
 }

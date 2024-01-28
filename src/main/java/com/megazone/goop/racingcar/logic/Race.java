@@ -21,11 +21,23 @@ public class Race {
         joinCars(carCount);
     }
 
+    private void joinCars(int carCount) {
+        this.cars = new ArrayList<>();
+
+        for (int i = 0; i < carCount; i++) {
+            cars.add(new Car());
+        }
+    }
+
     public void startRace(int roundCount) {
+        readyRace();
+
+        resultView.startDisplay();
+
         for (int i = 0; i < roundCount; i++) {
             cars.forEach(c -> c.move(randomGenerator.getRandomValue(MAX_RANDOM_VALUE)));
 
-            resultView.displayResult(cars.stream().map(Car::getTotalDistance).toList());
+            resultView.displayPositions(cars.stream().map(Car::getTotalDistance).toList());
 
             currentRound++;
         }
@@ -35,11 +47,9 @@ public class Race {
         return this.currentRound;
     }
 
-    private void joinCars(int carCount) {
-        this.cars = new ArrayList<>();
+    private void readyRace() {
+        this.currentRound = 0;
 
-        for (int i = 0; i < carCount; i++) {
-            cars.add(new Car());
-        }
+        cars.forEach(Car::resetTotalDistance);
     }
 }
