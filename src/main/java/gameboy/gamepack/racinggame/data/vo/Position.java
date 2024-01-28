@@ -5,6 +5,7 @@ import java.util.Objects;
 public class Position implements Comparable<Position> {
 
     private static final int MIN_POSITION_VALUE = 0;
+    public static final Position MIN = new Position(MIN_POSITION_VALUE);
 
     private int value;
 
@@ -21,8 +22,8 @@ public class Position implements Comparable<Position> {
         }
     }
 
-    public void addOne() {
-        value += 1;
+    public Position addOne() {
+        return new Position(value += 1);
     }
 
     public int value() {
@@ -31,10 +32,13 @@ public class Position implements Comparable<Position> {
 
     @Override
     public boolean equals(Object that) {
-        if (that == null || getClass() != that.getClass()) {
+        if (this == that) {
+            return true;
+        }
+        if (!(that instanceof Position position)) {
             return false;
         }
-        return Objects.equals(value, ((Position) that).value);
+        return this.value == position.value;
     }
 
     @Override
@@ -44,13 +48,7 @@ public class Position implements Comparable<Position> {
 
     @Override
     public int compareTo(Position that) {
-        if (this.equals(that)) {
-            return 0;
-        }
-        if (this.value > that.value) {
-            return 1;
-        }
-        return -1;
+        return this.value - that.value;
     }
 
 }

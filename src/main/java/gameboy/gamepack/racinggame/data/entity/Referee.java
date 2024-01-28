@@ -37,7 +37,7 @@ public class Referee {
             .stream()
             .map(Car::getPosition)
             .max(Position::compareTo)
-            .orElse(new Position(MIN_POSITION_VALUE));
+            .orElse(Position.MIN);
     }
 
 }

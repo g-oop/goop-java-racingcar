@@ -10,8 +10,8 @@ import gameboy.gamepack.racinggame.data.vo.RaceLog;
 public class ResultView {
 
     public static void display(RaceResultDto result) {
-        System.out.println(getRacePlayback(result.getRaceLogs()));
-        System.out.println(getRaceResult(result.getWinners()));
+        System.out.println(getRacePlayback(result.raceLogs()));
+        System.out.println(getRaceResult(result.winners()));
     }
 
     private static String getRacePlayback(List<RaceLog> raceLogs) {

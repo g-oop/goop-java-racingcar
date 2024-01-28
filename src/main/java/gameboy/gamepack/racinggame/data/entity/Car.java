@@ -10,9 +10,9 @@ public class Car {
     private static final int MOVE_RANGE = 10;
     private static final int MOVE_MIN = 4;
 
-    private Random random;
-    private Name name;
-    private Position position;
+    private final Random random;
+    private final Name name;
+    private final Position position;
 
     public Car(Name name, Random random) {
         this(name, new Position(), random);
@@ -40,18 +40,11 @@ public class Car {
         return name.getName();
     }
 
-    public Car copy() {
-        return new Car(
-            new Name(this.name.getName()),
-            new Position(this.position.value()),
-            this.random
-        );
-    }
-
-    public void run() {
+    public Car run() {
         if (isPushAccelerator()) {
-            position.addOne();
+            return new Car(name, position.addOne(), random);
         }
+        return new Car(name, position, random);
     }
 
     private boolean isPushAccelerator() {
