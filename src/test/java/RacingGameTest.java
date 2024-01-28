@@ -11,13 +11,11 @@ public class RacingGameTest {
     public void MoveWithRandomNumberGreaterThanEqual4(int randmomNumber) {
         // Car 객체 생성
         Car car1 = new Car();
-        Car car2 = new Car();
+        int position = car1.getPosition();
 
         car1.move(randmomNumber);
-
-        boolean equals = car1.equals(car2);
-
-        Assertions.assertThat(equals).isFalse();
+        
+        Assertions.assertThat(car1.getPosition()).isEqualTo(position + 1);
     }
 
 
@@ -25,14 +23,12 @@ public class RacingGameTest {
     @ValueSource(ints = {1, 2, 3})
     public void MoveWithRandomNumberLessThan4(int randmomNumber) {
         // Car 객체 생성
-        Car car1 = new Car();
-        Car car2 = new Car();
+        Car car = new Car();
+        int position = car.getPosition();
 
-        car1.move(randmomNumber);
+        car.generateRandomValueAndMove(randmomNumber);
 
-        boolean equals = car1.equals(car2);
-
-        Assertions.assertThat(equals).isTrue();
+        Assertions.assertThat(car.getPosition()).isEqualTo(position);
     }
 }
 
