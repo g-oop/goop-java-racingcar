@@ -1,15 +1,17 @@
 package domain;
 
 import domain.strategy.RandomMoveStrategy;
+import domain.strategy.RandomMoveStrategyImpl;
 
 public class Car {
 
     private static final int MIN_VALUE = 4;
-    private RandomMoveStrategy randomMoveStrategy;
+    private final RandomMoveStrategy randomMoveStrategy;
 
     private int position;
 
     public Car() {
+        this.randomMoveStrategy = new RandomMoveStrategyImpl();
         this.position = 0;
     }
 
@@ -23,7 +25,8 @@ public class Car {
         }
     }
 
-    public int generateRandomValueAndMove(int rangeNumber) {
-        return randomMoveStrategy.generateRandomValue(rangeNumber);
+    public void generateRandomValueAndMove(int rangeNumber) {
+        int randomValue = randomMoveStrategy.generateRandomValue(rangeNumber);
+        move(randomValue);
     }
 }
