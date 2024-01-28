@@ -1,29 +1,16 @@
 package step1.racingcar.view;
 
-import step1.racingcar.CarManager;
+import step1.racingcar.vo.Cars;
 
 public class ResultView {
 
-    public static void printResult(CarManager carManager, int tryCount) {
-        printReadyToStart(carManager);
-        printMoveResult(carManager, tryCount);
-    }
-
-    public static void printReadyToStart(CarManager carManager) {
+    public static void printReadyToStart(Cars cars) {
         System.out.println("실행 결과");
-        carManager.getPositions().forEach(ResultView::drawMoveStatus);
+        printPositions(cars);
         System.out.println();
     }
 
-    public static void printMoveResult(CarManager carManager, int tryCount) {
-        carManager.moveCars(tryCount).forEach(positions -> {
-            positions.forEach(ResultView::drawMoveStatus);
-            System.out.println();
-        });
+    public static void printPositions(Cars cars) {
+        cars.getPositions().forEach(position -> System.out.println("-".repeat(position)));
     }
-
-    public static void drawMoveStatus(int position) {
-        System.out.println("-".repeat(position));
-    }
-
 }

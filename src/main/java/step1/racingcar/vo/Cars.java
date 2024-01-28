@@ -16,8 +16,8 @@ public class Cars {
         cars.forEach(Car::initializePosition);
     }
 
-    public List<Integer> moveCars() {
-        return cars.stream().map(car -> car.move(new RandomNumberGenerator())).toList();
+    public void moveCars() {
+        cars.forEach(car -> car.move(new RandomNumberGenerator().generateNumber()));
     }
 
     public List<Integer> getPositions() {

@@ -3,6 +3,7 @@ package step1.racingcar;
 import java.util.List;
 import java.util.stream.*;
 
+import step1.racingcar.view.ResultView;
 import step1.racingcar.vo.Car;
 import step1.racingcar.vo.Cars;
 
@@ -19,12 +20,16 @@ public class CarManager {
         cars.initializeCars();
     }
 
-    public List<List<Integer>> moveCars(int tryCount) {
-        return Stream.generate(cars::moveCars).limit(tryCount).toList();
+    public void startGame(int tryCount) {
+        ResultView.printReadyToStart(cars);
+        moveCars(tryCount);
     }
 
-    public List<Integer> getPositions() {
-        return cars.getPositions();
+    private void moveCars(int tryCount) {
+        for (int i = 0; i < tryCount; i++) {
+            cars.moveCars();
+            ResultView.printPositions(cars);
+            System.out.println();
+        }
     }
-
 }
