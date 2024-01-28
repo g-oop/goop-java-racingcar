@@ -1,34 +1,35 @@
 import domain.Car;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class RacingGameTest {
 
 
     @ParameterizedTest
     @ValueSource(ints = {4, 5, 6, 7, 8, 9})
-    public void MoveWithRandomNumberGreaterThanEqual4(int randmomNumber) {
+    public void MoveWithRandomNumberGreaterThanEqual4(int randomNumber) {
         // Car 객체 생성
-        Car car1 = new Car();
-        int position = car1.getPosition();
+        Car car = new Car();
+        int position = car.getPosition();
 
-        car1.move(randmomNumber);
-        
-        Assertions.assertThat(car1.getPosition()).isEqualTo(position + 1);
+        car.move(randomNumber);
+
+        assertEquals(car.getPosition(), position + 1);
     }
 
 
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 3})
-    public void MoveWithRandomNumberLessThan4(int randmomNumber) {
+    public void MoveWithRandomNumberLessThan4(int randomNumber) {
         // Car 객체 생성
         Car car = new Car();
         int position = car.getPosition();
 
-        car.generateRandomValueAndMove(randmomNumber);
+        car.move(randomNumber);
 
-        Assertions.assertThat(car.getPosition()).isEqualTo(position);
+        assertEquals(car.getPosition(), position);
     }
 }
 
