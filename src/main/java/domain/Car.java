@@ -1,7 +1,7 @@
 package domain;
 
-import strategy.RandomMoveStrategy;
-import strategy.RandomMoveStrategyImpl;
+import domain.strategy.RandomMoveStrategy;
+import domain.strategy.RandomMoveStrategyImpl;
 
 public class Car {
 
@@ -25,5 +25,8 @@ public class Car {
         }
     }
 
-
+    public void generateRandomValueAndMove(int rangeNumber) {
+        int randomValue = randomMoveStrategy.generateRandomValue(rangeNumber);
+        move(randomValue);
+    }
 }
