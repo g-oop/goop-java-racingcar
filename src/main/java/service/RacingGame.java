@@ -5,7 +5,6 @@ import java.util.List;
 
 import domain.Car;
 import strategy.NumberGenerator;
-import ui.InputResult;
 import ui.OutputResult;
 
 
@@ -21,8 +20,7 @@ public class RacingGame {
         initializeCars(carCount);
     }
 
-    public void play(InputResult inputResult, OutputResult outputResult) {
-        int tryCount = inputResult.getTryCount();
+    public void play(OutputResult outputResult, int tryCount) {
         outputResult.printMessage("\n실행 결과:");
         moveCars(tryCount, outputResult);
     }

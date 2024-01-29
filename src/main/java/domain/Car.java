@@ -1,7 +1,5 @@
 package domain;
 
-import strategy.NumberGeneratorImpl;
-
 public class Car {
 
     private static final int MIN_VALUE = 4;
@@ -9,7 +7,6 @@ public class Car {
     private int position;
 
     public Car() {
-        this.numberGenerator = new NumberGeneratorImpl();
         this.position = 0;
     }
 

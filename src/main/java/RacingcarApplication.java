@@ -11,7 +11,8 @@ public class RacingcarApplication {
         OutputResult outputResult = new OutputResult();
         NumberGenerator numberGenerator = new NumberGeneratorImpl();
         int carCount = inputResult.getCarCount();
+        int tryCount = inputResult.getTryCount();
         RacingGame racingGame = new RacingGame(carCount, numberGenerator);
-        racingGame.play(inputResult, outputResult);
+        racingGame.play(outputResult, tryCount);
     }
 }
