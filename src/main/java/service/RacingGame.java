@@ -40,7 +40,7 @@ public class RacingGame {
 
     private void moveIfRandomValueGreaterThan() {
         for (Car car: cars) {
-            int randomValue = car.generateRandomValueAndMove(RANGE_NUMBER);
+            int randomValue = car.generateRandomValueAndMove(RacingGame.RANGE_NUMBER);
             car.move(randomValue);
         }
     }
