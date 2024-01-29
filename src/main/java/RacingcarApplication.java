@@ -8,6 +8,6 @@ public class RacingcarApplication {
         InputResult inputResult = new InputResult();
         OutputResult outputResult = new OutputResult();
         RacingGame racingGame = new RacingGame(inputResult, outputResult);
-        racingGame.play(inputResult, outputResult);
+        racingGame.play();
     }
 }
