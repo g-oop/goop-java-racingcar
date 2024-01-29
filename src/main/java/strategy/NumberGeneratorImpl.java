@@ -2,7 +2,7 @@ package strategy;
 
 import java.util.Random;
 
-public class RandomMoveStrategyImpl implements RandomMoveStrategy {
+public class NumberGeneratorImpl implements NumberGenerator {
 
     public static final Random RANDOM = new Random();
 

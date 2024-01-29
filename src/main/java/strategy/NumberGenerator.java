@@ -1,6 +1,6 @@
 package strategy;
 
-public interface RandomMoveStrategy {
+public interface NumberGenerator {
 
     int generateRandomValue(int rangeNumber);
 }

@@ -1,17 +1,17 @@
 package domain;
 
-import strategy.RandomMoveStrategy;
-import strategy.RandomMoveStrategyImpl;
+import strategy.NumberGenerator;
+import strategy.NumberGeneratorImpl;
 
 public class Car {
 
     private static final int MIN_VALUE = 4;
-    private final RandomMoveStrategy randomMoveStrategy;
+    private final NumberGenerator numberGenerator;
 
     private int position;
 
     public Car() {
-        this.randomMoveStrategy = new RandomMoveStrategyImpl();
+        this.numberGenerator = new NumberGeneratorImpl();
         this.position = 0;
     }
 
