@@ -12,13 +12,14 @@ public class RacingGame {
     private final List<Car> cars;
     private static final int RANGE_NUMBER = 10;
 
-    public RacingGame(int carCount) {
+    public RacingGame() {
         this.cars = new ArrayList<>();
-        initializeCars(carCount);
     }
 
     public void play(InputResult inputResult, OutputResult outputResult) {
+        int carCount = inputResult.getCarCount();
         int tryCount = inputResult.getTryCount();
+        initializeCars(carCount);
         outputResult.printMessage("\n실행 결과:");
         moveCars(tryCount, outputResult);
     }
