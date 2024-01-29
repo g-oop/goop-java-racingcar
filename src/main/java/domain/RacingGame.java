@@ -11,11 +11,14 @@ public class RacingGame {
 
     private final List<Car> cars;
     private static final int RANGE_NUMBER = 10;
+    private final InputResult inputResult;
     private final OutputResult outputResult;
 
-    public RacingGame() {
+
+    public RacingGame(InputResult inputResult, OutputResult outputResult) {
         this.cars = new ArrayList<>();
-        this.outputResult = new OutputResult();
+        this.inputResult = inputResult;
+        this.outputResult = outputResult;
     }
 
     public void play(InputResult inputResult, OutputResult outputResult) {

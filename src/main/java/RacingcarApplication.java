@@ -7,7 +7,7 @@ public class RacingcarApplication {
     public static void main(String[] args) {
         InputResult inputResult = new InputResult();
         OutputResult outputResult = new OutputResult();
-        RacingGame racingGame = new RacingGame();
+        RacingGame racingGame = new RacingGame(inputResult, outputResult);
         racingGame.play(inputResult, outputResult);
     }
 }
