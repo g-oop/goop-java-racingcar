@@ -1,4 +1,4 @@
-import service.RacingGame;
+import domain.RacingGame;
 import ui.InputResult;
 import ui.OutputResult;
 
