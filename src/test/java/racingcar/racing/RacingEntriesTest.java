@@ -1,61 +1,66 @@
 package racingcar.racing;
 
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.entry.*;
 import racingcar.mock.AlwaysMovePolicy;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.ThrowableAssert.ThrowingCallable;
 
 class RacingEntriesTest {
 
     @Test
     @DisplayName("지정한 수만큼 경주 참가자가 생성된다.")
     void create() {
-        String[] carNames = new String[] {"ab", "nm", "xy"};
+        List<String> carNames = List.of("yamsr", "gilbe", "nooos");
         MovePolicy movePolicy = new RandomMovePolicy();
-        RacingEntries racingEntries = new RacingEntries(carNames, movePolicy);
+        RacingEntries racingEntries = RacingEntries.of(carNames, movePolicy);
         int result = racingEntries.getEntryCount();
-        assertThat(result).isEqualTo(carNames.length);
+        assertThat(result).isEqualTo(carNames.size());
+    }
+
+    @Test
+    @DisplayName("자동차 이름은 중복될 수 없다.")
+    void create_duplicateCarName() {
+        List<String> carNames = List.of("yamsr", "gilbe", "nooos", "yamsr");
+        MovePolicy movePolicy = new RandomMovePolicy();
+        ThrowingCallable callable = () -> RacingEntries.of(carNames, movePolicy);
+        assertThatThrownBy(callable).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {
+        "ab, ab",
+        "ab,ab ",
+        "ab, ab ",
+        "ab , ab",
+    })
+    @DisplayName("자동차 이름은 공백을 제거하여 생성하고, 중복될 수 없다.")
+    void create_duplicateCarName(String input) {
+        List<String> carNames = Arrays.asList(input.split(","));
+        MovePolicy movePolicy = new RandomMovePolicy();
+        ThrowingCallable callable = () -> RacingEntries.of(carNames, movePolicy);
+        assertThatThrownBy(callable).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     @DisplayName("각 경주 참가자가 이동 횟수만큼 이동한다.")
     void move() {
-        String[] carNames = new String[] {"ab", "nm", "xy"};
+        List<String> carNames = List.of("yamsr", "gilbe", "nooos");
 
         MovePolicy movePolicy = new AlwaysMovePolicy();
-        RacingEntries racingEntries = new RacingEntries(carNames, movePolicy);
+        RacingEntries racingEntries = RacingEntries.of(carNames, movePolicy);
         RacingEntries newEntries = racingEntries.move();
 
         for (Car car: newEntries.getEntries()) {
             assertThat(car.currentPosition()).isEqualTo(1);
         }
-    }
-
-    @Test
-    @DisplayName("경주 시작 전에는 모든 참가자가 우승자이다.")
-    void winners_beforeRace() {
-        String[] carNames = new String[] {"ab", "nm", "xy"};
-
-        MovePolicy movePolicy = new RandomMovePolicy();
-        RacingEntries racingEntries = new RacingEntries(carNames, movePolicy);
-        List<Car> winners = racingEntries.getWinners();
-
-        assertThat(winners).hasSize(carNames.length);
-    }
-
-    @RepeatedTest(10)
-    @DisplayName("경주 시작 후에는 우승자 수는 참가자 수보다 같거다 적다.")
-    void winners_afterRace() {
-        String[] carNames = new String[] {"ab", "nm", "xy"};
-
-        MovePolicy movePolicy = new RandomMovePolicy();
-        RacingEntries racingEntries = new RacingEntries(carNames, movePolicy);
-        RacingEntries newEntries = racingEntries.move();
-        List<Car> winners = newEntries.getWinners();
-
-        assertThat(winners).hasSizeLessThanOrEqualTo(carNames.length);
     }
 }

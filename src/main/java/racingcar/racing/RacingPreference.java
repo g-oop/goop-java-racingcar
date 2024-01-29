@@ -1,7 +1,9 @@
 package racingcar.racing;
 
+import java.util.List;
+
 public record RacingPreference(
-    String[] carNames,
+    List<String> carNames,
     int moveCount
 ) {
 }

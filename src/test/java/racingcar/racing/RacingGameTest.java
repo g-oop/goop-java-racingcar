@@ -16,7 +16,7 @@ class RacingGameTest {
     @Test
     @DisplayName("게임을 시작하면, 각 경주 참가자가 이동 횟수만큼 이동한다.")
     void start() {
-        String[] carNames = new String[] {"yamsr", "gilbe", "nooos"};
+        List<String> carNames = List.of("yamsr", "gilbe", "nooos");
         int moveCount = 5;
         RacingUi racingUi = new TestRacingUi(carNames, moveCount);
         RacingPreference preference = racingUi.inputPreference();
@@ -36,10 +36,10 @@ class RacingGameTest {
 
     static class TestRacingUi implements RacingUi {
 
-        private final String[] carNames;
+        private final List<String> carNames;
         private final int moveCount;
 
-        public TestRacingUi(String[] carNames, int moveCount) {
+        public TestRacingUi(List<String> carNames, int moveCount) {
             this.carNames = carNames;
             this.moveCount = moveCount;
         }

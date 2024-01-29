@@ -11,20 +11,25 @@ public class RacingEntries {
     private final List<Car> cars;
     private final MovePolicy movePolicy;
 
-    private final List<Car> winners = new ArrayList<>();
-    private int maxPosition = 0;
+    private RacingEntries(List<Car> cars, MovePolicy movePolicy) {
+        validateCarNames(cars);
 
-    public RacingEntries(String[] carNames, MovePolicy movePolicy) {
-        this.cars = new ArrayList<>();
-        for (String carName: carNames) {
-            this.cars.add(new Car(carName));
-        }
+        this.cars = cars;
         this.movePolicy = movePolicy;
     }
 
-    public RacingEntries(List<Car> cars, MovePolicy movePolicy) {
-        this.cars = cars;
-        this.movePolicy = movePolicy;
+    private void validateCarNames(List<Car> cars) {
+        long count = cars.stream().map(Car::getName).distinct().count();
+        if (cars.size() != count) {
+            throw new IllegalArgumentException("자동차 이름이 중복되었습니다.");
+        }
+    }
+
+    public static RacingEntries of(List<String> carNames, MovePolicy movePolicy) {
+        return new RacingEntries(carNames.stream()
+            .map(String::trim)
+            .map(Car::new)
+            .toList(), movePolicy);
     }
 
     public RacingEntries move() {
@@ -44,24 +49,7 @@ public class RacingEntries {
     }
 
     public List<Car> getWinners() {
-        winners.clear();
-        maxPosition = 0;
-        for (Car car: this.cars) {
-            maxPosition = addWinnerAndGetNewMaxPosition(car);
-        }
-        return winners;
-    }
-
-    private int addWinnerAndGetNewMaxPosition(Car car) {
-        int currentPosition = car.currentPosition();
-        if (currentPosition > maxPosition) {
-            winners.clear();
-            winners.add(car);
-            return currentPosition;
-        }
-        if (currentPosition == maxPosition) {
-            winners.add(car);
-        }
-        return maxPosition;
+        RacingWinners racingWinners = new RacingWinners(this);
+        return racingWinners.getWinners();
     }
 }

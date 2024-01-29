@@ -3,8 +3,7 @@ package racingcar.ui;
 import racingcar.entry.Car;
 import racingcar.racing.*;
 
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class ConsoleRacingUi implements RacingUi {
 
@@ -21,7 +20,7 @@ public class ConsoleRacingUi implements RacingUi {
 
     private static String scanCarNames() {
         print("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분). ");
-        return SCANNER.next();
+        return SCANNER.nextLine();
     }
 
     private static int scanMoveCount() {
@@ -29,8 +28,12 @@ public class ConsoleRacingUi implements RacingUi {
         return SCANNER.nextInt();
     }
 
-    private String[] splitCarNames(String carNames) {
-        return carNames.split(",");
+    private List<String> splitCarNames(String carNames) {
+        String[] split = carNames.split(",");
+        if (split.length < 2) {
+            throw new IllegalArgumentException("자동차 이름을 2개 미만 입력하셨습니다.");
+        }
+        return Arrays.asList(split);
     }
 
     @Override

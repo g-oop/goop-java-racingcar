@@ -5,6 +5,8 @@ import racingcar.entry.RandomMovePolicy;
 import racingcar.ui.ConsoleRacingUi;
 import racingcar.ui.RacingUi;
 
+import java.util.List;
+
 public class RacingGame {
 
     private final RacingPreference preference;
@@ -16,7 +18,8 @@ public class RacingGame {
         }
 
         this.preference = preference;
-        this.racingEntries = new RacingEntries(this.preference.carNames(), movePolicy);
+        List<String> carNames = this.preference.carNames();
+        this.racingEntries = RacingEntries.of(carNames, movePolicy);
     }
 
     public RacingResult race() {
