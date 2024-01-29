@@ -25,6 +25,4 @@ public class InputResult {
         }
         return getInput(message);
     }
-
-
 }
