@@ -33,12 +33,12 @@ public class RacingGame {
 
     private void moveCars(int tryCount, OutputResult outputResult) {
         for (int move = 0; move < tryCount; move++) {
-            moveIfRandomValueGreaterThan();
+            generateRandomValue();
             outputResult.printCarStates(getCarPositions());
         }
     }
 
-    private void moveIfRandomValueGreaterThan() {
+    private void generateRandomValue() {
         for (Car car: cars) {
             int randomValue = numberGenerator.generateRandomValue(RANGE_NUMBER);
             car.move(randomValue);
