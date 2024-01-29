@@ -5,14 +5,12 @@ import racingcar.entry.RandomMovePolicy;
 import racingcar.ui.ConsoleRacingUi;
 import racingcar.ui.RacingUi;
 
+import java.util.List;
+
 public class RacingGame {
 
     private final RacingPreference preference;
     private final RacingEntries racingEntries;
-
-    public RacingGame(RacingPreference preference) {
-        this(preference, null);
-    }
 
     public RacingGame(RacingPreference preference, MovePolicy movePolicy) {
         if (preference == null) {
@@ -20,22 +18,16 @@ public class RacingGame {
         }
 
         this.preference = preference;
-        this.racingEntries = new RacingEntries(this.preference.carCount(), movePolicy);
-    }
-
-    public RacingEntries getRacingEntries() {
-        return racingEntries;
-    }
-
-    public int getRacingEntryCount() {
-        return racingEntries.getEntryCount();
+        List<String> carNames = this.preference.carNames();
+        this.racingEntries = RacingEntries.of(carNames, movePolicy);
     }
 
     public RacingResult race() {
         RacingResult result = new RacingResult();
+        RacingEntries currentEntries = racingEntries;
         for (int i = 0; i < preference.moveCount(); i++) {
-            racingEntries.move();
-            result.recordSnapshot(new RacingEntries(racingEntries));
+            currentEntries = currentEntries.move();
+            result.recordSnapshot(currentEntries);
         }
         return result;
     }

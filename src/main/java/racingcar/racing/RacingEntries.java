@@ -8,28 +8,36 @@ import java.util.List;
 
 public class RacingEntries {
 
-    private final List<Car> cars = new ArrayList<>();
+    private final List<Car> cars;
+    private final MovePolicy movePolicy;
 
-    public RacingEntries(int entryCount) {
-        for (int i = 0; i < entryCount; i++) {
-            cars.add(new Car());
+    private RacingEntries(List<Car> cars, MovePolicy movePolicy) {
+        validateCarNames(cars);
+
+        this.cars = cars;
+        this.movePolicy = movePolicy;
+    }
+
+    private void validateCarNames(List<Car> cars) {
+        long count = cars.stream().map(Car::getName).distinct().count();
+        if (cars.size() != count) {
+            throw new IllegalArgumentException("자동차 이름이 중복되었습니다.");
         }
     }
 
-    public RacingEntries(int entryCount, MovePolicy movePolicy) {
-        for (int i = 0; i < entryCount; i++) {
-            cars.add(new Car(movePolicy));
-        }
+    public static RacingEntries of(List<String> carNames, MovePolicy movePolicy) {
+        return new RacingEntries(carNames.stream()
+            .map(String::trim)
+            .map(Car::new)
+            .toList(), movePolicy);
     }
 
-    public RacingEntries(RacingEntries racingEntries) {
-        this.cars.addAll(racingEntries.getEntries());
-    }
-
-    public void move() {
+    public RacingEntries move() {
+        List<Car> newCars = new ArrayList<>();
         for (Car car: cars) {
-            car.move();
+            newCars.add(car.move(movePolicy));
         }
+        return new RacingEntries(newCars, movePolicy);
     }
 
     public int getEntryCount() {
@@ -37,10 +45,11 @@ public class RacingEntries {
     }
 
     public List<Car> getEntries() {
-        ArrayList<Car> copyCars = new ArrayList<>();
-        for (Car car: cars) {
-            copyCars.add(new Car(car));
-        }
-        return copyCars;
+        return cars;
+    }
+
+    public List<Car> getWinners() {
+        RacingWinners racingWinners = new RacingWinners(this);
+        return racingWinners.getWinners();
     }
 }
