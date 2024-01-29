@@ -2,33 +2,40 @@ package domain;
 
 import java.util.Random;
 
-public class Car {
+public class Car implements Moveable {
 
-    private static final int MIN_VALUE = 4;
-
-
+    private String name;
     private int position;
 
-    public Car() {
+    public Car(String name) {
+        this.name = name;
         this.position = 0;
-        this.random = new Random();
     }
 
+    public String getName() {
+        return name;
+    }
 
     public int getPosition() {
         return position;
     }
 
-    public void move(int number) {
-        if (number >= MIN_VALUE) {
+    public void move(){
+        generateRandomAndMove();
+    }
+
+    private void generateRandomAndMove() {
+        int randomNumber = new Random().nextInt(10);
+        if(randomNumber >= 4) {
             position++;
         }
     }
 
-
-    public String getState() {
+    public String getState(){
         StringBuilder state = new StringBuilder("|");
-        state.append("-".repeat(Math.max(0, position)));
+        for(int i = 0; i< position; i++){
+            state.append("-");
+        }
         state.append(">");
         return state.toString();
     }

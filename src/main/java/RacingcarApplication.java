@@ -1,12 +1,9 @@
-import domain.RacingGame;
-import domain.ui.*;
+import domain.ui.RacingGame;
 
 public class RacingcarApplication {
 
     public static void main(String[] args) {
-        InputProvider inputProvider = new InputResult();
-        OutputProvider outputProvider = new OutputResult();
-        RacingGame racingGame = new RacingGame(inputProvider, outputProvider);
+        RacingGame racingGame = new RacingGame();
         racingGame.play();
     }
 
