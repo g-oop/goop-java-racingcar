@@ -5,7 +5,9 @@ import java.util.List;
 
 import domain.Car;
 import strategy.NumberGenerator;
-import ui.OutputResult;
+
+import static ui.OutputResult.printCarStates;
+import static ui.OutputResult.printMessage;
 
 
 public class RacingGame {
@@ -19,9 +21,9 @@ public class RacingGame {
         initializeCars(carCount);
     }
 
-    public void play(OutputResult outputResult, int tryCount) {
-        outputResult.printMessage("\n실행 결과:");
-        moveCars(tryCount, outputResult);
+    public void play(int tryCount) {
+        printMessage("\n실행 결과:");
+        moveCars(tryCount);
     }
 
 
@@ -31,10 +33,10 @@ public class RacingGame {
         }
     }
 
-    private void moveCars(int tryCount, OutputResult outputResult) {
+    private void moveCars(int tryCount) {
         for (int move = 0; move < tryCount; move++) {
             generateRandomValue();
-            outputResult.printCarStates(getCarPositions());
+            printCarStates(getCarPositions());
         }
     }
 
