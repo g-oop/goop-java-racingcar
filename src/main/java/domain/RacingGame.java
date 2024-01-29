@@ -11,9 +11,11 @@ public class RacingGame {
 
     private final List<Car> cars;
     private static final int RANGE_NUMBER = 10;
+    private final OutputResult outputResult;
 
     public RacingGame() {
         this.cars = new ArrayList<>();
+        this.outputResult = new OutputResult();
     }
 
     public void play(InputResult inputResult, OutputResult outputResult) {
@@ -21,7 +23,7 @@ public class RacingGame {
         int tryCount = inputResult.getTryCount();
         initializeCars(carCount);
         outputResult.printMessage("\n실행 결과:");
-        moveCars(tryCount, outputResult);
+        moveCars(tryCount);
     }
 
 
@@ -31,7 +33,7 @@ public class RacingGame {
         }
     }
 
-    private void moveCars(int tryCount, OutputResult outputResult) {
+    private void moveCars(int tryCount) {
         for (int move = 0; move < tryCount; move++) {
             moveIfRandomValueGreaterThan();
             outputResult.printCarStates(getCarPositions());
