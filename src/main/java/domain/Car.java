@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.Random;
+
 public class Car {
 
     private static final int MIN_VALUE = 4;
@@ -9,6 +11,7 @@ public class Car {
 
     public Car() {
         this.position = 0;
+        this.random = new Random();
     }
 
 

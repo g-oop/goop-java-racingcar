@@ -1,5 +1,5 @@
 import domain.RacingGame;
-import ui.*;
+import domain.ui.*;
 
 public class RacingcarApplication {
 
@@ -9,4 +9,6 @@ public class RacingcarApplication {
         RacingGame racingGame = new RacingGame(inputProvider, outputProvider);
         racingGame.play();
     }
+
+
 }
