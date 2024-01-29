@@ -1,5 +1,6 @@
 package ui;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class InputResult {
@@ -24,13 +25,8 @@ public class InputResult {
             try {
                 System.out.print(message);
                 input = Integer.parseInt(scanner.nextLine());
-
-                if (input <= 0) {
-                    System.out.println("0보다 큰 정수를 입력하세요.");
-                } else {
-                    validInput = true;
-                }
-            } catch (NumberFormatException e) {
+                validInput = true;
+            } catch (InputMismatchException e) {
                 System.out.println("유효하지 않은 입력입니다. 정수를 입력하세요.");
             }
         }

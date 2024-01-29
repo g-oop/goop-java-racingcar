@@ -1,7 +1,5 @@
 package domain;
 
-import java.util.Random;
-
 public class Car {
 
     private static final int MIN_VALUE = 4;
@@ -18,33 +16,10 @@ public class Car {
         return position;
     }
 
-    public void move(int rangeNumber) {
-        if (generateRandom(rangeNumber) >= MIN_VALUE) {
+    public void move(int number) {
+        if (number >= MIN_VALUE) {
             position++;
         }
-    }
-
-    private int generateRandom(int rangeNumber) {
-        return new Random().nextInt(rangeNumber);
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-
-        Car car = (Car) o;
-
-        return position == car.position;
-    }
-
-    @Override
-    public int hashCode() {
-        return position;
     }
 
 

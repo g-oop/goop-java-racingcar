@@ -1,7 +1,6 @@
 package domain;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import ui.InputResult;
 import ui.OutputResult;
@@ -27,6 +26,7 @@ public class RacingGame {
         initializeCars(carCount);
         outputResult.printMessage("\n실행 결과:");
         moveCars(tryCount);
+        outputResult.printCarStates(cars);
     }
 
 
@@ -38,15 +38,16 @@ public class RacingGame {
 
     private void moveCars(int tryCount) {
         for (int move = 0; move < tryCount; move++) {
-            extracted(RANGE_NUMBER);
+            int randomNumber = generateRandom(RANGE_NUMBER);
+            for (Car car: cars) {
+                car.move(randomNumber);
+            }
             outputResult.printCarStates(cars);
         }
     }
 
-    private void extracted(int randomNumber) {
-        for (Car car: cars) {
-            car.move(randomNumber);
-        }
+    private int generateRandom(int number) {
+        return new Random().nextInt(number);
     }
 
 
