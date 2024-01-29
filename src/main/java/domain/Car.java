@@ -1,12 +1,10 @@
 package domain;
 
-import strategy.NumberGenerator;
 import strategy.NumberGeneratorImpl;
 
 public class Car {
 
     private static final int MIN_VALUE = 4;
-    private final NumberGenerator numberGenerator;
 
     private int position;
 
