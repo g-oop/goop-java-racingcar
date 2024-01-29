@@ -10,12 +10,11 @@ import ui.OutputResult;
 
 public class RacingGame {
 
-    private final List<Car> cars;
+    private final List<Car> cars = new ArrayList<>();
     private static final int RANGE_NUMBER = 10;
     private final NumberGenerator numberGenerator;
 
     public RacingGame(int carCount, NumberGenerator numberGenerator) {
-        this.cars = new ArrayList<>();
         this.numberGenerator = numberGenerator;
         initializeCars(carCount);
     }
