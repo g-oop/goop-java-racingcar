@@ -1,7 +1,7 @@
-//package domain;
-//
-//public interface Game {
-//
-//    void play();
-//
-//}
+package domain;
+
+public interface Game {
+
+    void play();
+
+}
