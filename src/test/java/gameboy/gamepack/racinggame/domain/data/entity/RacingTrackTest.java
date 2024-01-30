@@ -1,8 +1,10 @@
-package gameboy.gamepack.racinggame.data.entity;
+package gameboy.gamepack.racinggame.domain.data.entity;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import gameboy.gamepack.racinggame.domain.data.entity.Car;
+import gameboy.gamepack.racinggame.domain.data.entity.RacingTrack;
 import org.junit.jupiter.api.*;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;

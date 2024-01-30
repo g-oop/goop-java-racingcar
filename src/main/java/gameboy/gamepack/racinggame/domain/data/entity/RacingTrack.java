@@ -1,10 +1,10 @@
-package gameboy.gamepack.racinggame.data.entity;
+package gameboy.gamepack.racinggame.domain.data.entity;
 
 import java.util.HashSet;
 import java.util.List;
 
-import gameboy.gamepack.racinggame.data.dto.RaceResultDto;
-import gameboy.gamepack.racinggame.exception.InvalidRacerNameException;
+import gameboy.gamepack.racinggame.domain.data.dto.RaceResultDto;
+import gameboy.gamepack.racinggame.domain.data.exception.InvalidRacerNameException;
 
 public class RacingTrack {
 

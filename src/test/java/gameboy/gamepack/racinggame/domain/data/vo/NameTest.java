@@ -1,11 +1,8 @@
-package gameboy.gamepack.racinggame.data.vo;
+package gameboy.gamepack.racinggame.domain.data.vo;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import gameboy.gamepack.racinggame.exception.InvalidRacerNameException;
+import gameboy.gamepack.racinggame.domain.data.vo.Name;
+import gameboy.gamepack.racinggame.domain.data.exception.InvalidRacerNameException;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 

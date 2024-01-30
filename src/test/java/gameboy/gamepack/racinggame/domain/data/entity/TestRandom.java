@@ -1,4 +1,4 @@
-package gameboy.gamepack.racinggame.data.entity;
+package gameboy.gamepack.racinggame.domain.data.entity;
 
 import java.util.Random;
 

@@ -1,8 +1,8 @@
-package gameboy.gamepack.racinggame.data.vo;
+package gameboy.gamepack.racinggame.domain.data.vo;
 
 import java.util.*;
 
-import gameboy.gamepack.racinggame.data.entity.Car;
+import gameboy.gamepack.racinggame.domain.data.entity.Car;
 
 public class RaceLog {
 

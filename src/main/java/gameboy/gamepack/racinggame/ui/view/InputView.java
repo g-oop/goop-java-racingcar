@@ -1,10 +1,10 @@
-package gameboy.gamepack.racinggame.view;
+package gameboy.gamepack.racinggame.ui.view;
 
 import java.util.*;
 import java.util.stream.Stream;
 
-import gameboy.gamepack.racinggame.data.vo.Name;
-import gameboy.gamepack.racinggame.exception.InvalidRacerNameException;
+import gameboy.gamepack.racinggame.domain.data.vo.Name;
+import gameboy.gamepack.racinggame.domain.data.exception.InvalidRacerNameException;
 
 public class InputView {
 

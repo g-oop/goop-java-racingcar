@@ -1,9 +1,9 @@
-package gameboy.gamepack.racinggame.data.dto;
+package gameboy.gamepack.racinggame.domain.data.dto;
 
 import java.util.List;
 
-import gameboy.gamepack.racinggame.data.entity.Car;
-import gameboy.gamepack.racinggame.data.vo.RaceLog;
+import gameboy.gamepack.racinggame.domain.data.entity.Car;
+import gameboy.gamepack.racinggame.domain.data.vo.RaceLog;
 
 public record RaceResultDto(
     List<RaceLog> raceLogs,

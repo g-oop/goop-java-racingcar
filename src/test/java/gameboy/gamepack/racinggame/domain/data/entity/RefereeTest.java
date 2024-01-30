@@ -1,8 +1,11 @@
-package gameboy.gamepack.racinggame.data.entity;
+package gameboy.gamepack.racinggame.domain.data.entity;
 
 import java.util.*;
 
-import gameboy.gamepack.racinggame.data.vo.*;
+import gameboy.gamepack.racinggame.domain.data.entity.Car;
+import gameboy.gamepack.racinggame.domain.data.entity.Referee;
+import gameboy.gamepack.racinggame.domain.data.vo.Name;
+import gameboy.gamepack.racinggame.domain.data.vo.Position;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

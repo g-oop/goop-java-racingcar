@@ -1,8 +1,8 @@
-package gameboy.gamepack.racinggame.data.vo;
+package gameboy.gamepack.racinggame.domain.data.vo;
 
 import java.util.Objects;
 
-import gameboy.gamepack.racinggame.exception.InvalidRacerNameException;
+import gameboy.gamepack.racinggame.domain.data.exception.InvalidRacerNameException;
 
 public class Name {
 

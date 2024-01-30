@@ -1,11 +1,11 @@
-package gameboy.gamepack.racinggame.view;
+package gameboy.gamepack.racinggame.ui.view;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
-import gameboy.gamepack.racinggame.data.dto.RaceResultDto;
-import gameboy.gamepack.racinggame.data.entity.Car;
-import gameboy.gamepack.racinggame.data.vo.RaceLog;
+import gameboy.gamepack.racinggame.domain.data.dto.RaceResultDto;
+import gameboy.gamepack.racinggame.domain.data.entity.Car;
+import gameboy.gamepack.racinggame.domain.data.vo.RaceLog;
 
 public class ResultView {
 

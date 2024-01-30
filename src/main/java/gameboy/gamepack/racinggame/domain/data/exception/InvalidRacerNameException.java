@@ -1,4 +1,4 @@
-package gameboy.gamepack.racinggame.exception;
+package gameboy.gamepack.racinggame.domain.data.exception;
 
 public class InvalidRacerNameException extends RuntimeException {
 

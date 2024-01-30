@@ -1,5 +1,6 @@
-package gameboy.gamepack.racinggame.data.vo;
+package gameboy.gamepack.racinggame.domain.data.vo;
 
+import gameboy.gamepack.racinggame.domain.data.vo.Position;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

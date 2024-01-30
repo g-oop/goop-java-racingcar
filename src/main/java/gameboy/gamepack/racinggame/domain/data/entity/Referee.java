@@ -1,13 +1,11 @@
-package gameboy.gamepack.racinggame.data.entity;
+package gameboy.gamepack.racinggame.domain.data.entity;
 
 import java.util.*;
 
-import gameboy.gamepack.racinggame.data.vo.Position;
-import gameboy.gamepack.racinggame.data.vo.RaceLog;
+import gameboy.gamepack.racinggame.domain.data.vo.Position;
+import gameboy.gamepack.racinggame.domain.data.vo.RaceLog;
 
 public class Referee {
-
-    private static final int MIN_POSITION_VALUE = 0;
 
     private RaceRecorder recorder;
 
