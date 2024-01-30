@@ -67,7 +67,6 @@ public class RacingGameTest {
     public void test() {
         Assertions.assertThatThrownBy(() -> new Car("sujin1234"))
             .isInstanceOf(IllegalArgumentException.class);
-
     }
 }
 
