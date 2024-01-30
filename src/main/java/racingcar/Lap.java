@@ -1,7 +1,6 @@
 package racingcar;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Lap {
 
@@ -15,10 +14,12 @@ public class Lap {
         }
     }
 
-    public void start() {
+    public void start(Rule rule) {
 
         for (Car car : cars) {
-            car.run();
+            if (!rule.isStop()) {
+                car.run();
+            }
         }
     }
 
@@ -27,11 +28,14 @@ public class Lap {
     }
 
     public int getTotalDistance() {
+        return Arrays.stream(getOdometerList()).sum();
+    }
 
-        int totalDistance = 0;
-        for (Car car : cars) {
-            totalDistance += car.getOdometer();
-        }
-        return totalDistance;
+    public int[] getOdometerList() {
+        return cars.stream().mapToInt(Car::getOdometer).toArray();
+    }
+
+    public int getTotalCars() {
+        return cars.size();
     }
 }

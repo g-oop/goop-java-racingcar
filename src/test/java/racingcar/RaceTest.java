@@ -23,14 +23,15 @@ class RaceTest {
         int n = inputView.inputCars();
 
         Lap lap = new Lap(n);
+        Rule rule = new LinearRule();
 
-        lap.start();
+        lap.start(rule);
         Assertions.assertThat(lap.getTotalDistance()).isEqualTo(n);
 
         lap.stop();
         Assertions.assertThat(lap.getTotalDistance()).isEqualTo(n);
 
-        lap.start();
+        lap.start(rule);
         Assertions.assertThat(lap.getTotalDistance()).isEqualTo(n * 2);
     }
 
@@ -48,27 +49,29 @@ class RaceTest {
         int t = inputView.inputTries();
 
         Race race = new Race(n, t);
+        Rule rule = new LinearRule();
 
-        race.start();
-        Assertions.assertThat(race.getCumulativeDistanceOfAllCars()).isEqualTo(result);
+        race.begin(rule);
+        Assertions.assertThat(race.getLastLapDistance()).isEqualTo(result);
     }
-//
-//    @DisplayName("전진하는 조건은 0에서 9 사이에서 random 값을 구한 후 random 값이 4이상일 경우이다.")
-//    @CsvSource(value = {"1|2|2", "2|1|2", "5|4|20"}, delimiter = '|')
-//    @ParameterizedTest
-//    void random(int cars, int tries, int result) {
-//
-//        String data = String.join("\n", List.of(String.valueOf(cars), String.valueOf(tries), String.valueOf(result)));
-//        ByteArrayInputStream in = new ByteArrayInputStream(data.getBytes());
-//        System.setIn(in);
-//
-//        InputView inputView = new InputView();
-//        int n = inputView.inputCars();
-//        int t = inputView.inputTries();
-//
-//        Race race = new Race(n);
-//
-//        int stopCount = race.start(t, 0);
-//        Assertions.assertThat(race.totalCars()).isEqualTo(result - stopCount);
-//    }
+
+    @DisplayName("전진하는 조건은 0에서 9 사이에서 random 값을 구한 후 random 값이 4이상일 경우이다.")
+    @CsvSource(value = {"1|2|1", "2|1|1", "5|4|10"}, delimiter = '|')
+    @ParameterizedTest
+    void random(int cars, int tries, int result) {
+
+        String data = String.join("\n", List.of(String.valueOf(cars), String.valueOf(tries), String.valueOf(result)));
+        ByteArrayInputStream in = new ByteArrayInputStream(data.getBytes());
+        System.setIn(in);
+
+        InputView inputView = new InputView();
+        int n = inputView.inputCars();
+        int t = inputView.inputTries();
+
+        Race race = new Race(n, t);
+        Rule rule = new RandomRule(777);
+
+        race.begin(rule);
+        Assertions.assertThat(race.getLastLapDistance()).isEqualTo(result);
+    }
 }

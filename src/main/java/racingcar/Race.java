@@ -1,35 +1,27 @@
 package racingcar;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Race {
 
-//    private Rule rule;
-
-    private final List<Lap> laps;
-
+    private final Lap[] laps;
 
     public Race(int numberOfCars, int numberOfLaps) {
 
-        laps = new ArrayList<>();
-        for (int l = 0; l < numberOfLaps; l++) {
-            laps.add(new Lap(numberOfCars));
+        laps = new Lap[numberOfLaps];
+        laps[0] = new Lap(numberOfCars);
+    }
+
+    public void begin(Rule rule) {
+
+        for (int l = 0; l < laps.length; l++) {
+            if (l > 0) laps[l] = laps[l - 1];
+            laps[l].start(rule);
+            ResultView.printResult(laps[l].getOdometerList());
         }
     }
 
-    public void start() {
-        for (Lap lap : laps) {
-            lap.start();
-        }
-    }
-
-    public int getCumulativeDistanceOfAllCars() {
-
-        int cumulativeDistance = 0;
-        for (Lap lap : laps) {
-            cumulativeDistance += lap.getTotalDistance();
-        }
-        return cumulativeDistance;
+    public int getLastLapDistance() {
+        return laps[laps.length - 1].getTotalDistance();
     }
 }
