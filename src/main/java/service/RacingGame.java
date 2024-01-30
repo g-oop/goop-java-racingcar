@@ -37,7 +37,7 @@ public class RacingGame {
     private void moveCars(int tryCount) {
         for (int move = 0; move < tryCount; move++) {
             generateRandomValue();
-            printCarStates(getCarPositions());
+            printCarStates(getCarNames(), getCarPositions());
         }
     }
 
@@ -48,7 +48,17 @@ public class RacingGame {
         }
     }
 
+    private String[] getCarNames() {
+        String[] carNames = new String[cars.size()];
+        for (int i = 0; i < cars.size(); i++) {
+            carNames[i] = cars.get(i).getName();
+        }
+        return carNames;
+    }
+
     private int[] getCarPositions() {
         return cars.stream().mapToInt(Car::getPosition).toArray();
     }
+
+
 }
