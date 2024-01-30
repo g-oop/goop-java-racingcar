@@ -1,4 +1,6 @@
 import domain.Car;
+import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -57,6 +59,15 @@ public class RacingGameTest {
             car.move(randomValue);
             assertEquals(car.getPosition(), position + 1);
         }
+
+    }
+
+    @DisplayName("이름 길이 제한 테스트")
+    @Test
+    public void test() {
+        Assertions.assertThatThrownBy(() -> new Car("sujin1234"))
+            .isInstanceOf(IllegalArgumentException.class);
+
     }
 }
 

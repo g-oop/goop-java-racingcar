@@ -6,8 +6,8 @@ import java.util.List;
 import domain.Car;
 import strategy.NumberGenerator;
 
-import static ui.OutputResult.printCarStates;
-import static ui.OutputResult.printMessage;
+import static ui.OutputResult.determineWinner;
+import static ui.OutputResult.printWinner;
 
 
 public class RacingGame {
@@ -22,7 +22,6 @@ public class RacingGame {
     }
 
     public void play(int tryCount) {
-        printMessage("\n실행 결과:");
         moveCars(tryCount);
     }
 
@@ -35,10 +34,13 @@ public class RacingGame {
     }
 
     private void moveCars(int tryCount) {
+        List<String> determineWinners = new ArrayList<>();
         for (int move = 0; move < tryCount; move++) {
             generateRandomValue();
-            printCarStates(getCarNames(), getCarPositions());
+            List<String> winners = determineWinner(getCarNames(), getCarPositions());
+            determineWinners.addAll(winners);
         }
+        printWinner(determineWinners);
     }
 
     private void generateRandomValue() {
