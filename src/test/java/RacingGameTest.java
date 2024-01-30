@@ -45,7 +45,7 @@ public class RacingGameTest {
         int position = car.getPosition();
 
         NumberGenerator numberGenerator = new NumberGeneratorImpl();
-        int randomValue = numberGenerator.generateRandomValue(RANDOM_RANGE);
+        int randomValue = numberGenerator.generateRandomValue(10);
 
 
         if (randomValue <= 3) {
