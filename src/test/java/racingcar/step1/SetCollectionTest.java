@@ -1,4 +1,4 @@
-package racingcar;
+package racingcar.step1;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
+import racingcar.step1.SetCollection;
 
 public class SetCollectionTest {
 

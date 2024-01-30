@@ -1,4 +1,4 @@
-package racingcar;
+package racingcar.step345;
 
 public class LinearRule implements Rule {
 

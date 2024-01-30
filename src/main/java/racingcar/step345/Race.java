@@ -1,6 +1,4 @@
-package racingcar;
-
-import java.util.*;
+package racingcar.step345;
 
 public class Race {
 

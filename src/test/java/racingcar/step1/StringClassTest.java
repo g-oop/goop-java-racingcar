@@ -1,8 +1,9 @@
-package racingcar;
+package racingcar.step1;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import racingcar.step1.StringClass;
 
 public class StringClassTest {
 

@@ -1,4 +1,4 @@
-package racingcar;
+package racingcar.step345;
 
 import java.util.List;
 

@@ -1,10 +1,11 @@
-package racingcar;
+package racingcar.step345;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
+import racingcar.step345.*;
 
 import java.io.ByteArrayInputStream;
 import java.util.List;
