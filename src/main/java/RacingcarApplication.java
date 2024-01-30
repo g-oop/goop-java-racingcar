@@ -8,9 +8,9 @@ public class RacingcarApplication {
     public static void main(String[] args) {
         InputResult inputResult = new InputResult();
         NumberGenerator numberGenerator = new NumberGeneratorImpl();
-        int carCount = inputResult.getCarCount();
+        String carNameFromUser = inputResult.getCarNameFromUser();
         int tryCount = inputResult.getTryCount();
-        RacingGame racingGame = new RacingGame(carCount, numberGenerator);
+        RacingGame racingGame = new RacingGame(numberGenerator, carNameFromUser);
         racingGame.play(tryCount);
     }
 }

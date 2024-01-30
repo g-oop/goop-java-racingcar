@@ -13,6 +13,7 @@ public class OutputResult {
         System.out.println("\n");
     }
 
+
     private static String getState(int position) {
         StringBuilder state = new StringBuilder("|");
         state.append("-".repeat(Math.max(0, position)));

@@ -16,9 +16,9 @@ public class RacingGame {
     private static final int RANGE_NUMBER = 10;
     private final NumberGenerator numberGenerator;
 
-    public RacingGame(int carCount, NumberGenerator numberGenerator) {
+    public RacingGame(NumberGenerator numberGenerator, String carNameFromUser) {
         this.numberGenerator = numberGenerator;
-        initializeCars(carCount);
+        initializeCars(carNameFromUser);
     }
 
     public void play(int tryCount) {
@@ -27,9 +27,10 @@ public class RacingGame {
     }
 
 
-    public void initializeCars(int carCount) {
-        for (int i = 0; i < carCount; i++) {
-            cars.add(new Car());
+    public void initializeCars(String carNameFromUser) {
+        String[] carNames = carNameFromUser.split(",");
+        for (String carName: carNames) {
+            cars.add(new Car(carName));
         }
     }
 
