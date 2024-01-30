@@ -38,6 +38,19 @@ public class Race {
         return this.currentRound;
     }
 
+    public void endRace() {
+        int maxPosition = cars.stream()
+            .map(Car::getTotalDistance)
+            .max(Integer::compare)
+            .orElse(0);
+
+        List<Car> winners = cars.stream()
+            .filter(c -> c.getTotalDistance() >= maxPosition)
+            .toList();
+
+        resultView.displayWinners(winners);
+    }
+
     private void readyRace() {
         this.currentRound = 0;
 

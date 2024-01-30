@@ -17,5 +17,6 @@ public class StartRacing {
 
         Race race = new Race(cars, new ResultView(), new RandomGenerator());
         race.startRace(iv.getRoundCount());
+        race.endRace();
     }
 }

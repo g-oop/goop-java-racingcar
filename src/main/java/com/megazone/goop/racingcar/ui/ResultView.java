@@ -17,4 +17,8 @@ public class ResultView {
         );
         System.out.println();
     }
+
+    public void displayWinners(List<Car> cars) {
+        System.out.println(String.join(", ", cars.stream().map(Car::getName).toList()) + "가 최종 우승했습니다.");
+    }
 }
