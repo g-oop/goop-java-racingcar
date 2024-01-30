@@ -1,6 +1,9 @@
 package com.megazone.goop.racingcar.ui;
 
+import java.text.MessageFormat;
 import java.util.List;
+
+import com.megazone.goop.racingcar.logic.Car;
 
 public class ResultView {
 
@@ -8,8 +11,10 @@ public class ResultView {
         System.out.println("\n실행결과");
     }
 
-    public void displayPositions(List<Integer> positions) {
-        positions.forEach(n -> System.out.println("-".repeat(n)));
+    public void displayPositions(List<Car> cars) {
+        cars.forEach(c ->
+            System.out.println(MessageFormat.format("{0} : {1}", c.getName(), "-".repeat(c.getTotalDistance())))
+        );
         System.out.println();
     }
 }
