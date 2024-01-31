@@ -7,7 +7,6 @@ import domain.Car;
 import strategy.NumberGenerator;
 
 import static ui.OutputResult.determineWinner;
-import static ui.OutputResult.printWinner;
 
 
 public class RacingGame {
@@ -16,9 +15,9 @@ public class RacingGame {
     private static final int RANGE_NUMBER = 10;
     private final NumberGenerator numberGenerator;
 
-    public RacingGame(NumberGenerator numberGenerator, String carNameFromUser) {
+    public RacingGame(NumberGenerator numberGenerator, String[] carNames) {
         this.numberGenerator = numberGenerator;
-        initializeCars(carNameFromUser);
+        initializeCars(carNames);
     }
 
     public void play(int tryCount) {
@@ -26,8 +25,8 @@ public class RacingGame {
     }
 
 
-    public void initializeCars(String carNameFromUser) {
-        String[] carNames = carNameFromUser.split(",");
+    public void initializeCars(String[] carNames) {
+        //String[] carNames = carNameFromUser.split(",");
         for (String carName: carNames) {
             cars.add(new Car(carName));
         }
@@ -40,7 +39,6 @@ public class RacingGame {
             List<String> winners = determineWinner(getCarNames(), getCarPositions());
             determineWinners.addAll(winners);
         }
-        printWinner(determineWinners);
     }
 
     private void generateRandomValue() {

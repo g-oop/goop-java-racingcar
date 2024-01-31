@@ -64,10 +64,34 @@ public class RacingGameTest {
 
     @DisplayName("이름 길이 제한 테스트")
     @Test
-    public void test() {
+    public void validateName() {
         Assertions.assertThatThrownBy(() -> new Car("sujin1234"))
             .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("경주 테스트")
+    @Test
+    public void racingGame() {
+
+        Car car1 = new Car("suji1");
+        Car car2 = new Car("suji2");
+        Car car3 = new Car("suji3");
+        Car car4 = new Car("suji4");
+        Car car5 = new Car("suji5");
+
+        NumberGenerator numberGenerator = new NumberGeneratorImpl();
+        int randomValue = numberGenerator.generateRandomValue(10);
+
+        car1.move(randomValue);
+        car2.move(randomValue);
+        car3.move(randomValue);
+        car4.move(randomValue);
+        car5.move(randomValue);
+
+        
+    }
+
+
 }
 
 
