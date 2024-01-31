@@ -29,9 +29,9 @@ public class OutputResult {
         System.out.println(message);
     }
 
-    public static void printCars(String[] carNames, int[] positions) {
-        for (int i = 0; i < carNames.length; i++) {
-            System.out.println(getState(carNames[i], positions[i]));
+    public static void printCarsNameLocation(List<Car> cars) {
+        for (int i = 0; i < cars.size(); i++) {
+            System.out.println(getState(cars.get(i).getName(), cars.get(i).getPosition()));
         }
         System.out.println("\n");
     }
