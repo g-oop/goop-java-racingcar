@@ -26,7 +26,6 @@ public class RacingGame {
 
 
     public void initializeCars(String[] carNames) {
-        //String[] carNames = carNameFromUser.split(",");
         for (String carName: carNames) {
             cars.add(new Car(carName));
         }
@@ -35,13 +34,13 @@ public class RacingGame {
     private void moveCars(int tryCount) {
         List<String> winnersDecision = new ArrayList<>();
         for (int move = 0; move < tryCount; move++) {
-            generateRandomValue();
+            carMovesAccordingRandomValues();
             List<String> winners = determineWinner(getCarNames(), getCarPositions());
             winnersDecision.addAll(winners);
         }
     }
 
-    private void generateRandomValue() {
+    private void carMovesAccordingRandomValues() {
         for (Car car: cars) {
             int randomValue = numberGenerator.generateRandomValue(RANGE_NUMBER);
             car.move(randomValue);
@@ -59,6 +58,4 @@ public class RacingGame {
     private int[] getCarPositions() {
         return cars.stream().mapToInt(Car::getPosition).toArray();
     }
-
-
 }
