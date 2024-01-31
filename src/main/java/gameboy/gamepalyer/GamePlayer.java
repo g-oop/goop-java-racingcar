@@ -1,7 +1,7 @@
 package gameboy.gamepalyer;
 
 import gameboy.gamepack.GamePack;
-import gameboy.gamepack.racinggame.RacingGamePack;
+import gameboy.gamepack.racinggame.controller.RacingGamePack;
 
 public class GamePlayer {
 
