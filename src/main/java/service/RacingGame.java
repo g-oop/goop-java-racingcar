@@ -6,12 +6,13 @@ import java.util.List;
 import domain.Car;
 import strategy.NumberGenerator;
 
-import static ui.OutputResult.determineWinner;
+import static ui.OutputResult.*;
 
 
 public class RacingGame {
 
     private final List<Car> cars = new ArrayList<>();
+    private static final int RANGE_NUMBER = 10;
     private final NumberGenerator numberGenerator;
 
     public RacingGame(NumberGenerator numberGenerator, String[] carNames) {
@@ -31,12 +32,11 @@ public class RacingGame {
     }
 
     private void moveCars(int tryCount) {
-        List<String> decisionOfWinners = new ArrayList<>();
         for (int move = 0; move < tryCount; move++) {
             carMovesAccordingRandomValues();
-            List<String> winners = determineWinner(getCarNames(), getCarPositions());
-            decisionOfWinners.addAll(winners);
+            printCars(getCarNames(), getCarPositions());
         }
+        printWinner(determineWinner(cars));
     }
 
     private void carMovesAccordingRandomValues() {

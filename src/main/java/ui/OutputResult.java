@@ -1,27 +1,27 @@
 package ui;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+
+import domain.Car;
 
 public class OutputResult {
 
 
     public static void printWinner(List<String> winners) {
-        System.out.println("우승자는 " + String.join(", ", winners.get(winners.size() - 1)) + " 입니다!");
+
+        System.out.println("우승자는 " + String.join(", ", winners) + " 입니다!");
     }
 
-    public static List<String> determineWinner(String[] carNames, int[] positions) {
-        printCars(carNames, positions);
-        int maxPosition = Arrays.stream(positions).max().orElse(0);
-        return getWinners(carNames, positions, maxPosition);
-    }
+    public static List<String> determineWinner(List<Car> cars) {
+        int maxPosition = cars.stream()
+            .mapToInt(Car::getPosition)
+            .max()
+            .orElse(0);
 
-    private static List<String> getWinners(String[] carNames, int[] positions, int maxPosition) {
-        return IntStream.range(0, positions.length)
-            .filter(i -> positions[i] == maxPosition)
-            .mapToObj(i -> carNames[i])
+        return cars.stream()
+            .filter(car -> car.getPosition() == maxPosition)
+            .map(Car::getName)
             .collect(Collectors.toList());
     }
 
@@ -29,7 +29,7 @@ public class OutputResult {
         System.out.println(message);
     }
 
-    private static void printCars(String[] carNames, int[] positions) {
+    public static void printCars(String[] carNames, int[] positions) {
         for (int i = 0; i < carNames.length; i++) {
             System.out.println(getState(carNames[i], positions[i]));
         }
