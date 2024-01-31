@@ -25,8 +25,9 @@ public class CarName {
         }
     }
 
-    public static boolean isValid(String name) {
+    private static boolean isValid(String name) {
         return name.length() > MAX_LENGTH;
     }
+
 
 }
