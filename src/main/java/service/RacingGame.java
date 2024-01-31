@@ -33,11 +33,11 @@ public class RacingGame {
     }
 
     private void moveCars(int tryCount) {
-        List<String> determineWinners = new ArrayList<>();
+        List<String> winnersDecision = new ArrayList<>();
         for (int move = 0; move < tryCount; move++) {
             generateRandomValue();
             List<String> winners = determineWinner(getCarNames(), getCarPositions());
-            determineWinners.addAll(winners);
+            winnersDecision.addAll(winners);
         }
     }
 
