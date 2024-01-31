@@ -1,41 +1,31 @@
 package domain;
 
+import domain.vo.CarName;
+
 public class Car {
 
     private static final int MIN_VALUE = 4;
-    private static final int MAX_LENGTH = 5;
-    public static final String VALIDATION_MESSAGE_FORMAT = "길이는 %d를 초과할수없습니다.";
-
-    private static final String EX_MESSAGE = String.format(VALIDATION_MESSAGE_FORMAT, MAX_LENGTH);
 
 
     private int position;
-    private String name;
-
+    private CarName name;
 
     public Car() {
         this.position = 0;
     }
 
     public Car(String name) {
-        validateName(name);
-        this.name = name;
-        this.position = 0;
+        this(name, 0);
     }
 
-    private void validateName(String name) {
-        if (isValid(name)) {
-            throw new IllegalArgumentException(EX_MESSAGE);
-        }
-    }
-
-    public static boolean isValid(String name) {
-        return name.length() > MAX_LENGTH;
+    public Car(String name, int position) {
+        this.name = new CarName(name);
+        this.position = position;
     }
 
 
     public String getName() {
-        return name;
+        return name.getValue();
     }
 
     public int getPosition() {

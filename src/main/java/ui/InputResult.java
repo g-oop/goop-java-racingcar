@@ -31,9 +31,6 @@ public class InputResult {
         System.out.println(message);
         carNames = scanner.nextLine().trim().split(",");
         return carNames;
-        //if (carName.trim().isEmpty()) {
-        //    carName = "DefaultCar";
-        //}
     }
 
 }

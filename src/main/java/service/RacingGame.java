@@ -32,11 +32,11 @@ public class RacingGame {
     }
 
     private void moveCars(int tryCount) {
-        List<String> winnersDecision = new ArrayList<>();
+        List<String> decisionOfWinners = new ArrayList<>();
         for (int move = 0; move < tryCount; move++) {
             carMovesAccordingRandomValues();
             List<String> winners = determineWinner(getCarNames(), getCarPositions());
-            winnersDecision.addAll(winners);
+            decisionOfWinners.addAll(winners);
         }
     }
 
@@ -50,9 +50,10 @@ public class RacingGame {
     private String[] getCarNames() {
         String[] carNames = new String[cars.size()];
         for (int i = 0; i < cars.size(); i++) {
-            carNames[i] = cars.get(i).getName();
+            carNames[i] = cars.get(i).getName().toString();
         }
         return carNames;
+
     }
 
     private int[] getCarPositions() {
