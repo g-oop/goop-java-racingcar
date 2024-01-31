@@ -31,7 +31,7 @@ class RaceRecorderTest {
         //when
         RaceLog result = raceRecorder.playbackLastLog();
         //then
-        assertThat(result.getCars()).isEqualTo(cars);
+        assertThat(result.cars()).isEqualTo(cars);
     }
 
     @Test

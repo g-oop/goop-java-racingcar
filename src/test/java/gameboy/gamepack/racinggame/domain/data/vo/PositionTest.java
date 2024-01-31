@@ -20,9 +20,9 @@ public class PositionTest {
         //given
         Position position = new Position();
         //when
-        position.addOne();
+        Position result = position.addOne();
         //then
-        assertThat(position).isEqualTo(new Position(1));
+        assertThat(result).isEqualTo(new Position(1));
     }
 
     @Test
