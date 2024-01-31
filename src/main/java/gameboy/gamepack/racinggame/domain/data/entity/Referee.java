@@ -24,14 +24,14 @@ public class Referee {
     public List<Car> getWinners() {
         RaceLog raceLog = recorder.playbackLastLog();
         Position winnerPosition = getWinnerPosition(raceLog);
-        return raceLog.getCars()
+        return raceLog.cars()
             .stream()
             .filter(car -> car.isSamePosition(winnerPosition))
             .toList();
     }
 
     private Position getWinnerPosition(RaceLog raceLog) {
-        return raceLog.getCars()
+        return raceLog.cars()
             .stream()
             .map(Car::getPosition)
             .max(Position::compareTo)

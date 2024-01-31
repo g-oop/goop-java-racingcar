@@ -8,7 +8,7 @@ import gameboy.gamepack.racinggame.domain.data.exception.InvalidRacerNameExcepti
 
 public class RacingTrack {
 
-    private final List<Car> cars;
+    private List<Car> cars;
     private final Referee referee;
 
     public RacingTrack(List<Car> cars) {
@@ -40,12 +40,13 @@ public class RacingTrack {
 
     public RaceResultDto startRace(int raceCount) {
         for (int i = 0; i < raceCount; i++) {
-            referee.record(cars
+            cars = cars
                 .stream()
                 .map(Car::run)
-                .toList());
+                .toList();
+            referee.record(cars);
         }
-        return RaceResultDto.of(referee.playback(), referee.getWinners());
+        return RaceResultDto.toRaceResult(referee.playback(), referee.getWinners());
     }
 
 }

@@ -22,7 +22,7 @@ public class ResultView {
     }
 
     private static String createResult(RaceLog raceLog) {
-        return raceLog.getCars()
+        return raceLog.cars()
             .stream()
             .map(ResultView::createWheelMark)
             .collect(Collectors.joining("\n", "", "\n"));

@@ -7,9 +7,11 @@ public class Position implements Comparable<Position> {
     private static final int MIN_POSITION_VALUE = 0;
     public static final Position MIN = new Position(MIN_POSITION_VALUE);
 
-    private int value;
+    private final int value;
 
-    public Position() { }
+    public Position() {
+        this(0);
+    }
 
     public Position(int value) {
         validationPosition(value);
@@ -23,7 +25,7 @@ public class Position implements Comparable<Position> {
     }
 
     public Position addOne() {
-        return new Position(value += 1);
+        return new Position(value + 1);
     }
 
     public int value() {

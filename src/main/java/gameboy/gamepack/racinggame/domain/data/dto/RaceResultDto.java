@@ -10,7 +10,7 @@ public record RaceResultDto(
     List<Car> winners
 ) {
 
-    public static RaceResultDto of(List<RaceLog> raceLogs, List<Car> winners) {
+    public static RaceResultDto toRaceResult(List<RaceLog> raceLogs, List<Car> winners) {
         return new RaceResultDto(raceLogs, winners);
     }
 }
