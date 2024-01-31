@@ -47,7 +47,7 @@ public class RacingGameTest {
         int position = car.getPosition();
 
         NumberGenerator numberGenerator = new NumberGeneratorImpl();
-        int randomValue = numberGenerator.generateRandomValue(10);
+        int randomValue = numberGenerator.generateRandomValue();
 
 
         if (randomValue <= 3) {
@@ -80,7 +80,7 @@ public class RacingGameTest {
         Car car5 = new Car("suji5");
 
         NumberGenerator numberGenerator = new NumberGeneratorImpl();
-        int randomValue = numberGenerator.generateRandomValue(10);
+        int randomValue = numberGenerator.generateRandomValue();
 
         car1.move(randomValue);
         car2.move(randomValue);
@@ -88,7 +88,7 @@ public class RacingGameTest {
         car4.move(randomValue);
         car5.move(randomValue);
 
-        
+
     }
 
 

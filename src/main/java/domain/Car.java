@@ -36,6 +36,4 @@ public class Car {
             position.increment();
         }
     }
-
-
 }

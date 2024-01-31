@@ -12,7 +12,6 @@ import static ui.OutputResult.determineWinner;
 public class RacingGame {
 
     private final List<Car> cars = new ArrayList<>();
-    private static final int RANGE_NUMBER = 10;
     private final NumberGenerator numberGenerator;
 
     public RacingGame(NumberGenerator numberGenerator, String[] carNames) {
@@ -42,7 +41,7 @@ public class RacingGame {
 
     private void carMovesAccordingRandomValues() {
         for (Car car: cars) {
-            int randomValue = numberGenerator.generateRandomValue(RANGE_NUMBER);
+            int randomValue = numberGenerator.generateRandomValue();
             car.move(randomValue);
         }
     }
