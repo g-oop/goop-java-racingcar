@@ -10,6 +10,7 @@ public class RandomRule implements Rule {
         this.random = new Random(seed);
     }
 
+    @Override
     public boolean isStop() {
         return random.nextInt(10) < 4;
     }
