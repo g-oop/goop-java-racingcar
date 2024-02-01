@@ -3,7 +3,6 @@ package step1.racingcar;
 import java.util.ArrayList;
 import java.util.List;
 
-import step1.racingcar.utils.StringSplitUtils;
 import step1.racingcar.view.ResultView;
 import step1.racingcar.domain.vo.Car;
 import step1.racingcar.domain.vo.Cars;
@@ -12,10 +11,9 @@ public class CarManager {
 
     private final Cars cars;
 
-    public CarManager(String carNames) {
-        String[] carNameArr = StringSplitUtils.splitBySeparator("//,\n" + carNames);
+    public CarManager(String[] carNames) {
         List<Car> carList = new ArrayList<>();
-        for (String carName : carNameArr) {
+        for (String carName : carNames) {
             carList.add(new Car(carName));
         }
         cars = new Cars(carList);

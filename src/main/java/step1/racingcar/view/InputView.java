@@ -2,6 +2,8 @@ package step1.racingcar.view;
 
 import java.util.Scanner;
 
+import step1.racingcar.utils.StringSplitUtils;
+
 public class InputView {
 
     private static final Scanner SCANNER = new Scanner(System.in);
@@ -25,9 +27,14 @@ public class InputView {
         }
     }
 
-    public static String getCarNames() {
+    public static String[] getCarNames() {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
-        return SCANNER.nextLine();
+        return splitNames(SCANNER.nextLine());
     }
+
+    private static String[] splitNames(String carNames) {
+        return StringSplitUtils.splitBySeparator("//,\n" + carNames);
+    }
+
 
 }

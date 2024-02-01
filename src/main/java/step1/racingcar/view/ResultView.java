@@ -1,7 +1,6 @@
 package step1.racingcar.view;
 
 import java.util.List;
-import java.util.StringJoiner;
 
 import step1.racingcar.domain.vo.Cars;
 
