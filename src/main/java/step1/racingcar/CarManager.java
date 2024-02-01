@@ -28,6 +28,7 @@ public class CarManager {
     public void startGame(int tryCount) {
         ResultView.printReadyToStart(cars);
         moveCars(tryCount);
+        ResultView.printWinnerNames(cars.getWinnerNames());
     }
 
     private void moveCars(int tryCount) {
@@ -37,4 +38,5 @@ public class CarManager {
             System.out.println();
         }
     }
+
 }
