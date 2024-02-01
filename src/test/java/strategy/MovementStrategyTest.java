@@ -19,7 +19,7 @@ public class MovementStrategyTest {
     @Test
     public void generateRandomValueForStop() {
         MovementStrategy movementStrategy = new StopMovementStrategy();
-        int stopValue = movementStrategy.move();
+        int stopValue = movementStrategy.performAction();
         car.move(stopValue);
 
         assertEquals(car.getPosition(), 0);
@@ -29,7 +29,7 @@ public class MovementStrategyTest {
     @Test
     public void generateRandomValueForMove() {
         MovementStrategy movementStrategy = new MoveMovementStrategy();
-        int moveValue = movementStrategy.move();
+        int moveValue = movementStrategy.performAction();
         car.move(moveValue);
 
         assertEquals(car.getPosition(), 1);

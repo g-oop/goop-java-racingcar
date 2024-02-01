@@ -2,6 +2,6 @@ package strategy;
 
 public interface MovementStrategy {
 
-    int move();
+    int performAction();
 
 }
