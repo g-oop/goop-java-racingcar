@@ -14,7 +14,7 @@ public class Car {
         this(name, 0);
     }
 
-    public Car(String name, int position) {
+    private Car(String name, int position) {
         this.name = new CarName(name);
         this.position = new Position(position);
     }
