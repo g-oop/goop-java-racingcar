@@ -8,7 +8,7 @@ public class CarName {
 
     private static final String EX_MESSAGE = String.format(VALIDATION_MESSAGE_FORMAT, MAX_LENGTH);
 
-    private String value;
+    private final String value;
 
     public CarName(String name) {
         validateName(name);

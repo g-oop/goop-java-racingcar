@@ -8,7 +8,7 @@ public class Car {
     private static final int MIN_VALUE = 4;
 
     private Position position;
-    private CarName name;
+    private final CarName name;
 
     public Car(String name) {
         this(name, 0);
@@ -32,5 +32,9 @@ public class Car {
         if (randomValue >= MIN_VALUE) {
             position.increase();
         }
+    }
+
+    public void stop() {
+        System.out.println("정지");
     }
 }

@@ -1,7 +1,6 @@
 package ui;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import domain.Car;
 
@@ -13,36 +12,23 @@ public class OutputResult {
         System.out.println("우승자는 " + String.join(", ", winners) + " 입니다!");
     }
 
-    public static List<String> determineWinner(List<Car> cars) {
-        int maxPosition = cars.stream()
-            .mapToInt(Car::getPosition)
-            .max()
-            .orElse(0);
-
-        return cars.stream()
-            .filter(car -> car.getPosition() == maxPosition)
-            .map(Car::getName)
-            .collect(Collectors.toList());
-    }
 
     public static void printMessage(String message) {
         System.out.println(message);
     }
 
     public static void printCarsNameLocation(List<Car> cars) {
-        for (int i = 0; i < cars.size(); i++) {
-            System.out.println(getState(cars.get(i).getName(), cars.get(i).getPosition()));
+        for (Car car: cars) {
+            System.out.println(getState(car.getName(), car.getPosition()));
         }
         System.out.println("\n");
     }
 
 
     private static String getState(String carName, int position) {
-        StringBuilder state = new StringBuilder();
-        state.append(carName).append(": ");
-        state.append("-".repeat(Math.max(0, position)));
-        state.append(">");
-        return state.toString();
+        return carName + ": " +
+            "-".repeat(Math.max(0, position)) +
+            ">";
     }
 
 
