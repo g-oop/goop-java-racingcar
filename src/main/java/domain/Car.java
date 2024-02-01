@@ -10,9 +10,6 @@ public class Car {
     private Position position;
     private CarName name;
 
-    public Car() {
-    }
-
     public Car(String name) {
         this(name, 0);
     }
