@@ -13,7 +13,7 @@ public class RacingCarTest {
     @CsvSource(value = {"0:false", "1:true"}, delimiter = ':')
     @DisplayName("자동차 게임 - 1. 자동차 생성 확인")
     public void carCreateTest(int position, boolean expected) throws Exception {
-        Car car = new Car();
+        Car car = new Car("name");
         car.initializePosition();
         assertThat(car.getPosition() == position).isEqualTo(expected);
     }
@@ -21,11 +21,11 @@ public class RacingCarTest {
     @Test
     @DisplayName("자동차 게임 - 2. 4 이상이면 자동차 전진, 4 미만이면 정지 확인")
     public void carMoveTest() throws Exception {
-        Car movingCar = new Car();
+        Car movingCar = new Car("name");
         movingCar.move(new MovableNumberGenerator().generateNumber());
         assertThat(movingCar.getPosition()).isEqualTo(2);
 
-        Car nonMovingCar = new Car();
+        Car nonMovingCar = new Car("name");
         nonMovingCar.move(new ImmovableNumberGenerator().generateNumber());
         assertThat(nonMovingCar.getPosition()).isEqualTo(1);
     }

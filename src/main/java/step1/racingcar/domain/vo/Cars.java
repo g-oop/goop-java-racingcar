@@ -26,4 +26,8 @@ public class Cars {
             .toList();
     }
 
+    public List<Car> getCars() {
+        return cars;
+    }
+
 }

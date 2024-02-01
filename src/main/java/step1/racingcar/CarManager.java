@@ -1,9 +1,9 @@
 package step1.racingcar;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.*;
 
-import step1.racingcar.strategy.NumberGenerator;
+import step1.racingcar.utils.StringSplitUtils;
 import step1.racingcar.view.ResultView;
 import step1.racingcar.domain.vo.Car;
 import step1.racingcar.domain.vo.Cars;
@@ -12,10 +12,12 @@ public class CarManager {
 
     private final Cars cars;
 
-    public CarManager(int carCount) {
-        List<Car> carList = Stream.generate(Car::new)
-            .limit(carCount)
-            .toList();
+    public CarManager(String carNames) {
+        String[] carNameArr = StringSplitUtils.splitBySeparator("//,\n" + carNames);
+        List<Car> carList = new ArrayList<>();
+        for (String carName : carNameArr) {
+            carList.add(new Car(carName));
+        }
         cars = new Cars(carList);
     }
 

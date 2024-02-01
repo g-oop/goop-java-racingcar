@@ -3,9 +3,11 @@ package step1.racingcar.domain.vo;
 public class Car {
 
     private int position;
+    private String name;
 
-    public Car() {
+    public Car(String name) {
         this.position = initializePosition();
+        this.name = name;
     }
 
     public int initializePosition() {
@@ -26,4 +28,7 @@ public class Car {
         return position;
     }
 
+    public String getName() {
+        return name;
+    }
 }
