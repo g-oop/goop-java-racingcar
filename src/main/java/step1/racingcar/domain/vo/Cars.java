@@ -2,7 +2,7 @@ package step1.racingcar.domain.vo;
 
 import java.util.List;
 
-import step1.racingcar.domain.RandomNumberGenerator;
+import step1.racingcar.strategy.RandomNumberGenerator;
 
 public class Cars {
 
@@ -16,12 +16,14 @@ public class Cars {
         cars.forEach(Car::initializePosition);
     }
 
-    public void moveCars() {
+    public void move() {
         cars.forEach(car -> car.move(new RandomNumberGenerator().generateNumber()));
     }
 
     public List<Integer> getPositions() {
-        return cars.stream().map(Car::getPosition).toList();
+        return cars.stream()
+            .map(Car::getPosition)
+            .toList();
     }
 
 }

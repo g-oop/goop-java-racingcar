@@ -11,6 +11,7 @@ public class ResultView {
     }
 
     public static void printPositions(Cars cars) {
-        cars.getPositions().forEach(position -> System.out.println("-".repeat(position)));
+        cars.getPositions()
+            .forEach(position -> System.out.println("-".repeat(position)));
     }
 }
