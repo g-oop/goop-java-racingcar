@@ -16,7 +16,7 @@ public class RacingGameTest {
     @ValueSource(ints = {4, 5, 6, 7, 8, 9})
     public void MoveWithRandomNumberGreaterThanEqual4(int randomNumber) {
         // Car 객체 생성
-        Car car = new Car();
+        Car car = new Car("sujin");
         int position = car.getPosition();
 
         car.move(randomNumber);
@@ -29,7 +29,7 @@ public class RacingGameTest {
     @ValueSource(ints = {1, 2, 3})
     public void MoveWithRandomNumberLessThan4(int randomNumber) {
         // Car 객체 생성
-        Car car = new Car();
+        Car car = new Car("sujin");
         int position = car.getPosition();
 
 
@@ -41,11 +41,11 @@ public class RacingGameTest {
 
     @Test
     public void MoveFromNumberGenerator() {
-        Car car = new Car();
+        Car car = new Car("sujin");
         int position = car.getPosition();
 
         NumberGenerator numberGenerator = new NumberGeneratorImpl();
-        int randomValue = numberGenerator.generateRandomValue(RANDOM_RANGE);
+        int randomValue = numberGenerator.generateRandomValue();
 
 
         if (randomValue <= 3) {
@@ -59,5 +59,4 @@ public class RacingGameTest {
         }
     }
 }
-
 
