@@ -20,13 +20,13 @@ public class CarName {
     }
 
     private static void validateName(String name) {
-        if (isValid(name)) {
+        if (!isValid(name)) {
             throw new IllegalArgumentException(EX_MESSAGE);
         }
     }
 
     private static boolean isValid(String name) {
-        return name.length() > MAX_LENGTH;
+        return name.length() <= MAX_LENGTH;
     }
 
 

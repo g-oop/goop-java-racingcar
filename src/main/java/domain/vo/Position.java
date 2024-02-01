@@ -18,16 +18,16 @@ public class Position {
     }
 
     private static void validatePosition(int position) {
-        if (isValid(position)) {
+        if (!isValid(position)) {
             throw new IllegalArgumentException(EX_MESSAGE);
         }
     }
 
     private static boolean isValid(int position) {
-        return position < MIN_VALUE;
+        return position >= MIN_VALUE;
     }
 
-    public void increment() {
+    public void increase() {
         value++;
     }
 

@@ -30,7 +30,7 @@ public class Car {
 
     public void move(int randomValue) {
         if (randomValue >= MIN_VALUE) {
-            position.increment();
+            position.increase();
         }
     }
 }
