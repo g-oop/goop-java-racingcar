@@ -12,10 +12,10 @@ public class Race {
 
     public void begin(Rule rule) {
 
-        for (int l = 0; l < laps.length; l++) {
-            if (l > 0) laps[l] = laps[l - 1];
-            laps[l].start(rule);
-            ResultView.printResult(laps[l].getOdometerList());
+        for (int lapIndex = 0; lapIndex < laps.length; lapIndex++) {
+            if (lapIndex > 0) laps[lapIndex] = laps[lapIndex - 1];
+            laps[lapIndex].start(rule);
+            ResultView.printResult(laps[lapIndex].getOdometerList());
         }
     }
 

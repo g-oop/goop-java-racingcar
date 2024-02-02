@@ -9,7 +9,7 @@ public class Lap {
     public Lap(int numberOfCars) {
 
         cars = new ArrayList<>();
-        for (int c = 0; c < numberOfCars; c++) {
+        for (int carIndex = 0; carIndex < numberOfCars; carIndex++) {
             cars.add(new Car());
         }
     }

@@ -21,19 +21,19 @@ class RaceTest {
         System.setIn(in);
 
         InputView inputView = new InputView();
-        int n = inputView.inputCars();
+        int numberOfCars = inputView.inputCars();
 
-        Lap lap = new Lap(n);
+        Lap lap = new Lap(numberOfCars);
         Rule rule = new LinearRule();
 
         lap.start(rule);
-        Assertions.assertThat(lap.getTotalDistance()).isEqualTo(n);
+        Assertions.assertThat(lap.getTotalDistance()).isEqualTo(numberOfCars);
 
         lap.stop();
-        Assertions.assertThat(lap.getTotalDistance()).isEqualTo(n);
+        Assertions.assertThat(lap.getTotalDistance()).isEqualTo(numberOfCars);
 
         lap.start(rule);
-        Assertions.assertThat(lap.getTotalDistance()).isEqualTo(n * 2);
+        Assertions.assertThat(lap.getTotalDistance()).isEqualTo(numberOfCars * 2);
     }
 
     @DisplayName("사용자는 몇 대의 자동차로 몇 번의 이동을 할 것인지를 입력할 수 있어야 한다.")
@@ -46,10 +46,10 @@ class RaceTest {
         System.setIn(in);
 
         InputView inputView = new InputView();
-        int n = inputView.inputCars();
-        int t = inputView.inputTries();
+        int numberOfCars = inputView.inputCars();
+        int numberOfLaps = inputView.inputTries();
 
-        Race race = new Race(n, t);
+        Race race = new Race(numberOfCars, numberOfLaps);
         Rule rule = new LinearRule();
 
         race.begin(rule);
@@ -66,10 +66,10 @@ class RaceTest {
         System.setIn(in);
 
         InputView inputView = new InputView();
-        int n = inputView.inputCars();
-        int t = inputView.inputTries();
+        int numberOfCars = inputView.inputCars();
+        int numberOfLaps = inputView.inputTries();
 
-        Race race = new Race(n, t);
+        Race race = new Race(numberOfCars, numberOfLaps);
         Rule rule = new RandomRule(777);
 
         race.begin(rule);

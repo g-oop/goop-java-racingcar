@@ -6,9 +6,9 @@ public class ResultView {
 
     public static void printResult(int[] odometerList) {
 
-        for (int o : odometerList) {
+        for (int odometer : odometerList) {
             System.out.print('-');
-            for (int b = 0; b < o; b++) {
+            for (int b = 0; b < odometer; b++) {
                 System.out.print('-');
             }
             System.out.println();
