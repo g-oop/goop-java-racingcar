@@ -52,12 +52,12 @@ class RaceTest {
         Race race = new Race(numberOfCars, numberOfLaps);
         Rule rule = new LinearRule();
 
-        race.begin(rule);
-        Assertions.assertThat(race.getLastLapDistance()).isEqualTo(result);
+        int stopCount = race.begin(rule);
+        Assertions.assertThat(race.getLastLapDistance()).isEqualTo(result - stopCount);
     }
 
     @DisplayName("전진하는 조건은 0에서 9 사이에서 random 값을 구한 후 random 값이 4이상일 경우이다.")
-    @CsvSource(value = {"1|2|1", "2|1|1", "5|4|10"}, delimiter = '|')
+    @CsvSource(value = {"1|2|2", "2|1|2", "5|4|20"}, delimiter = '|')
     @ParameterizedTest
     void random(int cars, int tries, int result) {
 
@@ -70,9 +70,9 @@ class RaceTest {
         int numberOfLaps = inputView.inputTries();
 
         Race race = new Race(numberOfCars, numberOfLaps);
-        Rule rule = new RandomRule(777);
+        Rule rule = new RandomRule();
 
-        race.begin(rule);
-        Assertions.assertThat(race.getLastLapDistance()).isEqualTo(result);
+        int stopCount = race.begin(rule);
+        Assertions.assertThat(race.getLastLapDistance()).isEqualTo(result - stopCount);
     }
 }

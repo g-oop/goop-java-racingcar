@@ -10,13 +10,15 @@ public class Race {
         laps[0] = new Lap(numberOfCars);
     }
 
-    public void begin(Rule rule) {
+    public int begin(Rule rule) {
 
+        int totalStopCount = laps.length * laps[0].getTotalCars();
         for (int lapIndex = 0; lapIndex < laps.length; lapIndex++) {
             if (lapIndex > 0) laps[lapIndex] = laps[lapIndex - 1];
-            laps[lapIndex].start(rule);
+            totalStopCount -= laps[lapIndex].start(rule);
             ResultView.printResult(laps[lapIndex].getOdometerList());
         }
+        return totalStopCount;
     }
 
     public int getLastLapDistance() {

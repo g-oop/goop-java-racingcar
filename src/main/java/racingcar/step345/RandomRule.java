@@ -6,8 +6,8 @@ public class RandomRule implements Rule {
 
     private final Random random;
 
-    public RandomRule(int seed) {
-        this.random = new Random(seed);
+    public RandomRule() {
+        this.random = new Random();
     }
 
     @Override
