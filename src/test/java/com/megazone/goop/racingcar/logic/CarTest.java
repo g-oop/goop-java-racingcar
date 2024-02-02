@@ -13,7 +13,7 @@ class CarTest {
 
     @BeforeEach
     void setUp() {
-        car = new Car();
+        car = new Car("");
     }
 
     @DisplayName("자동차는 랜덤값이 4 이상인 경우에 1 전진한다.")
@@ -55,5 +55,12 @@ class CarTest {
         }
 
         assertThat(car.getTotalDistance()).isZero();
+    }
+
+    @DisplayName("자동차 이름은 5자를 초과할 수 없다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"lay", "santafe", "k9", "sonata"})
+    void carNameMaxLengthTest(String name) {
+        assertThat(new Car(name).getName().length()).isLessThan(6);
     }
 }

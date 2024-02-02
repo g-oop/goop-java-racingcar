@@ -4,7 +4,6 @@ import java.util.*;
 
 public class InputView {
 
-    private static final int CAR_NAME_MAX_LENGTH = 5;
     private static final String CAR_NAME_DELIMITER = ",";
 
     private List<String> carNames;
@@ -18,7 +17,6 @@ public class InputView {
 
         carNames = Arrays.stream(inNames)
             .map(String::trim)
-            .map(a -> a.substring(0, Math.min(a.length(), CAR_NAME_MAX_LENGTH)))
             .toList();
 
         System.out.println("시도할 회수는 몇 회 인가요?");
