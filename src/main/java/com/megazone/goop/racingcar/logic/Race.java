@@ -39,13 +39,8 @@ public class Race {
     }
 
     public void endRace() {
-        int maxPosition = cars.stream()
-            .map(Car::getTotalDistance)
-            .max(Integer::compare)
-            .orElse(0);
-
         List<Car> winners = cars.stream()
-            .filter(c -> c.getTotalDistance() >= maxPosition)
+            .filter(c -> c.getTotalDistance() >= getTopRecord())
             .toList();
 
         resultView.displayWinners(winners);
@@ -55,5 +50,12 @@ public class Race {
         this.currentRound = 0;
 
         cars.forEach(Car::resetTotalDistance);
+    }
+
+    private int getTopRecord() {
+        return cars.stream()
+            .map(Car::getTotalDistance)
+            .max(Integer::compare)
+            .orElse(0);
     }
 }
