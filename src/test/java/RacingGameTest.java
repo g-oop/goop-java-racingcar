@@ -9,9 +9,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class RacingGameTest {
 
-
-    private final int RANDOM_RANGE = 10;
-
     @ParameterizedTest
     @ValueSource(ints = {4, 5, 6, 7, 8, 9})
     public void MoveWithRandomNumberGreaterThanEqual4(int randomNumber) {

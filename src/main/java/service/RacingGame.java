@@ -20,17 +20,17 @@ public class RacingGame {
         initializeCars(carNames);
     }
 
+    private void initializeCars(String[] carNames) {
+        for (String i: carNames) {
+            cars.add(new Car(i));
+        }
+    }
+
     public List<String> play(int tryCount) {
         moveCars(tryCount);
         return determineWinner(cars);
     }
 
-
-    public void initializeCars(String[] carNames) {
-        for (String carName: carNames) {
-            cars.add(new Car(carName));
-        }
-    }
 
     private void moveCars(int tryCount) {
         for (int move = 0; move < tryCount; move++) {
