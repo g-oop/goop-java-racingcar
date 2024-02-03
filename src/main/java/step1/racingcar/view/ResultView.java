@@ -20,7 +20,8 @@ public class ResultView {
     public static void printWinnerNames(List<String> winnerNames) {
         StringBuilder winners = new StringBuilder();
         for (int i = 0; i < winnerNames.size(); i++) {
-            winners.append(winnerNames.get(i)).append(addMiddleComma(i, winnerNames.size()));
+            winners.append(winnerNames.get(i))
+                .append(addMiddleComma(i, winnerNames.size()));
         }
         System.out.println(winners + "가 최종 우승했습니다.");
     }
