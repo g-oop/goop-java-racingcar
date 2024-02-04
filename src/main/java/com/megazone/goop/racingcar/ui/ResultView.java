@@ -1,24 +1,27 @@
 package com.megazone.goop.racingcar.ui;
 
-import java.text.MessageFormat;
 import java.util.List;
 
-import com.megazone.goop.racingcar.logic.Car;
+import com.megazone.goop.racingcar.logic.*;
 
 public class ResultView {
 
-    public void startDisplay() {
+    public void displayRecords(List<RoundRecord> roundRecords) {
         System.out.println("\n실행결과");
+
+        roundRecords.forEach(r -> {
+            displayCarPositions(r.carDistances());
+            System.out.println();
+        });
     }
 
-    public void displayPositions(List<Car> cars) {
-        cars.forEach(c ->
-            System.out.println(MessageFormat.format("{0} : {1}", c.getName(), "-".repeat(c.getTotalDistance())))
+    public void displayWinners(List<Car> winners) {
+        System.out.println(String.join(", ", winners.stream().map( n -> n.getName().name()).toList()) + "가 최종 우승했습니다.");
+    }
+
+    private void displayCarPositions(List<CarDistance> carDistances) {
+        carDistances.forEach(d ->
+            System.out.println(d.toString())
         );
-        System.out.println();
-    }
-
-    public void displayWinners(List<Car> cars) {
-        System.out.println(String.join(", ", cars.stream().map(Car::getName).toList()) + "가 최종 우승했습니다.");
     }
 }
