@@ -2,8 +2,8 @@ package com.megazone.goop.racingcar.ui;
 
 import java.util.*;
 
-import com.megazone.goop.racingcar.logic.CarName;
-import com.megazone.goop.racingcar.logic.RacePlan;
+import com.megazone.goop.racingcar.car.CarName;
+import com.megazone.goop.racingcar.race.RacePlan;
 
 public class InputView {
 

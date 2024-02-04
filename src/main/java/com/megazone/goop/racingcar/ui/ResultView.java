@@ -2,7 +2,9 @@ package com.megazone.goop.racingcar.ui;
 
 import java.util.List;
 
-import com.megazone.goop.racingcar.logic.*;
+import com.megazone.goop.racingcar.car.Car;
+import com.megazone.goop.racingcar.car.CarDistance;
+import com.megazone.goop.racingcar.race.RoundRecord;
 
 public class ResultView {
 

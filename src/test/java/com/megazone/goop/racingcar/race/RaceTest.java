@@ -1,4 +1,4 @@
-package com.megazone.goop.racingcar.logic;
+package com.megazone.goop.racingcar.race;
 
 import java.util.Arrays;
 import java.util.List;
@@ -6,6 +6,11 @@ import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+
+import com.megazone.goop.racingcar.car.CarName;
+import com.megazone.goop.racingcar.race.Race;
+import com.megazone.goop.racingcar.race.RacePlan;
+import com.megazone.goop.racingcar.util.RandomGenerator;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

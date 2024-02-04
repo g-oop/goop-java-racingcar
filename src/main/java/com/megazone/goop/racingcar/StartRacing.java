@@ -1,8 +1,10 @@
 package com.megazone.goop.racingcar;
 
-import com.megazone.goop.racingcar.logic.*;
+import com.megazone.goop.racingcar.race.Race;
+import com.megazone.goop.racingcar.race.RacePlan;
 import com.megazone.goop.racingcar.ui.InputView;
 import com.megazone.goop.racingcar.ui.ResultView;
+import com.megazone.goop.racingcar.util.RandomGenerator;
 
 public class StartRacing {
 

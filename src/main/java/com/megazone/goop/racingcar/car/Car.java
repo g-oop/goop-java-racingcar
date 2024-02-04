@@ -1,4 +1,4 @@
-package com.megazone.goop.racingcar.logic;
+package com.megazone.goop.racingcar.car;
 
 public class Car {
 

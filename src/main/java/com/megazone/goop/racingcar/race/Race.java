@@ -1,7 +1,11 @@
-package com.megazone.goop.racingcar.logic;
+package com.megazone.goop.racingcar.race;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.megazone.goop.racingcar.car.Car;
+import com.megazone.goop.racingcar.car.CarDistance;
+import com.megazone.goop.racingcar.util.RandomGenerator;
 
 public class Race {
 

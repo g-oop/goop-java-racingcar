@@ -1,9 +1,12 @@
-package com.megazone.goop.racingcar.logic;
+package com.megazone.goop.racingcar.car;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import com.megazone.goop.racingcar.car.Car;
+import com.megazone.goop.racingcar.car.CarName;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
