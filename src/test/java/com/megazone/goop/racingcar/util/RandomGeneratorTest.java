@@ -1,6 +1,8 @@
-package com.megazone.goop.racingcar.logic;
+package com.megazone.goop.racingcar.util;
 
 import org.junit.jupiter.api.*;
+
+import com.megazone.goop.racingcar.util.RandomGenerator;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

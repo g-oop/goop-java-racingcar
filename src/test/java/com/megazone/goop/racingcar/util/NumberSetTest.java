@@ -1,4 +1,4 @@
-package com.megazone.goop.racingcar;
+package com.megazone.goop.racingcar.util;
 
 import java.util.HashSet;
 import java.util.Set;

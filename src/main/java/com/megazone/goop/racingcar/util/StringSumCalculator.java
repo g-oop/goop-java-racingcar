@@ -1,4 +1,4 @@
-package com.megazone.goop.racingcar;
+package com.megazone.goop.racingcar.util;
 
 import java.util.Arrays;
 import java.util.regex.Matcher;

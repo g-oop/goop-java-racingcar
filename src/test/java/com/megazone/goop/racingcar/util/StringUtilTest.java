@@ -1,4 +1,4 @@
-package com.megazone.goop.racingcar;
+package com.megazone.goop.racingcar.util;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

@@ -1,24 +1,34 @@
 package com.megazone.goop.racingcar.ui;
 
-import java.util.Scanner;
+import java.util.*;
+
+import com.megazone.goop.racingcar.car.CarName;
+import com.megazone.goop.racingcar.race.RacePlan;
 
 public class InputView {
 
-    private int carCount;
+    private static final String CAR_NAME_DELIMITER = ",";
+    private static final Scanner scanner = new Scanner(System.in);
+
+    private List<CarName> carNames;
     private int roundCount;
 
-    public void setRules() {
-        Scanner scanner = new Scanner(System.in);
+    public RacePlan setRacePlan() {
+        System.out.println("경주할 자동차 이름을 입력하세요. (이름은 쉼표(,)를 기준으로 구분)");
+        String[] inNames = scanner.nextLine().split(CAR_NAME_DELIMITER, -1);
 
-        System.out.println("자동차 대수는 몇 대 인가요?");
-        carCount = scanner.nextInt();
+        carNames = Arrays.stream(inNames)
+            .map(n -> new CarName(n.trim()))
+            .toList();
 
         System.out.println("시도할 회수는 몇 회 인가요?");
         roundCount = scanner.nextInt();
+
+        return new RacePlan(carNames, roundCount);
     }
 
-    public int getCarCount() {
-        return carCount;
+    public List<CarName> getCarNames() {
+        return carNames;
     }
 
     public int getRoundCount() {
