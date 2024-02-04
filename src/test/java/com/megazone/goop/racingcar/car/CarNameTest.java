@@ -19,4 +19,12 @@ class CarNameTest {
         ).isInstanceOf(RuntimeException.class);
     }
 
+    @DisplayName("자동차 이름은 공백이 아닌 1자 이상 입력해야 한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"", " "})
+    void emptyCarNameTest(String name) {
+        assertThatThrownBy(() ->
+            new CarName(name)
+        ).isInstanceOf(RuntimeException.class);
+    }
 }
