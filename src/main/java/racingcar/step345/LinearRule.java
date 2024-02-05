@@ -6,4 +6,9 @@ public class LinearRule implements Rule {
     public boolean isStop() {
         return false;
     }
+
+    @Override
+    public int getStopCount() {
+        return 0;
+    }
 }

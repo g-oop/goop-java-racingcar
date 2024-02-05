@@ -14,16 +14,11 @@ public class Lap {
         }
     }
 
-    public int start(Rule rule) {
+    public void start(Rule rule) {
 
-        int runCount = 0;
         for (Car car : cars) {
-            if (!rule.isStop()) {
-                car.run();
-                runCount += 1;
-            }
+            if (!rule.isStop()) car.run();
         }
-        return runCount;
     }
 
     public void stop() {

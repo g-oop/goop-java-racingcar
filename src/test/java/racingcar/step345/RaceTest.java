@@ -52,7 +52,8 @@ class RaceTest {
         Race race = new Race(numberOfCars, numberOfLaps);
         Rule rule = new LinearRule();
 
-        int stopCount = race.begin(rule);
+        race.begin(rule);
+        int stopCount = rule.getStopCount();
         Assertions.assertThat(race.getLastLapDistance()).isEqualTo(result - stopCount);
     }
 
@@ -72,7 +73,8 @@ class RaceTest {
         Race race = new Race(numberOfCars, numberOfLaps);
         Rule rule = new RandomRule();
 
-        int stopCount = race.begin(rule);
+        race.begin(rule);
+        int stopCount = rule.getStopCount();
         Assertions.assertThat(race.getLastLapDistance()).isEqualTo(result - stopCount);
     }
 }

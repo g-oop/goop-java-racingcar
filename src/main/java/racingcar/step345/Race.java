@@ -2,26 +2,24 @@ package racingcar.step345;
 
 public class Race {
 
-    private final Lap[] laps;
+    private final int numberOfLaps;
+    private final Lap laps;
 
     public Race(int numberOfCars, int numberOfLaps) {
 
-        laps = new Lap[numberOfLaps];
-        laps[0] = new Lap(numberOfCars);
+        this.numberOfLaps = numberOfLaps;
+        laps = new Lap(numberOfCars);
     }
 
-    public int begin(Rule rule) {
+    public void begin(Rule rule) {
 
-        int totalStopCount = laps.length * laps[0].getTotalCars();
-        for (int lapIndex = 0; lapIndex < laps.length; lapIndex++) {
-            if (lapIndex > 0) laps[lapIndex] = laps[lapIndex - 1];
-            totalStopCount -= laps[lapIndex].start(rule);
-            ResultView.printResult(laps[lapIndex].getOdometerList());
+        for (int lapIndex = 0; lapIndex < numberOfLaps; lapIndex++) {
+            laps.start(rule);
+            ResultView.printResult(laps.getOdometerList());
         }
-        return totalStopCount;
     }
 
     public int getLastLapDistance() {
-        return laps[laps.length - 1].getTotalDistance();
+        return laps.getTotalDistance();
     }
 }
