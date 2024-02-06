@@ -1,6 +1,6 @@
 package step1.racingcar;
 
-import step1.racingcar.domain.NumberGenerator;
+import step1.racingcar.strategy.NumberGenerator;
 
 public class ImmovableNumberGenerator implements NumberGenerator {
 
