@@ -1,4 +1,4 @@
-package domain.vo;
+package domain.entity.car.vo;
 
 public class Position {
 

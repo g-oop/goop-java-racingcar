@@ -1,7 +1,7 @@
-package domain;
+package domain.entity.car;
 
-import domain.vo.CarName;
-import domain.vo.Position;
+import domain.entity.car.vo.CarName;
+import domain.entity.car.vo.Position;
 
 public class Car {
 

@@ -2,8 +2,8 @@ package controller;
 
 import java.util.List;
 
-import domain.Cars;
-import service.RacingGame;
+import domain.RacingGame;
+import domain.entity.car.Cars;
 import strategy.NumberGenerator;
 import strategy.NumberGeneratorImpl;
 

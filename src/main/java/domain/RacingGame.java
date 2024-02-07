@@ -1,13 +1,13 @@
-package service;
+package domain;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-import domain.Car;
-import domain.Cars;
+import domain.entity.car.Car;
+import domain.entity.car.Cars;
 import strategy.NumberGenerator;
 
-import static domain.Cars.getCarList;
+import static domain.entity.car.Cars.getCarList;
 import static view.OutputResult.printCarsNameLocation;
 
 

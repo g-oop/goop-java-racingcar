@@ -2,10 +2,10 @@ package strategy;
 
 import java.util.List;
 
-import domain.Cars;
+import domain.RacingGame;
+import domain.entity.car.Cars;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import service.RacingGame;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
