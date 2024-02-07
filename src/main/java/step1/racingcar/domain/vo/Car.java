@@ -5,11 +5,12 @@ import step1.racingcar.exception.CarNameException;
 public class Car {
 
     private int position;
-    private String name;
+    private final String name;
+    private static final int INIT_POSITION = 1;
 
     public Car(String name) {
         validateCarName(name);
-        this.position = initializePosition();
+        this.position = INIT_POSITION;
         this.name = name;
     }
 
@@ -18,14 +19,14 @@ public class Car {
     }
 
     private static void validateCarName(String name) {
-        if (name.length() > 5) {
+        if (name.isBlank() || name.length() > 5) {
             throw new CarNameException("자동차 이름이 5자리 초과되었습니다.");
         }
     }
 
     public void move(int condition) {
         if (isMovable(condition)) {
-            position++;
+            this.position++;
         }
     }
 
@@ -34,10 +35,10 @@ public class Car {
     }
 
     public int getPosition() {
-        return position;
+        return this.position;
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 }

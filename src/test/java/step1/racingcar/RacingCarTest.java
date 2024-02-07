@@ -29,7 +29,7 @@ public class RacingCarTest {
     public void carMoveTest() throws Exception {
         Car movingCar = new Car("name");
         movingCar.move(new MovableNumberGenerator().generateNumber());
-        assertThat(movingCar.getPosition()).isEqualTo(2);
+        assertThat(movingCar.getPosition()).isEqualTo(movingCar.getPosition() + 1);
 
         Car nonMovingCar = new Car("name");
         nonMovingCar.move(new ImmovableNumberGenerator().generateNumber());
@@ -64,7 +64,7 @@ public class RacingCarTest {
 
         Cars cars = new Cars(List.of(car1, car2, car3));
         assertThat(cars.getWinnerNames()).hasSize(1);
-        assertThat(cars.getWinnerNames().get(0)).isEqualTo("가");
+        assertThat(cars.getWinnerNames()).isEqualTo(List.of("가"));
     }
 
 }
