@@ -12,22 +12,12 @@ public class Cars {
         this.cars = cars;
     }
 
-    public void initialize() {
-        cars.forEach(Car::initializePosition);
-    }
-
     public void move() {
         cars.forEach(car -> car.move(getRandomNumber()));
     }
 
     private static int getRandomNumber() {
         return new RandomNumberGenerator().generateNumber();
-    }
-
-    public List<Integer> getPositions() {
-        return cars.stream()
-            .map(Car::getPosition)
-            .toList();
     }
 
     public List<Car> getCars() {

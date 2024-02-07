@@ -21,10 +21,4 @@ public class ResultView {
         System.out.println(String.join(", ", winnerNames) + "가 최종 우승했습니다.");
     }
 
-    private static String addMiddleComma(int index, int size) {
-        if (index != (size - 1)) {
-             return ", ";
-        }
-        return "";
-    }
 }

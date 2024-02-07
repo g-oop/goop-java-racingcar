@@ -20,14 +20,9 @@ public class CarManager {
     }
 
     public void startGame(int tryCount) {
-        readyToStart();
         ResultView.printReadyToStart(cars);
         moveCars(tryCount);
         ResultView.printWinnerNames(cars.getWinnerNames());
-    }
-
-    private void readyToStart() {
-        cars.initialize();
     }
 
     private void moveCars(int tryCount) {
