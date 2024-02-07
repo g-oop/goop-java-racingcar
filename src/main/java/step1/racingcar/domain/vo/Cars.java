@@ -12,16 +12,16 @@ public class Cars {
         this.cars = cars;
     }
 
+    public List<Car> getCars() {
+        return cars;
+    }
+
     public void move() {
         cars.forEach(car -> car.move(getRandomNumber()));
     }
 
     private static int getRandomNumber() {
         return new RandomNumberGenerator().generateNumber();
-    }
-
-    public List<Car> getCars() {
-        return cars;
     }
 
     public List<String> getWinnerNames() {

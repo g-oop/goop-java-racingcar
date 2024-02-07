@@ -45,7 +45,7 @@ public class RacingCarTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"가나다라마바", "123456"})
+    @ValueSource(strings = {"", " ", "가나다라마바", "123456"})
     @DisplayName("자동차 게임 - 4. 자동차 이름 5자리 초과")
     public void carNameValidationTest(String carNames) throws Exception {
         assertThatThrownBy(() -> { new Car(carNames); })
