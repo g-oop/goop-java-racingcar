@@ -1,13 +1,16 @@
+package controller;
+
 import java.util.List;
 
-import service.RacingGame;
+import domain.RacingGame;
+import domain.entity.car.Cars;
 import strategy.NumberGenerator;
 import strategy.NumberGeneratorImpl;
 
-import static ui.InputResult.getCarNameFromUser;
-import static ui.InputResult.getTryCount;
-import static ui.OutputResult.printMessage;
-import static ui.OutputResult.printWinner;
+import static view.InputResult.getCarNameFromUser;
+import static view.InputResult.getTryCount;
+import static view.OutputResult.printMessage;
+import static view.OutputResult.printWinner;
 
 public class RacingCarApplication {
 
@@ -15,7 +18,8 @@ public class RacingCarApplication {
         NumberGenerator numberGenerator = new NumberGeneratorImpl();
         String[] carNames = getCarNameFromUser();
         int tryCount = getTryCount();
-        RacingGame racingGame = new RacingGame(numberGenerator, carNames);
+        Cars cars = new Cars();
+        RacingGame racingGame = new RacingGame(numberGenerator, cars, carNames);
         printMessage("\n실행 결과:");
         List<String> winners = racingGame.play(tryCount);
         printWinner(winners);

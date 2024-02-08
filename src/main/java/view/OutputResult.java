@@ -1,8 +1,8 @@
-package ui;
+package view;
 
 import java.util.List;
 
-import domain.Car;
+import domain.entity.car.Car;
 
 public class OutputResult {
 
