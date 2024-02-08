@@ -8,10 +8,6 @@ public class InputView {
 
     private static final Scanner SCANNER = new Scanner(System.in);
 
-    public static int getCarCount() {
-        return inputToNum("자동차 대수는 몇 대 인가요?");
-    }
-
     public static int getTryCount() {
         return inputToNum("시도할 횟수는 몇 회 인가요?");
     }
@@ -35,6 +31,5 @@ public class InputView {
     private static String[] splitNames(String carNames) {
         return StringSplitUtils.splitBySeparator("//,\n" + carNames);
     }
-
 
 }

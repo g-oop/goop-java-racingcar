@@ -19,10 +19,6 @@ public class CarManager {
         cars = new Cars(carList);
     }
 
-    public void readyToStart() {
-        cars.initializeCars();
-    }
-
     public void startGame(int tryCount) {
         ResultView.printReadyToStart(cars);
         moveCars(tryCount);

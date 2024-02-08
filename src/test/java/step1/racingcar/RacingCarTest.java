@@ -20,7 +20,6 @@ public class RacingCarTest {
     @DisplayName("자동차 게임 - 1. 자동차 생성 확인")
     public void carCreateTest(int position, boolean expected) throws Exception {
         Car car = new Car("name");
-        car.initializePosition();
         assertThat(car.getPosition() == position).isEqualTo(expected);
     }
 
@@ -28,8 +27,9 @@ public class RacingCarTest {
     @DisplayName("자동차 게임 - 2. 4 이상이면 자동차 전진, 4 미만이면 정지 확인")
     public void carMoveTest() throws Exception {
         Car movingCar = new Car("name");
+        int beforeMovePosition = movingCar.getPosition();
         movingCar.move(new MovableNumberGenerator().generateNumber());
-        assertThat(movingCar.getPosition()).isEqualTo(2);
+        assertThat(movingCar.getPosition()).isEqualTo(beforeMovePosition + 1);
 
         Car nonMovingCar = new Car("name");
         nonMovingCar.move(new ImmovableNumberGenerator().generateNumber());
@@ -45,7 +45,7 @@ public class RacingCarTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"가나다라마바", "123456"})
+    @ValueSource(strings = {"", " ", "가나다라마바", "123456"})
     @DisplayName("자동차 게임 - 4. 자동차 이름 5자리 초과")
     public void carNameValidationTest(String carNames) throws Exception {
         assertThatThrownBy(() -> { new Car(carNames); })
@@ -64,7 +64,7 @@ public class RacingCarTest {
 
         Cars cars = new Cars(List.of(car1, car2, car3));
         assertThat(cars.getWinnerNames()).hasSize(1);
-        assertThat(cars.getWinnerNames().get(0)).isEqualTo("가");
+        assertThat(cars.getWinnerNames()).isEqualTo(List.of("가"));
     }
 
 }
