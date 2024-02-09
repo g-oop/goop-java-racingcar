@@ -1,27 +1,18 @@
 package racingcar.domain.car;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import racingcar.domain.numbergenerator.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 public class DefaultCarTest {
-    private static final int BOUND = 10;
     private Car car;
     private RandomNumberGenerator numberGenerator;
 
-    @BeforeEach
-    void setUp(){
-        numberGenerator = mock(RandomNumberGenerator.class);
-        numberGenerator.setBound(BOUND);
-        car = new DefaultCar(numberGenerator, "TEST");
-    }
-
     @Test
     void moveWhenRandomValueIsOverThreshold() {
-        when(numberGenerator.generate()).thenReturn(6);
+        numberGenerator = new MoveRandomNumberGenerator();
+        car = new DefaultCar(numberGenerator, "TEST");
         car.move();
 
         assertEquals(1, car.getPosition());
@@ -29,7 +20,8 @@ public class DefaultCarTest {
 
     @Test
     void stayWhenRandomValueIsUnderThreshold() {
-        when(numberGenerator.generate()).thenReturn(3);
+        numberGenerator = new StayRandomNumberGenerator();
+        car = new DefaultCar(numberGenerator, "TEST");
         car.move();
 
         assertEquals(0, car.getPosition());

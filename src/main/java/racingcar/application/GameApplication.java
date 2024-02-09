@@ -1,14 +1,12 @@
 package racingcar.application;
 
-import racingcar.domain.game.*;
-import racingcar.view.InputView;
-import racingcar.view.RacingGameView;
+import racingcar.domain.game.Game;
+import racingcar.domain.game.RacingGame;
 
 public class GameApplication {
 
     public static void main(String[] args) {
-        GameInitializer gameInitializer = new RacingGameInitializer(new RacingGameView(new InputView()));
-        Game game = gameInitializer.init();
+        Game game = new RacingGame();
         game.start();
     }
 }

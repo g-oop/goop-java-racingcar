@@ -1,8 +1,9 @@
 package racingcar.domain.car;
 
+import racingcar.domain.numbergenerator.RandomNumberGenerator;
+
 public class DefaultCar implements Car{
     private static final int MOVE_THRESHOLD = 4;
-    private static final String DEFAULT_NAME = "CAR";
 
     private final RandomNumberGenerator numberGenerator;
     private final String name;
@@ -14,14 +15,10 @@ public class DefaultCar implements Car{
         this.position = 0;
     }
 
-    public DefaultCar(RandomNumberGenerator numberGenerator) {
-        this(numberGenerator, DEFAULT_NAME);
-    }
-
 
     @Override
     public void move() {
-        if (numberGenerator.generate() >= MOVE_THRESHOLD){
+        if (isMovable()){
             position++;
         }
     }
@@ -32,6 +29,10 @@ public class DefaultCar implements Car{
 
     public int getPosition() {
         return position;
+    }
+
+    private boolean isMovable(){
+        return numberGenerator.generate() >= MOVE_THRESHOLD;
     }
 
 }
