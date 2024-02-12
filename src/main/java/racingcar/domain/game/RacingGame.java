@@ -4,57 +4,41 @@ import java.util.ArrayList;
 import java.util.List;
 
 import racingcar.domain.car.Car;
-import racingcar.domain.car.DefaultCar;
-import racingcar.domain.numbergenerator.DefaultRandomNumberGenerator;
 import racingcar.domain.numbergenerator.RandomNumberGenerator;
-import racingcar.view.RacingGameView;
+import racingcar.view.RacingGameInputView;
+import racingcar.view.RacingGameResultView;
 
-public class RacingGame implements Game {
+public class RacingGame{
+    private final List<Car> cars;
 
-    private List<Car> cars;
-    private int attempts;
-
-
-    @Override
-    public void start() {
-        RacingGameView view = new RacingGameView(this);
-        initialize(view);
-        race(view);
+    public RacingGame() {
+        this.cars = createCars(RacingGameInputView.getCarCount());
     }
 
-    private void race(RacingGameView view){
+    public void start() {
+        race(RacingGameInputView.getAttemptCount());
+    }
+
+    public void race(int attempts){
         for (int i = 0; i < attempts; i++) {
             moveCars();
-            view.printCurrentStatus();
+            RacingGameResultView.printCurrentStatus(cars);
         }
     }
-
 
     private void moveCars() {
         for (Car car: cars) {
-            car.move();
+            car.move(RandomNumberGenerator.generate());
         }
-    }
-
-
-    private void initialize(RacingGameView view) {
-        this.cars = createCars(view.getCarCount());
-        this.attempts = view.getAttemptCount();
     }
 
 
     private List<Car> createCars(int carCount){
         List<Car> cars = new ArrayList<>();
-        RandomNumberGenerator numberGenerator = new DefaultRandomNumberGenerator();
-
         for (int i = 0; i < carCount; i++) {
-            cars.add(new DefaultCar(numberGenerator, String.valueOf(i+1)));
+            cars.add(new Car(String.valueOf(i+1)));
         }
-
         return cars;
     }
 
-    public List<Car> getCars() {
-        return cars;
-    }
 }

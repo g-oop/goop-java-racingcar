@@ -5,24 +5,19 @@ import racingcar.domain.numbergenerator.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class DefaultCarTest {
-    private Car car;
-    private RandomNumberGenerator numberGenerator;
+public class CarTest {
+    private Car car = new Car("TEST");
 
     @Test
     void moveWhenRandomValueIsOverThreshold() {
-        numberGenerator = new MoveRandomNumberGenerator();
-        car = new DefaultCar(numberGenerator, "TEST");
-        car.move();
+        car.move(MoveRandomNumberGenerator.generate());
 
         assertEquals(1, car.getPosition());
     }
 
     @Test
     void stayWhenRandomValueIsUnderThreshold() {
-        numberGenerator = new StayRandomNumberGenerator();
-        car = new DefaultCar(numberGenerator, "TEST");
-        car.move();
+        car.move(StayRandomNumberGenerator.generate());
 
         assertEquals(0, car.getPosition());
     }
