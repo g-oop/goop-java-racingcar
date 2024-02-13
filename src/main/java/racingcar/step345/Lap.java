@@ -8,31 +8,34 @@ public class Lap {
 
     public Lap(int numberOfCars) {
 
-        cars = new ArrayList<>();
+        this.cars = new ArrayList<>();
         for (int i = 0; i < numberOfCars; i++) {
-            cars.add(new Car());
+            this.cars.add(new Car());
         }
     }
 
     public void start(Rule rule) {
 
-        for (Car car : cars) {
-            if (!rule.isStop()) car.run();
+        for (Car car : this.cars) {
+            if (rule.isRun()) car.run();
         }
     }
 
     public void pause() {
 
-        for (Car car : cars) {
+        for (Car car : this.cars) {
             car.stop();
         }
     }
 
     public int getTotalDistance() {
-        return Arrays.stream(getOdometerList()).sum();
+        return Arrays.stream(getOdometerList())
+            .sum();
     }
 
     public int[] getOdometerList() {
-        return cars.stream().mapToInt(Car::getOdometer).toArray();
+        return this.cars.stream()
+            .mapToInt(Car::getOdometer)
+            .toArray();
     }
 }
