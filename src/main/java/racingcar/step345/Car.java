@@ -12,6 +12,9 @@ public class Car {
         this.odometer += 1;
     }
 
+    public void pause() {
+    }
+
     public int getOdometer() {
         return this.odometer;
     }

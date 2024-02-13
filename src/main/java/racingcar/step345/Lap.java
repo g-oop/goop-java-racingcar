@@ -9,7 +9,7 @@ public class Lap {
     public Lap(int numberOfCars) {
 
         cars = new ArrayList<>();
-        for (int carIndex = 0; carIndex < numberOfCars; carIndex++) {
+        for (int i = 0; i < numberOfCars; i++) {
             cars.add(new Car());
         }
     }
@@ -23,6 +23,9 @@ public class Lap {
 
     public void stop() {
 
+        for (Car car : cars) {
+            car.pause();
+        }
     }
 
     public int getTotalDistance() {
@@ -31,9 +34,5 @@ public class Lap {
 
     public int[] getOdometerList() {
         return cars.stream().mapToInt(Car::getOdometer).toArray();
-    }
-
-    public int getTotalCars() {
-        return cars.size();
     }
 }
