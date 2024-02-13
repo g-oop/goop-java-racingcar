@@ -17,12 +17,15 @@ public class LapTest {
         Lap lap = new Lap(numberOfCars);
 
         lap.start(rule);
+
         Assertions.assertThat(lap.getTotalDistance()).isEqualTo(numberOfCars);
 
         lap.pause();
+
         Assertions.assertThat(lap.getTotalDistance()).isEqualTo(numberOfCars);
 
         lap.start(rule);
+
         Assertions.assertThat(lap.getTotalDistance()).isEqualTo(numberOfCars * 2);
     }
 }

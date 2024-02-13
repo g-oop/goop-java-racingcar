@@ -13,5 +13,4 @@ public class Race {
     private static void printResult(Game game) {
         ResultView.printResult(game.begin(new RandomRule()));
     }
-
 }

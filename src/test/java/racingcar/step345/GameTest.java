@@ -21,6 +21,7 @@ class GameTest {
         Game game = new Game(numberOfCars, numberOfLaps);
 
         int[][] laps = game.begin(rule);
+
         Assertions.assertThat(Arrays.stream(laps[laps.length - 1]).sum()).isEqualTo(result);
     }
 }

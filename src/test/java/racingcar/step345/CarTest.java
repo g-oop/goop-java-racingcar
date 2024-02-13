@@ -13,6 +13,7 @@ public class CarTest {
         Car car = new Car();
 
         car.run();
+
         Assertions.assertThat(car.getOdometer()).isEqualTo(1);
     }
 
@@ -23,6 +24,7 @@ public class CarTest {
         Car car = new Car();
 
         car.stop();
+
         Assertions.assertThat(car.getOdometer()).isEqualTo(0);
     }
 }
