@@ -10,8 +10,12 @@ public class RandomRule implements Rule {
         this.random = new Random();
     }
 
+    public RandomRule(int seed) {
+        this.random = new Random(seed);
+    }
+
     @Override
     public boolean isRun() {
-        return random.nextInt(10) > 4;
+        return this.random.nextInt(10) > 4;
     }
 }

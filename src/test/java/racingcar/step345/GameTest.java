@@ -20,6 +20,6 @@ class GameTest {
         Game game = new Game(numberOfCars, numberOfLaps);
 
         game.begin(rule);
-        Assertions.assertThat(game.getLastLapDistance()).isEqualTo(result - rule.getStopCount());
+        Assertions.assertThat(game.getLastLapDistance()).isEqualTo(result);
     }
 }
