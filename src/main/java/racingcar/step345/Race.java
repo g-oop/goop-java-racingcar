@@ -6,10 +6,10 @@ public class Race {
 
         int numberOfCars = InputView.inputNumberOfCars();
         int numberOfLaps =  InputView.inputNumberOfLaps();
-
         Game game = new Game(numberOfCars, numberOfLaps);
 
         Rule rule = new RandomRule();
         game.begin(rule);
+        ResultView.printResult(game.getLaps());
     }
 }
