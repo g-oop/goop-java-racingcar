@@ -19,7 +19,7 @@ public class LapTest {
         lap.start(rule);
         Assertions.assertThat(lap.getTotalDistance()).isEqualTo(numberOfCars);
 
-        lap.stop();
+        lap.pause();
         Assertions.assertThat(lap.getTotalDistance()).isEqualTo(numberOfCars);
 
         lap.start(rule);

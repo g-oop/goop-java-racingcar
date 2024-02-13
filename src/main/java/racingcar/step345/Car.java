@@ -12,7 +12,7 @@ public class Car {
         this.odometer += 1;
     }
 
-    public void pause() {
+    public void stop() {
     }
 
     public int getOdometer() {

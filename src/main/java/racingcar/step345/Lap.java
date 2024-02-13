@@ -21,10 +21,10 @@ public class Lap {
         }
     }
 
-    public void stop() {
+    public void pause() {
 
         for (Car car : cars) {
-            car.pause();
+            car.stop();
         }
     }
 
