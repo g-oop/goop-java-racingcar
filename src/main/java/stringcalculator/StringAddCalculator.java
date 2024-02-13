@@ -1,4 +1,4 @@
-package racingcar.stringcalculator;
+package stringcalculator;
 
 import java.util.Arrays;
 import java.util.regex.Matcher;
