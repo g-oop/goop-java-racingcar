@@ -17,11 +17,7 @@ class GameTest {
     @ParameterizedTest
     void begin(int numberOfCars, int numberOfLaps, int result) {
 
-        String data = String.join("\n", List.of(String.valueOf(numberOfLaps), String.valueOf(numberOfCars), String.valueOf(result)));
-        ByteArrayInputStream in = new ByteArrayInputStream(data.getBytes());
-        System.setIn(in);
-
-        Game game = new Game();
+        Game game = new Game(numberOfCars, numberOfLaps);
 
         game.begin(rule);
         Assertions.assertThat(game.getLastLapDistance()).isEqualTo(result - rule.getStopCount());

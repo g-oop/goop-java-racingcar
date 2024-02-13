@@ -2,15 +2,16 @@ package racingcar.step345;
 
 public class Game {
 
+    private final int numberOfCars;
     private final int numberOfLaps;
     private final Lap lap;
 
-    public Game() {
+    public Game(int numberOfCars, int numberOfLaps) {
 
-        InputView inputView = new InputView();
 
-        this.numberOfLaps =  inputView.inputNumberOfLaps();
-        this.lap = new Lap(inputView.inputNumberOfCars());
+        this.numberOfCars = numberOfCars;
+        this.numberOfLaps = numberOfLaps;
+        this.lap = new Lap(this.numberOfCars);
     }
 
     public void begin(Rule rule) {
