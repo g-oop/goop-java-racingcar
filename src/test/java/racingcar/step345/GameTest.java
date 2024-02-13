@@ -1,6 +1,7 @@
 package racingcar.step345;
 
 import java.io.ByteArrayInputStream;
+import java.util.Arrays;
 import java.util.List;
 
 import org.assertj.core.api.Assertions;
@@ -19,7 +20,7 @@ class GameTest {
 
         Game game = new Game(numberOfCars, numberOfLaps);
 
-        game.begin(rule);
-        Assertions.assertThat(game.getLastLapDistance()).isEqualTo(result);
+        int[][] laps = game.begin(rule);
+        Assertions.assertThat(Arrays.stream(laps[laps.length - 1]).sum()).isEqualTo(result);
     }
 }

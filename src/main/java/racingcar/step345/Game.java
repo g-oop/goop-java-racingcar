@@ -1,29 +1,26 @@
 package racingcar.step345;
 
-import java.util.Arrays;
-
 public class Game {
 
-    private final int[][] laps;
+    private final int numberOfCars;
+    private final int numberOfLaps;
 
     public Game(int numberOfCars, int numberOfLaps) {
-        this.laps = new int[numberOfLaps][numberOfCars];
+
+        this.numberOfCars = numberOfCars;
+        this.numberOfLaps = numberOfLaps;
     }
 
-    public void begin(Rule rule) {
+    public int[][] begin(Rule rule) {
 
-        Lap lap = new Lap(this.laps[0].length);
-        for (int i = 0; i < this.laps.length; i++) {
+        Lap lap = new Lap(this.numberOfCars);
+
+        int[][] laps = new int[this.numberOfLaps][this.numberOfCars];
+        for (int i = 0; i < this.numberOfLaps; i++) {
             lap.start(rule);
-            this.laps[i] = lap.getOdometerList();
+            laps[i] = lap.getOdometerArray();
         }
-    }
 
-    public int[][] getLaps() {
-        return this.laps;
-    }
-
-    public int getLastLapDistance() {
-        return Arrays.stream(this.laps[this.laps.length - 1]).sum();
+        return laps;
     }
 }

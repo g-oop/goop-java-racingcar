@@ -29,11 +29,11 @@ public class Lap {
     }
 
     public int getTotalDistance() {
-        return Arrays.stream(getOdometerList())
+        return Arrays.stream(getOdometerArray())
             .sum();
     }
 
-    public int[] getOdometerList() {
+    public int[] getOdometerArray() {
         return this.cars.stream()
             .mapToInt(Car::getOdometer)
             .toArray();
