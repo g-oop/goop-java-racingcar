@@ -1,7 +1,6 @@
 package racingcar.view;
 
-import java.util.InputMismatchException;
-import java.util.Scanner;
+import java.util.*;
 
 public class RacingGameInputView {
 
@@ -34,11 +33,17 @@ public class RacingGameInputView {
     }
 
     private static String[] tokenize(String text) {
-        return text.split(DEFAULT_DELIMITER);
+        return trimArray(text.split(DEFAULT_DELIMITER));
+    }
+
+    private static String[] trimArray(String[] array) {
+        return Arrays.stream(array)
+            .map(String::trim)
+            .toArray(String[]::new);
     }
 
     private static void validateCarName(String carName) {
-        if (carName.trim().length() > CAR_NAME_LIMIT) {
+        if (carName.length() > CAR_NAME_LIMIT) {
             throw new RuntimeException("자동차 이름은 5글자를 초과할 수 없습니다.");
         }
     }
