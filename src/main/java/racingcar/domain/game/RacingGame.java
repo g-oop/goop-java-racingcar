@@ -12,7 +12,7 @@ public class RacingGame{
     private final List<Car> cars;
 
     public RacingGame() {
-        this.cars = createCars(RacingGameInputView.getCarCount());
+        this.cars = createCars(RacingGameInputView.getCarNames());
     }
 
     public void start() {
@@ -33,10 +33,10 @@ public class RacingGame{
     }
 
 
-    private List<Car> createCars(int carCount){
+    private List<Car> createCars(String[] carNames){
         List<Car> cars = new ArrayList<>();
-        for (int i = 0; i < carCount; i++) {
-            cars.add(new Car(String.valueOf(i+1)));
+        for (String carName : carNames) {
+            cars.add(new Car(carName));
         }
         return cars;
     }
