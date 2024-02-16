@@ -24,6 +24,7 @@ public class RacingGame{
             moveCars();
             RacingGameResultView.printCurrentStatus(cars);
         }
+        RacingGameResultView.printWinners(cars);
     }
 
     private void moveCars() {
