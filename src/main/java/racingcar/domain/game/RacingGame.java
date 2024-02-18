@@ -1,7 +1,6 @@
 package racingcar.domain.game;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import racingcar.domain.car.Car;
 import racingcar.domain.numbergenerator.RandomNumberGenerator;
@@ -11,8 +10,14 @@ import racingcar.view.RacingGameResultView;
 public class RacingGame{
     private final List<Car> cars;
 
-    public RacingGame() {
-        this.cars = createCars(RacingGameInputView.getCarNames());
+    public RacingGame(String[] carNames){
+        this(Arrays.stream(carNames)
+            .map(Car::new)
+            .toList());
+    }
+
+    private RacingGame(List<Car> cars){
+        this.cars = cars;
     }
 
     public void start() {
@@ -24,7 +29,7 @@ public class RacingGame{
             moveCars();
             RacingGameResultView.printCurrentStatus(cars);
         }
-        RacingGameResultView.printWinners(cars);
+        RacingGameResultView.printWinners(getWinners());
     }
 
     private void moveCars() {
@@ -34,12 +39,20 @@ public class RacingGame{
     }
 
 
-    private List<Car> createCars(String[] carNames){
-        List<Car> cars = new ArrayList<>();
-        for (String carName : carNames) {
-            cars.add(new Car(carName));
-        }
-        return cars;
+    private List<Car> getWinners() {
+        int maxPosition = getMaxPosition();
+        return cars.stream()
+            .filter(car -> car.getPosition() == maxPosition)
+            .toList();
     }
+
+    private int getMaxPosition() {
+        int maxPosition = 0;
+        for (Car car: cars) {
+            maxPosition = Math.max(maxPosition, car.getPosition());
+        }
+        return maxPosition;
+    }
+
 
 }
