@@ -5,7 +5,6 @@ import java.util.List;
 
 import racingcar.domain.entity.car.Car;
 
-import static racingcar.view.RacingGameInputView.getAttemptCount;
 import static racingcar.view.RacingGameResultView.printCurrentStatus;
 import static racingcar.view.RacingGameResultView.printWinners;
 
@@ -22,9 +21,6 @@ public class RacingGame{
         this.cars = cars;
     }
 
-    public void start() {
-        race(getAttemptCount());
-    }
 
     public void race(int attempts){
         for (int i = 0; i < attempts; i++) {
