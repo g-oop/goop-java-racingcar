@@ -1,6 +1,6 @@
 package racingcar.application;
 
-import racingcar.domain.game.RacingGame;
+import racingcar.domain.RacingGame;
 import racingcar.view.RacingGameInputView;
 
 public class GameApplication {

@@ -1,11 +1,13 @@
-package racingcar.domain.game;
+package racingcar.domain;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
 
-import racingcar.domain.car.Car;
-import racingcar.domain.numbergenerator.RandomNumberGenerator;
-import racingcar.view.RacingGameInputView;
-import racingcar.view.RacingGameResultView;
+import racingcar.domain.entity.car.Car;
+
+import static racingcar.view.RacingGameInputView.getAttemptCount;
+import static racingcar.view.RacingGameResultView.printCurrentStatus;
+import static racingcar.view.RacingGameResultView.printWinners;
 
 public class RacingGame{
     private final List<Car> cars;
@@ -21,15 +23,15 @@ public class RacingGame{
     }
 
     public void start() {
-        race(RacingGameInputView.getAttemptCount());
+        race(getAttemptCount());
     }
 
     public void race(int attempts){
         for (int i = 0; i < attempts; i++) {
             moveCars();
-            RacingGameResultView.printCurrentStatus(cars);
+            printCurrentStatus(cars);
         }
-        RacingGameResultView.printWinners(getWinners());
+        printWinners(getWinners());
     }
 
     private void moveCars() {

@@ -2,7 +2,7 @@ package racingcar.view;
 
 import java.util.List;
 
-import racingcar.domain.car.Car;
+import racingcar.domain.entity.car.Car;
 
 public class RacingGameResultView {
 

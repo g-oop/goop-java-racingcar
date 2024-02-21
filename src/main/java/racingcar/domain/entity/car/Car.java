@@ -1,4 +1,7 @@
-package racingcar.domain.car;
+package racingcar.domain.entity.car;
+
+import racingcar.domain.entity.vo.CarName;
+import racingcar.domain.entity.vo.CarPosition;
 
 public class Car {
 
@@ -22,7 +25,7 @@ public class Car {
     }
 
     public String getName() {
-        return name.name();
+        return name.value();
     }
 
     public int getPosition() {

@@ -1,13 +1,13 @@
-package racingcar.domain.car;
+package racingcar.domain.entity.vo;
 
 public class CarPosition {
     private static final int MIN_VALUE = 0;
 
     private int position;
 
-    public CarPosition(int position) {
-        validatePosition(position);
-        this.position = position;
+    public CarPosition(int value) {
+        validatePosition(value);
+        this.position = value;
     }
 
     public void increase() {
@@ -18,8 +18,8 @@ public class CarPosition {
         return position;
     }
 
-    private void validatePosition(int position){
-        if (position < MIN_VALUE) {
+    private void validatePosition(int value){
+        if (value < MIN_VALUE) {
             throw new RuntimeException("Only positive numbers are allowed");
         }
     }
