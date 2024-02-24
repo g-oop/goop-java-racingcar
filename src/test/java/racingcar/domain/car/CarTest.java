@@ -1,5 +1,6 @@
 package racingcar.domain.car;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -8,7 +9,12 @@ import racingcar.domain.entity.car.Car;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CarTest {
-    private Car car = new Car("TEST");
+    private Car car;
+
+    @BeforeEach
+    void setUp() {
+        car = new Car("TEST");
+    }
 
     @ParameterizedTest
     @ValueSource(ints = {4,5,6,7,8,9,10})
@@ -27,5 +33,6 @@ public class CarTest {
 
         assertEquals(0, car.getPosition());
     }
+
 
 }

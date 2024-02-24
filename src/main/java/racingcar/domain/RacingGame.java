@@ -4,21 +4,25 @@ import java.util.Arrays;
 import java.util.List;
 
 import racingcar.domain.entity.car.Car;
+import racingcar.domain.strategy.NumberGenerator;
 
 import static racingcar.view.RacingGameResultView.printCurrentStatus;
 import static racingcar.view.RacingGameResultView.printWinners;
 
 public class RacingGame{
     private final List<Car> cars;
+    private final NumberGenerator numberGenerator;
 
-    public RacingGame(String[] carNames){
+    public RacingGame(String[] carNames, NumberGenerator numberGenerator){
         this(Arrays.stream(carNames)
             .map(Car::new)
-            .toList());
+            .toList()
+            , numberGenerator);
     }
 
-    private RacingGame(List<Car> cars){
+    private RacingGame(List<Car> cars, NumberGenerator numberGenerator){
         this.cars = cars;
+        this.numberGenerator = numberGenerator;
     }
 
 
@@ -32,7 +36,7 @@ public class RacingGame{
 
     private void moveCars() {
         for (Car car: cars) {
-            car.move(RandomNumberGenerator.generate());
+            car.move(numberGenerator.generate());
         }
     }
 
