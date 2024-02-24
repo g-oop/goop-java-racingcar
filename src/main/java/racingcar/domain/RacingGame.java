@@ -1,31 +1,19 @@
 package racingcar.domain;
 
+import racingcar.domain.entity.RacingGameResult;
 import racingcar.domain.entity.car.Cars;
 import racingcar.domain.strategy.NumberGenerator;
 
-import static racingcar.view.RacingGameResultView.printCurrentStatus;
-import static racingcar.view.RacingGameResultView.printWinners;
-
 public class RacingGame{
-    private final Cars cars;
-    private final NumberGenerator numberGenerator;
 
-    public RacingGame(String[] carNames, NumberGenerator numberGenerator){
-        this(new Cars(carNames), numberGenerator);
-    }
-
-    private RacingGame(Cars cars, NumberGenerator numberGenerator){
-        this.cars = cars;
-        this.numberGenerator = numberGenerator;
-    }
-
-    public void race(int attempts){
+    public RacingGameResult race(String[] carNames, int attempts, NumberGenerator numberGenerator){
+        RacingGameResult result = new RacingGameResult();
+        Cars cars = new Cars(carNames);
         for (int i = 0; i < attempts; i++) {
-            cars.move(numberGenerator);
-            printCurrentStatus(cars.getValue());
+            cars = cars.moveAll(numberGenerator);
+            result.logCurrentStatus(cars);
         }
-        printWinners(cars.getWinners());
+        return result;
     }
-
 
 }

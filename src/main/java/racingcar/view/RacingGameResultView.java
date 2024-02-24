@@ -2,12 +2,19 @@ package racingcar.view;
 
 import java.util.List;
 
+import racingcar.domain.entity.RacingGameResult;
 import racingcar.domain.entity.car.Car;
+import racingcar.domain.entity.car.Cars;
 
 public class RacingGameResultView {
 
-    public static void printCurrentStatus(List<Car> cars) {
-        drawCarPaths(cars);
+    public static void printResult(RacingGameResult result) {
+        printEachStatus(result.getCarsHistory());
+        printWinners(result.getWinners());
+    }
+
+    public static void printEachStatus(List<Cars> statuses) {
+        statuses.forEach(status -> drawCarPaths(status.getValue()));
     }
 
     public static void printWinners(List<Car> cars) {
