@@ -5,26 +5,40 @@ import java.util.*;
 import racingcar.domain.strategy.NumberGenerator;
 
 public class Cars {
-    private final List<Car> value;
+    private final List<Car> cars;
 
     public Cars(String[] carNames){
         this(Arrays.stream(carNames)
             .map(Car::new)
             .toList());
     }
-    private Cars(List<Car> value) {
-        this.value = value;
+
+    private Cars(List<Car> cars) {
+        this.cars = cars;
     }
 
-    public Cars moveAll(NumberGenerator numberGenerator) {
-        List<Car> currentCars = new ArrayList<>();
-        for (Car car: value) {
-            currentCars.add(car.move(numberGenerator.generate()));
+    public void moveAll(NumberGenerator numberGenerator) {
+        for (Car car: cars) {
+            car.move(numberGenerator.generate());
         }
-        return new Cars(currentCars);
     }
 
-    public List<Car> getValue() {
-        return value;
+    public List<Car> getCars() {
+        return cars;
+    }
+
+    public List<Car> getWinners() {
+        int maxPosition = getMaxPosition(cars);
+        return cars.stream()
+            .filter(car -> car.getPosition() == maxPosition)
+            .toList();
+    }
+
+    private int getMaxPosition(List<Car> cars) {
+        int maxPosition = 0;
+        for (Car car: cars) {
+            maxPosition = Math.max(maxPosition, car.getPosition());
+        }
+        return maxPosition;
     }
 }

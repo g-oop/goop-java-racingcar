@@ -18,11 +18,10 @@ public class Car {
         this.position = position;
     }
 
-    public Car move(int number) {
+    public void move(int number) {
         if (isMovable(number)) {
-            return new Car(name, position.increase());
+           position.increase();
         }
-        return this;
     }
 
     public String getName() {
@@ -30,7 +29,7 @@ public class Car {
     }
 
     public int getPosition() {
-        return position.value();
+        return position.getValue();
     }
 
     private boolean isMovable(int number) {

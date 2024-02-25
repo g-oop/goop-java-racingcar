@@ -21,7 +21,7 @@ public class CarTest {
     @DisplayName("기준값 이상일 경우 자동차 이동")
     void moveWhenRandomValueIsOverThreshold(int movableNumber){
         NumberGenerator movableNumberGenerator = () -> movableNumber;
-        car  = car.move(movableNumberGenerator.generate());
+        car.move(movableNumberGenerator.generate());
         assertEquals(1, car.getPosition());
     }
 
@@ -30,7 +30,7 @@ public class CarTest {
     @DisplayName("기준값 미만일 경우 자동차 이동 X")
     void stayWhenRandomValueIsUnderThreshold(int immovableNumber){
         NumberGenerator immovableNumberGenerator = () -> immovableNumber;
-        car  = car.move(immovableNumberGenerator.generate());
+        car.move(immovableNumberGenerator.generate());
         assertEquals(0, car.getPosition());
     }
 

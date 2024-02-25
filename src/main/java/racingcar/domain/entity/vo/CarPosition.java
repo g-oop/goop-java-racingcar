@@ -1,18 +1,26 @@
 package racingcar.domain.entity.vo;
 
-public record CarPosition(int value) {
+public class CarPosition {
     private static final int MIN_VALUE = 0;
-    public CarPosition {
+
+    private int value;
+
+    public CarPosition(int value) {
         validatePosition(value);
+        this.value = value;
     }
-    private void validatePosition(int value){
-        if (value < MIN_VALUE) {
+
+    public void increase() {
+        value++;
+    }
+
+    public int getValue() {
+        return value;
+    }
+
+    private void validatePosition(int position){
+        if (position < MIN_VALUE) {
             throw new RuntimeException("Only positive numbers are allowed");
         }
     }
-
-    public CarPosition increase(){
-        return new CarPosition(value + 1);
-    }
 }
-
