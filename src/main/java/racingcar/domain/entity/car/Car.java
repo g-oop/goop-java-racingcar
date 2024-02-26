@@ -1,4 +1,7 @@
-package racingcar.domain.car;
+package racingcar.domain.entity.car;
+
+import racingcar.domain.entity.vo.CarName;
+import racingcar.domain.entity.vo.CarPosition;
 
 public class Car {
 
@@ -7,26 +10,26 @@ public class Car {
     private final CarPosition position;
 
     public Car(String name) {
-        this(name, 0);
+        this(new CarName(name), new CarPosition(0));
     }
 
-    private Car(String name, int position) {
-        this.name = new CarName(name);
-        this.position = new CarPosition(position);
+    private Car(CarName name, CarPosition position) {
+        this.name = name;
+        this.position = position;
     }
 
     public void move(int number) {
         if (isMovable(number)) {
-            position.increase();
+           position.increase();
         }
     }
 
     public String getName() {
-        return name.name();
+        return name.value();
     }
 
     public int getPosition() {
-        return position.getPosition();
+        return position.getValue();
     }
 
     private boolean isMovable(int number) {

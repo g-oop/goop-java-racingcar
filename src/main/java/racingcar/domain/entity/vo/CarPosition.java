@@ -1,21 +1,21 @@
-package racingcar.domain.car;
+package racingcar.domain.entity.vo;
 
 public class CarPosition {
     private static final int MIN_VALUE = 0;
 
-    private int position;
+    private int value;
 
-    public CarPosition(int position) {
-        validatePosition(position);
-        this.position = position;
+    public CarPosition(int value) {
+        validatePosition(value);
+        this.value = value;
     }
 
     public void increase() {
-        position++;
+        value++;
     }
 
-    public int getPosition() {
-        return position;
+    public int getValue() {
+        return value;
     }
 
     private void validatePosition(int position){

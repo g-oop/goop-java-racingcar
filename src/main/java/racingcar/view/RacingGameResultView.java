@@ -2,12 +2,37 @@ package racingcar.view;
 
 import java.util.List;
 
-import racingcar.domain.car.Car;
+import racingcar.domain.CarState;
+import racingcar.domain.RacingGameState;
+import racingcar.domain.RacingGameResult;
+import racingcar.domain.entity.car.Car;
 
 public class RacingGameResultView {
+    public static void printResult(RacingGameResult result) {
+        printEachStatus(result.getGameStateHistory());
+    }
 
-    public static void printCurrentStatus(List<Car> cars) {
-        drawCarPaths(cars);
+    public static void printEachStatus(List<RacingGameState> statuses) {
+        for (RacingGameState status : statuses) {
+            drawCarPaths(status.carStates());
+        }
+    }
+
+    private static void drawCarPaths(List<CarState> carStates) {
+        for (CarState carState : carStates) {
+            drawCarPath(carState);
+        }
+        System.out.println();
+    }
+
+    private static void drawCarPath(CarState carState) {
+        System.out.print(carState.name() + "|");
+
+        for (int i = 0; i < carState.position(); i++) {
+            System.out.print("-");
+        }
+        System.out.print("⛟");
+        System.out.println();
     }
 
     public static void printWinners(List<Car> cars) {
@@ -19,22 +44,5 @@ public class RacingGameResultView {
         return String.join(",", names);
     }
 
-
-    private static void drawCarPaths(List<Car> cars) {
-        for (Car car: cars) {
-            drawCarPath(car);
-        }
-        System.out.println();
-    }
-
-    private static void drawCarPath(Car car) {
-        System.out.print(car.getName() + "|");
-
-        for (int i = 0; i < car.getPosition(); i++) {
-            System.out.print("-");
-        }
-        System.out.print("⛟");
-        System.out.println();
-    }
 
 }
