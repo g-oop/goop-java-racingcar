@@ -21,7 +21,7 @@ class GameTest {
         Game game = new Game(numberOfCars, numberOfLaps);
 
         int[][] laps = game.begin(rule);
-
-        Assertions.assertThat(Arrays.stream(laps[laps.length - 1]).sum()).isEqualTo(result);
+        int totalDistanceOfLastLap = Arrays.stream(laps[laps.length - 1]).sum();
+        Assertions.assertThat(totalDistanceOfLastLap).isEqualTo(result);
     }
 }
