@@ -1,4 +1,4 @@
-package racingcar;
+package racingcar.step1;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
+import racingcar.step1.SetCollection;
 
 public class SetCollectionTest {
 
@@ -65,7 +66,7 @@ public class SetCollectionTest {
 
     @CsvSource(value = {"1:true", "2:true", "3:true", "4:false", "5:false"}, delimiter = ':')
     @ParameterizedTest
-    void firstOfRequirement3(String inputInt, String inputBoolean) {
+    void firstOfRequirement3(int inputInt, boolean inputBoolean) {
 
         // given
 
@@ -73,6 +74,6 @@ public class SetCollectionTest {
         SetCollection setCollection = new SetCollection(numbers);
 
         // then
-        Assertions.assertThat(setCollection.contains(Integer.parseInt(inputInt))).isEqualTo(Boolean.parseBoolean(inputBoolean));
+        Assertions.assertThat(setCollection.contains(inputInt)).isEqualTo(inputBoolean);
     }
 }

@@ -1,13 +1,11 @@
-package racingcar;
-
-import java.util.Map;
+package racingcar.step2;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.jupiter.params.provider.*;
+import racingcar.step2.StringAddCalculator;
 
 class StringAddCalculatorTest {
 
@@ -16,6 +14,13 @@ class StringAddCalculatorTest {
     @ParameterizedTest
     void executeSplitAndSum(String inputString, int result) {
         Assertions.assertThat(StringAddCalculator.splitAndSum(inputString)).isEqualTo(result);
+    }
+
+    @DisplayName("공백이나 null이 입력 시 0 값 출력")
+    @NullAndEmptySource
+    @ParameterizedTest
+    void executeSplitAndSumByEmpty(String inputString) {
+        Assertions.assertThat(StringAddCalculator.splitAndSum(inputString)).isEqualTo(0);
     }
 
     @DisplayName("커스텀 구분자를 사용할 수 있도록 구현")
